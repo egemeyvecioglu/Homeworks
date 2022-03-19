@@ -4,7 +4,7 @@ void possibilities(int cost[],int gain[], int index, int size, int sum,int sum2,
 {   
     
     if (index > size) {
-        printf("%d ",counter);
+
         if(sum < budget){
             subset[counter] = sum; 
             subset2[counter] = sum2;
@@ -15,7 +15,7 @@ void possibilities(int cost[],int gain[], int index, int size, int sum,int sum2,
             subset2[counter] = 0;
             
         }
-        printf("%d\n",counter);
+
         return ;
     }
  
