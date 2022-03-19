@@ -1,1 +1,0 @@
-data[children]["alive"] == True or
