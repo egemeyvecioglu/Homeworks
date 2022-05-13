@@ -31,9 +31,9 @@ def linear_layer(weights,X):
     
 def sigmoid_clipped(x):
     for i in range(len(x)):
-        if x[i] < -700 or abs(x[i]-(-700)) < 1e-6:
+        if x[i] <= -700:
             x[i] = 0.
-        elif x[i] > 700 or abs(x[i]-700) < 1e-6:
+        elif x[i] >= 700:
             x[i] = 1.
         else:
             x[i] =  1.0 / ( 1.0 + math.exp(-x[i]) )
