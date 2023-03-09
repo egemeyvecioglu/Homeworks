@@ -1,0 +1,54 @@
+name: wwr
+source code: |-
+
+input: '1010001'
+blank: ' '
+start state: q0
+table:
+
+  q0:
+    0      : {R: q0}
+    1      : {R: q0}
+    ' '      : {L: q1}    
+
+  q1:
+    0      : {write : 'a', R: q2}
+    1      : {write : 'b', R: q3}
+  q2:
+    ' '    : {write: '0', L: q4}
+    0: {R: q2}
+    1: {R: q2}
+    a: {R: q2}
+    b: {R: q2}
+  q3:
+    ' '    : {write: '1', L: q4}
+    1: {R: q3}
+    0: {R: q3}
+    a: {R: q3}
+    b: {R: q3}
+  q4:
+    0      : {L: q4}
+    1      : {L: q4}
+    a: {L: q5}
+    b: {L: q5}
+
+  q5:
+    a     : {L: q5}
+    b     : {L: q5}
+    1     : {write: 'b',R: q3}
+    0     : {write: 'a',R: q2}
+    ' '     : {R: q6}
+  
+  q6:
+    a      : {write: 0, R: q6}
+    b      : {write: 1, R: q6}
+
+    
+positions:
+  q0: {x: 88.96, y: 267.12}
+  q1: {x: 203.32, y: 272.37}
+  q2: {x: 292.14, y: 198.14}
+  q3: {x: 320.33, y: 328.09}
+  q4: {x: 400.07, y: 254.08}
+  q5: {x: 656.88, y: 254.47}
+  q6: {x: 675.47, y: 343.64}

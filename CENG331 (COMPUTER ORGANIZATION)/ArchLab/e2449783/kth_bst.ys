@@ -1,0 +1,114 @@
+# name: Hasan Ege Meyvecioğlu
+# ID : 2449783
+
+
+.pos 0
+# main
+    irmovq stack, %rsp #set stack
+    irmovq root, %rdi #set arguments
+    irmovq k, %rsi 
+    call kth_bst #call the function
+    halt
+
+
+kth_bst:
+
+    andq %rdi,%rdi #check whether the root is null
+    je null_tree
+    irmovq $8,%rdx    #to play with rsp
+    subq %rdx,%rsp    #decrement rsp
+    rmmovq %rdi,(%rsp)#store caller functions root
+    mrmovq 8(%rdi),%rdi#new rdi = root->left
+    call kth_bst
+    mrmovq (%rsp),%rdi #get the caller functions' root again
+    irmovq $0,%r14
+    rmmovq %r14,(%rsp)
+    addq %rdx,%rsp     #increment rsp
+    rrmovq %rax, %rbp #candidate = kth_bst(root->left,k)
+    mrmovq (%rsi),%r9 
+    andq %r9,%r9 # check *k
+    jle ret_cand # return candidate if *k<=0
+    irmovq $1,%r12
+    subq %r12,%r9 #decrement k
+    rmmovq %r9,(%rsi)
+    andq %r9,%r9 # check k again
+    jne right_tree #if *k!=0 call function for right tree
+    jmp ret_root   #else return root->data
+    
+null_tree:
+    irmovq $-1,%rax #node is null, return -1
+    ret
+
+
+right_tree:
+    subq %rdx,%rsp 
+    rmmovq %rdi,(%rsp) #store old rdi
+    mrmovq 16(%rdi),%rdi#set new rdi as root->right
+    call kth_bst #call for new root
+    mrmovq (%rsp),%rdi
+    irmovq $0,%r14
+    rmmovq %r14,(%rsp)
+    addq %rdx,%rsp #get previous rdi again
+    ret #return the value that has been set in the new function call in rax
+
+ret_cand:
+    rrmovq %rbp,%rax #return candidate
+    ret
+
+ret_root:
+    mrmovq (%rdi),%rax#return root->data
+    ret
+
+
+
+# Absolutely positioned here to debug addresses more easily.
+.pos 0x200
+root:
+    .quad 17
+    .quad node6
+    .quad node24
+node6:
+    .quad 6
+.quad node4
+    .quad node11
+node4:
+    .quad 4
+    .quad node3
+    .quad node5
+node3:
+    .quad 3
+.quad 0
+    .quad 0
+node5:
+    .quad 5
+    .quad 0 # Remember that 0 is null.
+    .quad 0
+node11:
+    .quad 11
+.quad node8
+    .quad 0
+node8:
+    .quad 8
+    .quad 0
+    .quad 0
+node24:
+    .quad 24
+    .quad node19
+    .quad node40
+node19:
+    .quad 19
+    .quad 0
+    .quad 0
+node40:
+    .quad 40
+    .quad 0
+    .quad node52
+node52:
+    .quad 52
+    .quad 0
+    .quad 0
+k:
+.quad 8
+
+.pos 0x600
+stack:

@@ -1,0 +1,47 @@
+name: anbn
+source code: |-
+
+  input: '01'
+  blank: ' '
+  start state: 0
+  table:
+
+    0:
+      0      : {R: 1}
+      1      : {write: ' ',R: reject}
+      ' '      : {R: reject}
+    1:
+      0:  { L: 2}
+      1:  { L: 2}
+      ' '      : {R: reject}
+
+    2:
+      0      : {write: ' ', R: 3}
+      ' '    : {R: accept}
+      1      : {write: ' ', R: reject}
+      
+    3:
+      0      : {R: 3}
+      1      : {R: 3}
+      ' '     : {L: 4}
+    4:
+      1      : {write: ' ', L: 5}
+      0      : {R: reject}
+      ' '      : {R: reject}
+    5:
+      0      : {L: 5}
+      1      : {L: 5}
+      ' '     : {R: 2}
+    accept:
+    
+    reject:
+    
+positions:
+  '0': {x: 186.85, y: 190.16}
+  '1': {x: 441.86, y: 84.18}
+  '2': {x: 610.5, y: 190.49}
+  '3': {x: 442.11, y: 366.27}
+  '4': {x: 316.76, y: 306.82, fixed: false}
+  '5': {x: 441.41, y: 216.39}
+  accept: {x: 631.78, y: 334.01}
+  reject: {x: 402.07, y: 199.15, fixed: false}

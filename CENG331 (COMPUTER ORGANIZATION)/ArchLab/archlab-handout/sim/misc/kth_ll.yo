@@ -1,0 +1,57 @@
+                            | # name: Hasan Ege Meyvecioğlu
+                            | # ID : 2449783
+                            | 
+0x000:                      | .pos 0
+                            | # main
+0x000: 30f40004000000000000 |     irmovq stack, %rsp
+0x00a: 30f70002000000000000 |     irmovq ele0, %rdi
+0x014: 30f60400000000000000 |     irmovq $4, %rsi
+0x01e: 802800000000000000   |     call find_kth
+0x027: 00                   |     halt
+                            | 
+                            | # return the index of an element in an array
+0x028:                      | find_kth:
+0x028: 6300                 |     xorq %rax, %rax  # kth = 0
+0x02a: 30f90100000000000000 |     irmovq $1, %r9 # to substract -1 from k
+0x034:                      | loop:
+0x034: 207b                 |     rrmovq %rdi, %r11 #temp =  head
+0x036: 62bb                 |     andq %r11, %r11 #head=null?
+0x038: 737600000000000000   |     je Done #if so, return
+0x041: 6196                 |     subq %r9, %rsi #k--
+0x043: 2062                 |     rrmovq %rsi, %rdx #temp2 = k
+0x045: 6222                 |     andq %rdx, %rdx #if k==0
+0x047: 736300000000000000   |     je loop_Done #end loop
+0x050: 50770800000000000000 |     mrmovq 8(%rdi),%rdi
+0x05a: 703400000000000000   |     jmp loop
+0x063:                      | loop_Done:
+0x063: 50070000000000000000 |     mrmovq (%rdi),%rax # kth = head->value
+0x06d: 707600000000000000   |     jmp Done
+0x076:                      | Done:
+0x076: 90                   |     ret
+                            | 
+                            | 
+0x200:                      | .pos 0x200
+0x200:                      | ele0:
+0x200: 0500000000000000     | .quad 0x0005 
+0x208: 1002000000000000     | .quad ele1
+0x210:                      | ele1:
+0x210: 0c00000000000000     | .quad 0x000c 
+0x218: 2002000000000000     | .quad ele2
+0x220:                      | ele2:
+0x220: 1000000000000000     | .quad 0x0010 
+0x228: 3002000000000000     | .quad ele3
+0x230:                      | ele3:
+0x230: 1a00000000000000     | .quad 0x001a 
+0x238: 4002000000000000     | .quad ele4
+0x240:                      | ele4:
+0x240: 3000000000000000     | .quad 0x0030
+0x248: 5002000000000000     | .quad ele5
+0x250:                      | ele5:
+0x250: 4500000000000000     | .quad 0x0045
+0x258: 6002000000000000     | .quad ele6
+0x260:                      | ele6:
+0x260: 5e00000000000000     | .quad 0x005e
+0x268: 0000000000000000     | .quad 0 # Remember that 0 is null.
+                            | 
+0x400:                      | .pos 0x400
+0x400:                      | stack:

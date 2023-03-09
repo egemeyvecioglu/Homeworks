@@ -1,0 +1,46 @@
+                            | #/* $begin abscopy-ys */
+                            | ##################################################################
+                            | # abscopy.ys - copy the absolute values of a src block of n words to dst.
+                            | # Return the sum of copied (absolute) values.
+                            | # Name: Hasan Ege Meyvecioğlu
+                            | # ID: 2449783
+                            | # Include your name and ID here.
+                            | # Describe how and why you modified the baseline code.
+                            | ##################################################################
+                            | # Do not modify this portion
+                            | # Function prologue.
+                            | # %rdi = src, %rsi = dst, %rdx = n
+0x000:                      | abscopy:
+                            | ##################################################################
+                            | # You can modify this portion
+                            |         # Loop header
+0x000: 6300                 |         xorq %rax,%rax          # sum = 0;
+0x002: 6222                 |         andq %rdx,%rdx          # n <= 0?
+0x004: 715900000000000000   |         jle Done                # if so, goto Done:
+                            | 
+0x00d:                      | Loop:   
+0x00d: 50a70000000000000000 |         mrmovq (%rdi), %r10     # read val from src...
+0x017: 62aa                 |         andq %r10, %r10         # val >= 0?
+0x019: 752800000000000000   |         jge Positive            # if so, skip negating
+0x022: 20a9                 |         rrmovq %r10, %r9        # temporary move
+0x024: 63aa                 |         xorq %r10, %r10         # zero r10
+0x026: 619a                 |         subq %r9, %r10          # negation achieved!
+0x028:                      | Positive:
+0x028: 60a0                 |         addq %r10, %rax         # sum += absval   
+0x02a: 40a60000000000000000 |         rmmovq %r10, (%rsi)     # ...and store it to dst
+0x034: 30fa0100000000000000 |         irmovq $1, %r10
+0x03e: 61a2                 |         subq %r10, %rdx         # n--
+0x040: 30fa0800000000000000 |         irmovq $8, %r10
+0x04a: 60a6                 |         addq %r10, %rsi         # dst++
+0x04c: 60a7                 |         addq %r10, %rdi         # src++
+0x04e: 6222                 |         andq %rdx,%rdx          # n > 0?
+0x050: 760d00000000000000   |         jg Loop                 # if so, goto Loop:
+                            | ##################################################################
+                            | # Do not modify the following section of code
+                            | # Function epilogue.
+0x059:                      | Done:
+0x059: 90                   |         ret
+                            | ##################################################################
+                            | # Keep the following label at the end of your function
+0x05a:                      | End:
+                            | #/* $end abscopy-ys */

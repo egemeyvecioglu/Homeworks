@@ -1,0 +1,77 @@
+                            | # name: Hasan Ege Meyvecioğlu
+                            | # ID : 2449783
+                            | 
+0x000:                      | .pos 0
+                            | # main
+0x000: 30f40006000000000000 |     irmovq stack, %rsp
+0x00a: 30f70002000000000000 |     irmovq ele0, %rdi
+0x014: 30f60004000000000000 |     irmovq array, %rsi
+0x01e: 30f23800000000000000 |     irmovq $56, %rdx
+0x028: 803200000000000000   |     call insert
+0x031: 00                   |     halt
+                            | 
+                            | # return the index of an element in an array
+0x032:                      | insert:
+0x032: 40260000000000000000 |     rmmovq %rdx,(%rsi) # array->value = value
+0x03c: 6300                 |     xorq %rax, %rax  #rax = 0
+0x03e: 207b                 |     rrmovq %rdi, %r11 #temp =  head
+0x040: 62bb                 |     andq %r11, %r11 #head=null?
+0x042: 736b00000000000000   |     je if_satisfied #if so, return
+0x04b: 50970000000000000000 |     mrmovq (%rdi), %r9 #tmp=head->value
+0x055: 6129                 |     subq %rdx,%r9
+0x057: 766b00000000000000   |     jg if_satisfied
+0x060: 2079                 |     rrmovq %rdi,%r9 #*temp = head
+0x062: 707800000000000000   |     jmp loop
+0x06b:                      | if_satisfied:
+0x06b: 40760800000000000000 |     rmmovq %rdi,8(%rsi)
+0x075: 2060                 |     rrmovq %rsi,%rax
+0x077: 90                   |     ret
+0x078:                      | loop:
+0x078: 50c90800000000000000 |     mrmovq 8(%r9), %r12 #temp2->next
+0x082: 500c0000000000000000 |     mrmovq (%r12), %rax #temp2->next->value
+0x08c: 62cc                 |     andq %r12, %r12 #if temp2->next==0
+0x08e: 73ad00000000000000   |     je loop_Done #end loop
+0x097: 6120                 |     subq %rdx,%rax #if (temp2->next->value)- value >= 0
+0x099: 75ad00000000000000   |     jge loop_Done #end loop
+0x0a2: 20c9                 |     rrmovq %r12,%r9 #temp2=temp2->next
+0x0a4: 707800000000000000   |     jmp loop
+0x0ad:                      | loop_Done:
+0x0ad: 50c90800000000000000 |     mrmovq 8(%r9),%r12  #temp2->next;
+0x0b7: 40c60800000000000000 |     rmmovq  %r12,8(%rsi) #*(array+1) = temp2->next
+0x0c1: 40690800000000000000 |     rmmovq %rsi,8(%r9) #temp2->next =array
+0x0cb: 2070                 |     rrmovq %rdi,%rax # return head
+0x0cd: 90                   |     ret
+                            | 
+                            | 
+                            | 
+0x200:                      | .pos 0x200
+0x200:                      | ele0:
+0x200: 0500000000000000     | .quad 0x0005 
+0x208: 1002000000000000     | .quad ele1
+0x210:                      | ele1:
+0x210: 0c00000000000000     | .quad 0x000c 
+0x218: 2002000000000000     | .quad ele2
+0x220:                      | ele2:
+0x220: 1000000000000000     | .quad 0x0010 
+0x228: 3002000000000000     | .quad ele3
+0x230:                      | ele3:
+0x230: 1a00000000000000     | .quad 0x001a 
+0x238: 4002000000000000     | .quad ele4
+0x240:                      | ele4:
+0x240: 3000000000000000     | .quad 0x0030
+0x248: 5002000000000000     | .quad ele5
+0x250:                      | ele5:
+0x250: 4500000000000000     | .quad 0x0045
+0x258: 6002000000000000     | .quad ele6
+0x260:                      | ele6:
+0x260: 5e00000000000000     | .quad 0x005e
+0x268: 0000000000000000     | .quad 0 # Remember that 0 is null.
+                            | 
+0x400:                      | .pos 0x400
+0x400:                      | array:
+0x400: 0000000000000000     |     .quad 0
+0x408: 0000000000000000     |     .quad 0
+                            | 
+                            | 
+0x600:                      | .pos 0x600
+0x600:                      | stack:

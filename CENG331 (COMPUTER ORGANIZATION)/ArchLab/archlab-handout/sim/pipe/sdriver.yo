@@ -1,0 +1,207 @@
+                            | #######################################################################
+                            | # Test for copying block of size 4;
+                            | #######################################################################
+0x000:                      | 	.pos 0
+0x000: 30f4f003000000000000 | main:	irmovq Stack, %rsp  	# Set up stack pointer
+                            | 
+                            | 	# Set up arguments for copy function and then invoke it
+0x00a: 30f20400000000000000 | 	irmovq $4, %rdx		# src and dst have 4 elements
+0x014: 30f64803000000000000 | 	irmovq dest, %rsi	# dst array
+0x01e: 30f71803000000000000 | 	irmovq src, %rdi	# src array
+                            |     # corrupt all the unused registers to prevent assumptions
+0x028: 30f03103710500000000 |     irmovq $0x5710331, %rax
+0x032: 30f33103710500000000 |     irmovq $0x5710331, %rbx
+0x03c: 30f13103710500000000 |     irmovq $0x5710331, %rcx
+0x046: 30f53103710500000000 |     irmovq $0x5710331, %rbp
+0x050: 30f83103710500000000 |     irmovq $0x5710331, %r8
+0x05a: 30f93103710500000000 |     irmovq $0x5710331, %r9
+0x064: 30fa3103710500000000 |     irmovq $0x5710331, %r10
+0x06e: 30fb3103710500000000 |     irmovq $0x5710331, %r11
+0x078: 30fc3103710500000000 |     irmovq $0x5710331, %r12
+0x082: 30fd3103710500000000 |     irmovq $0x5710331, %r13
+0x08c: 30fe3103710500000000 |     irmovq $0x5710331, %r14
+0x096: 80a000000000000000   | 	call abscopy		 
+0x09f: 00                   | 	halt			# should halt with abs sum in %rax
+0x0a0:                      | StartFun:
+                            | #/* $begin abscopy-ys */
+                            | ##################################################################
+                            | # abscopy.ys - copy the absolute values of a src block of n words to dst.
+                            | # Return the sum of copied (absolute) values.
+                            | # Name: Hasan Ege Meyvecioğlu
+                            | # ID: 2449783
+                            | # First of all, I carry some irmovq instructions from loop body because it was doing the same thing every iteration.
+                            | # Then I rearrange the order of instructions to get rid of data hazards. For example I have changed the place of src++ and dst++ instructions.
+                            | # In addition I remove andq to check whether %rdx is empty because subq instruction already sets the condition codes.
+                            | # I redefine my isubq function so that it can just take the absolute value of the given register.
+                            | # Lastly, I do 8x1 loop unrolling using the figure 5.16 in the lecture book. The  reason I do this with 8 is because after 8 either the number of bytes 
+                            | # have passed 100 or the average CPE started to decrease.
+                            | 
+                            | 
+                            | ##################################################################
+                            | # Do not modify this portion
+                            | # Function prologue.
+                            | # %rdi = src, %rsi = dst, %rdx = n
+0x0a0:                      | abscopy:
+                            | ##################################################################
+                            | # You can modify this portion
+                            |         # Loop header
+0x0a0: 6300                 |         xorq %rax,%rax          # sum = 0;
+0x0a2: 30f90700000000000000 |         irmovq $7,%r9           # limit = n -7
+0x0ac: 6192                 |         subq %r9,%rdx           # n = limit
+0x0ae: 71da01000000000000   |         jle Prep                # if it is satisfied, the # of items are less than 8 so we can directly go to loop2.
+0x0b7: 30fb0800000000000000 |         irmovq $8, %r11        #loop1 n decrementer
+0x0c1: 30fc4000000000000000 | 		irmovq $64, %r12       #loop1 src,dst incrementer
+0x0cb:                      | Loop1:   
+0x0cb: 50a70000000000000000 |         mrmovq (%rdi), %r10     # read val from src...
+0x0d5: d0fa0000000000000000 | 		isubq $0,%r10           # take abs of %r10 and write it on %r10
+0x0df: 40a60000000000000000 |         rmmovq %r10, (%rsi)     # ...and store it to dst
+0x0e9: 60a0                 | 		addq %r10, %rax         # sum += absval 
+                            | 
+0x0eb: 50a70800000000000000 |         mrmovq 8(%rdi), %r10     # read val from src...   Instead of incrementing src and dst just reach the values like that.
+0x0f5: d0fa0000000000000000 | 		isubq $0,%r10   
+0x0ff: 40a60800000000000000 |         rmmovq %r10, 8(%rsi)     # ...and store it to dst
+0x109: 60a0                 | 		addq %r10, %rax          # sum += absval 
+                            | 
+0x10b: 50a71000000000000000 |         mrmovq 16(%rdi), %r10     # read val from src...
+0x115: d0fa0000000000000000 | 		isubq $0,%r10   
+0x11f: 40a61000000000000000 |         rmmovq %r10, 16(%rsi)     # ...and store it to dst
+0x129: 60a0                 | 		addq %r10, %rax         # sum += absval 
+                            | 
+0x12b: 50a71800000000000000 |         mrmovq 24(%rdi), %r10     # read val from src...
+0x135: d0fa0000000000000000 | 		isubq $0,%r10   
+0x13f: 40a61800000000000000 |         rmmovq %r10, 24(%rsi)     # ...and store it to dst
+0x149: 60a0                 | 		addq %r10, %rax         # sum += absval 
+                            | 
+0x14b: 50a72000000000000000 |         mrmovq 32(%rdi), %r10     # read val from src...
+0x155: d0fa0000000000000000 | 		isubq $0,%r10   
+0x15f: 40a62000000000000000 |         rmmovq %r10, 32(%rsi)     # ...and store it to dst
+0x169: 60a0                 | 		addq %r10, %rax         # sum += absval 
+                            | 
+0x16b: 50a72800000000000000 |         mrmovq 40(%rdi), %r10     # read val from src...
+0x175: d0fa0000000000000000 | 		isubq $0,%r10   
+0x17f: 40a62800000000000000 |         rmmovq %r10, 40(%rsi)     # ...and store it to dst
+0x189: 60a0                 | 		addq %r10, %rax         # sum += absval 
+                            | 
+0x18b: 50a73000000000000000 |         mrmovq 48(%rdi), %r10     # read val from src...
+0x195: d0fa0000000000000000 | 		isubq $0,%r10   
+0x19f: 40a63000000000000000 |         rmmovq %r10, 48(%rsi)     # ...and store it to dst
+0x1a9: 60a0                 | 		addq %r10, %rax         # sum += absval 
+                            | 
+0x1ab: 50a73800000000000000 |         mrmovq 56(%rdi), %r10     # read val from src...
+0x1b5: 60c7                 |         addq %r12, %rdi         # src+=8
+0x1b7: d0fa0000000000000000 | 		isubq $0,%r10           #isubq is taking the absolute value of %r10
+0x1c1: 40a63800000000000000 |         rmmovq %r10, 56(%rsi)     # ...and store it to dst
+0x1cb: 60a0                 | 		addq %r10, %rax         # sum += absval 
+0x1cd: 60c6                 |         addq %r12, %rsi         # dst+=8
+0x1cf: 61b2                 |         subq %r11, %rdx         # n -= 8
+0x1d1: 76cb00000000000000   |         jg Loop1                 # if so, goto Loop:
+                            | 
+                            | ##################################################################
+                            | # Do not modify the following section of code
+                            | # Function epilogue.
+0x1da:                      | Prep:
+0x1da: 6092                 |         addq %r9, %rdx         #add 7 that is previously substracted in first lines of code
+0x1dc: 731103000000000000   |         je Done                #if n%8==0 just go to done
+0x1e5: 30fb0100000000000000 |         irmovq $1, %r11        #loop2 incrementer
+0x1ef:                      | Loop2:
+                            |         # there can be at most 7 remainder. Every time check whether n==0 and go to done if true.
+0x1ef: 50a70000000000000000 |         mrmovq (%rdi), %r10     # read val from src...
+0x1f9: d0fa0000000000000000 | 		isubq $0,%r10   
+0x203: 40a60000000000000000 |         rmmovq %r10, (%rsi)     # ...and store it to dst
+0x20d: 60a0                 | 		addq %r10, %rax         # sum += absval
+0x20f: 61b2                 |         subq %r11,%rdx
+0x211: 731103000000000000   |         je Done 
+                            | 
+0x21a: 50a70800000000000000 |         mrmovq 8(%rdi), %r10     # read val from src...
+0x224: d0fa0000000000000000 | 		isubq $0,%r10   
+0x22e: 40a60800000000000000 |         rmmovq %r10, 8(%rsi)     # ...and store it to dst
+0x238: 60a0                 | 		addq %r10, %rax         # sum += absval 
+0x23a: 61b2                 |         subq %r11,%rdx
+0x23c: 731103000000000000   |         je Done 
+                            | 
+0x245: 50a71000000000000000 |         mrmovq 16(%rdi), %r10     # read val from src...
+0x24f: d0fa0000000000000000 | 		isubq $0,%r10   
+0x259: 40a61000000000000000 |         rmmovq %r10, 16(%rsi)     # ...and store it to dst
+0x263: 60a0                 | 		addq %r10, %rax         # sum += absval 
+0x265: 61b2                 |         subq %r11,%rdx
+0x267: 731103000000000000   |         je Done 
+                            | 
+0x270: 50a71800000000000000 |         mrmovq 24(%rdi), %r10     # read val from src...
+0x27a: d0fa0000000000000000 | 		isubq $0,%r10   
+0x284: 40a61800000000000000 |         rmmovq %r10, 24(%rsi)     # ...and store it to dst
+0x28e: 60a0                 | 		addq %r10, %rax         # sum += absval 
+0x290: 61b2                 |         subq %r11,%rdx
+0x292: 731103000000000000   |         je Done 
+                            | 
+0x29b: 50a72000000000000000 |         mrmovq 32(%rdi), %r10     # read val from src...
+0x2a5: d0fa0000000000000000 | 		isubq $0,%r10   
+0x2af: 40a62000000000000000 |         rmmovq %r10, 32(%rsi)     # ...and store it to dst
+0x2b9: 60a0                 | 		addq %r10, %rax         # sum += absval 
+0x2bb: 61b2                 |         subq %r11,%rdx
+0x2bd: 731103000000000000   |         je Done 
+                            | 
+0x2c6: 50a72800000000000000 |         mrmovq 40(%rdi), %r10     # read val from src...
+0x2d0: d0fa0000000000000000 | 		isubq $0,%r10   
+0x2da: 40a62800000000000000 |         rmmovq %r10, 40(%rsi)     # ...and store it to dst
+0x2e4: 60a0                 | 		addq %r10, %rax         # sum += absval 
+0x2e6: 61b2                 |         subq %r11,%rdx
+0x2e8: 731103000000000000   |         je Done 
+                            | 
+                            | 
+0x2f1: 50a73000000000000000 |         mrmovq 48(%rdi), %r10     # read val from src...
+0x2fb: d0fa0000000000000000 | 		isubq $0,%r10   
+0x305: 40a63000000000000000 |         rmmovq %r10, 48(%rsi)     # ...and store it to dst
+0x30f: 60a0                 | 		addq %r10, %rax         # sum += absval
+                            | 
+                            | 
+                            | 
+0x311:                      | Done:
+0x311: 90                   |         ret
+                            | ##################################################################
+                            | # Keep the following label at the end of your function
+0x312:                      | End:
+                            | #/* $end abscopy-ys */
+0x312:                      | EndFun:
+                            | 
+                            | ###############################
+                            | # Source and destination blocks 
+                            | ###############################
+0x318:                      | 	.align 8
+0x318:                      | src:
+0x318: ffffffffffffffff     | 	.quad -1
+0x320: feffffffffffffff     | 	.quad -2
+0x328: 0300000000000000     | 	.quad 3
+0x330: 0400000000000000     | 	.quad 4
+0x338: fadebc0000000000     | 	.quad 0xbcdefa # This shouldn't get moved
+                            | 
+0x340:                      | 	.align 16
+0x340:                      | Predest:
+0x340: fadebc0000000000     | 	.quad 0xbcdefa
+0x348:                      | dest:
+0x348: abefcd0000000000     | 	.quad 0xcdefab
+0x350: abefcd0000000000     | 	.quad 0xcdefab
+0x358: abefcd0000000000     | 	.quad 0xcdefab
+0x360: abefcd0000000000     | 	.quad 0xcdefab
+0x368:                      | Postdest:
+0x368: bcfade0000000000     | 	.quad 0xdefabc
+                            | 
+0x370:                      | .align 8
+                            | # Run time stack
+0x370: 0000000000000000     | 	.quad 0
+0x378: 0000000000000000     | 	.quad 0
+0x380: 0000000000000000     | 	.quad 0
+0x388: 0000000000000000     | 	.quad 0
+0x390: 0000000000000000     | 	.quad 0
+0x398: 0000000000000000     | 	.quad 0
+0x3a0: 0000000000000000     | 	.quad 0
+0x3a8: 0000000000000000     | 	.quad 0
+0x3b0: 0000000000000000     | 	.quad 0
+0x3b8: 0000000000000000     | 	.quad 0
+0x3c0: 0000000000000000     | 	.quad 0
+0x3c8: 0000000000000000     | 	.quad 0
+0x3d0: 0000000000000000     | 	.quad 0
+0x3d8: 0000000000000000     | 	.quad 0
+0x3e0: 0000000000000000     | 	.quad 0
+0x3e8: 0000000000000000     | 	.quad 0
+                            | 
+0x3f0:                      | Stack:

@@ -1,0 +1,8 @@
+	    irmovq $4, %rax
+	    nop
+	    nop
+	    nop
+            isubq $0, %rax
+	    nop
+	    nop
+	    halt

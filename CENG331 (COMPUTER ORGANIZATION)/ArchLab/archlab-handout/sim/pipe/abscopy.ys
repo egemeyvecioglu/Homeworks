@@ -1,0 +1,138 @@
+#/* $begin abscopy-ys */
+##################################################################
+# abscopy.ys - copy the absolute values of a src block of n words to dst.
+# Return the sum of copied (absolute) values.
+# Name: Hasan Ege Meyvecioğlu
+# ID: 2449783
+# First of all, I carry some irmovq instructions from loop body because it was doing the same thing every iteration.
+# Then I rearrange the order of instructions to get rid of data hazards. For example I have changed the place of src++ and dst++ instructions.
+# In addition I remove andq to check whether %rdx is empty because subq instruction already sets the condition codes.
+# I redefine my isubq function so that it can just take the absolute value of the given register.
+# Lastly, I do 8x1 loop unrolling using the figure 5.16 in the lecture book. The  reason I do this with 8 is because after 8 either the number of bytes 
+# have passed 100 or the average CPE started to decrease.
+
+
+##################################################################
+# Do not modify this portion
+# Function prologue.
+# %rdi = src, %rsi = dst, %rdx = n
+abscopy:
+##################################################################
+# You can modify this portion
+        # Loop header
+        xorq %rax,%rax          # sum = 0;
+        irmovq $7,%r9           # limit = n -7
+        subq %r9,%rdx           # n = limit
+        jle Prep                # if it is satisfied, the # of items are less than 8 so we can directly go to loop2.
+        irmovq $8, %r11        #loop1 n decrementer
+		irmovq $64, %r12       #loop1 src,dst incrementer
+Loop1:   
+        mrmovq (%rdi), %r10     # read val from src...
+		isubq $0,%r10           # take abs of %r10 and write it on %r10
+        rmmovq %r10, (%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+
+        mrmovq 8(%rdi), %r10     # read val from src...   Instead of incrementing src and dst just reach the values like that.
+		isubq $0,%r10   
+        rmmovq %r10, 8(%rsi)     # ...and store it to dst
+		addq %r10, %rax          # sum += absval 
+
+        mrmovq 16(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 16(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+
+        mrmovq 24(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 24(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+
+        mrmovq 32(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 32(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+
+        mrmovq 40(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 40(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+
+        mrmovq 48(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 48(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+
+        mrmovq 56(%rdi), %r10     # read val from src...
+        addq %r12, %rdi         # src+=8
+		isubq $0,%r10           #isubq is taking the absolute value of %r10
+        rmmovq %r10, 56(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+        addq %r12, %rsi         # dst+=8
+        subq %r11, %rdx         # n -= 8
+        jg Loop1                 # if so, goto Loop:
+
+##################################################################
+# Do not modify the following section of code
+# Function epilogue.
+Prep:
+        addq %r9, %rdx         #add 7 that is previously substracted in first lines of code
+        je Done                #if n%8==0 just go to done
+        irmovq $1, %r11        #loop2 incrementer
+Loop2:
+        # there can be at most 7 remainder. Every time check whether n==0 and go to done if true.
+        mrmovq (%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, (%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval
+        subq %r11,%rdx
+        je Done 
+
+        mrmovq 8(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 8(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+        subq %r11,%rdx
+        je Done 
+
+        mrmovq 16(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 16(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+        subq %r11,%rdx
+        je Done 
+
+        mrmovq 24(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 24(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+        subq %r11,%rdx
+        je Done 
+
+        mrmovq 32(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 32(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+        subq %r11,%rdx
+        je Done 
+
+        mrmovq 40(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 40(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval 
+        subq %r11,%rdx
+        je Done 
+
+
+        mrmovq 48(%rdi), %r10     # read val from src...
+		isubq $0,%r10   
+        rmmovq %r10, 48(%rsi)     # ...and store it to dst
+		addq %r10, %rax         # sum += absval
+
+
+
+Done:
+        ret
+##################################################################
+# Keep the following label at the end of your function
+End:
+#/* $end abscopy-ys */
