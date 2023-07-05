@@ -1,0 +1,602 @@
+\documentclass[10pt,a4paper, margin=1in]{article}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, pifont}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{steinmetz}
+\usepackage{tkz-euclide}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{mathrsfs}
+\usepackage{listings}
+
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=10mm,
+ right=10mm,
+ top=10mm,
+ bottom=10mm,
+ }
+ % Write both of your names here. Fill exxxxxxx with your ceng mail address.
+ \author{
+  Hasan Ege, Meyvecioğlu\\
+  \texttt{e2449783@ceng.metu.edu.tr}
+  \and
+  Enes, Şanlı\\
+  \texttt{e2375749@ceng.metu.edu.tr}
+}
+
+\title{CENG 384 - Signals and Systems for Computer Engineers \\
+Spring 2023 \\
+Homework 3}
+\begin{document}
+\maketitle
+
+
+
+\noindent\rule{19cm}{1.2pt}
+
+\begin{enumerate}
+
+\item %write the solution of q1
+\begin{equation}
+    x(t) = \sum_{k=-\infty}^{\infty} a_ke^jkw_0t
+\end{equation}
+\begin{equation}
+    y(t) = \int_{-\infty}^t x(s)ds = \int_{-\infty}^t \sum_{k = -\infty}^{\infty}a_ke^{jkw_0s}ds
+\end{equation}
+\begin{equation}
+    y(t) = \sum_{k = -\infty}^{\infty} \int_{-\infty}^t a_ke^{jkw_0s}ds
+\end{equation}
+\begin{equation}
+    y(t) = \sum_{k = -\infty}^{\infty}a_k\frac{e^{jkw_0t}}{jkw_0}
+\end{equation}
+\begin{equation}
+    y(t) = \sum_{k = -\infty}^{\infty}\frac{a_k}{jkw_0}e^{jkw_0t}
+\end{equation}
+Now it is in the synthesis equation form
+\begin{equation}
+    y(t) = \sum_{k=-\infty}^{\infty} b_ke^{jkw_0t }= \sum_{k = -\infty}^{\infty}\frac{a_k}{jkw_0}e^{jkw_0t}
+\end{equation}
+\begin{equation}
+    b_k = \frac{a_k}{jkw_0}
+\end{equation}
+\begin{equation}
+    w_0 = \frac{2\pi}{T}
+\end{equation}
+\begin{equation}
+    b_k = \frac{a_k}{jk(\frac{2\pi}{T})}
+\end{equation}
+\item %write the solution of q2  
+	\begin{enumerate}
+    % Write your solutions in the following items.
+    \item
+    
+ \begin{equation}
+     x(t) \leftrightarrow a_k 
+ \end{equation}
+  \begin{equation}
+     x(t)x(t) \leftrightarrow a_k * a_k \text{    multiplication in time : convolution in freq. domain}
+ \end{equation}
+  \begin{equation}
+     x(t)x(t)  \leftrightarrow \sum_{l=-\infty}^{\infty}a_la_{k-l}
+ \end{equation}
+    \item %write the solution of q2b
+\begin{equation*}
+    Ev\{x(t)\} = \frac{1}{2} (x(t) + x(-t)) 
+\end{equation*}
+\begin{equation*}
+    (x(t) + x(-t)) \leftrightarrow a_k + a_{-k} \text{(         From time reversal property)}
+\end{equation*}
+\begin{equation}
+    Ev\{x(t)\} =\frac{1}{2}(x(t) + x(-t)) \leftrightarrow \frac{1}{2}(a_k + a_{-k}) \text{ (          From linearity  property)}
+\end{equation}
+
+\item
+ \begin{equation}
+     x(t) \leftrightarrow a_k 
+ \end{equation}
+ \begin{equation}
+     x(t+t_0) \leftrightarrow e^{jkw_0t_0}a_k
+ \end{equation}
+ \begin{equation}
+     x(t-t_0) \leftrightarrow e^{-jkw_0t_0}a_k
+ \end{equation}
+ \begin{equation}
+     x(t+t_0) + x(t-t_0) \leftrightarrow e^{jkw_0t_0}a_k + e^{-jkw_0t_0}a_k
+ \end{equation}
+ \begin{equation}
+    \leftrightarrow (e^{jkw_0t_0} + e^{-jkw_0t_0})a_k
+ \end{equation}
+    \end{enumerate}
+
+\item %write the solution of q3
+    This function is periodic and T = 4, then take x 0 to 4
+    
+    \begin{equation}
+        x(t) = \sum_{k=-\infty}^{\infty}a_ke^{jkw_0t}
+    \end{equation}
+    \begin{equation}
+        a_k = \frac{1}{T}\int_T x(t)e^{-jkw_0t}dt
+    \end{equation}
+    \begin{equation}
+        a_k = \frac{1}{4}\int_0^1 2e^{-jkw_0t}dt + \frac{1}{4}\int_2^3 -2e^{-jkw_0t}dt
+    \end{equation}
+    \begin{equation}
+        a_k = \frac{1}{2}(\frac{e^{-jkw_0} - 1}{-jkw_0} + \frac{-e^{3jkw_0} +e^{2jkw_0}}{-jkw_0})
+    \end{equation}
+    \begin{equation}
+        w_0 = \frac{2\pi}{T} = \frac{\pi}{2}
+    \end{equation}
+    \begin{equation}
+        a_k = \frac{-1 + e^{-jk\pi/2} + e^{-2jk\pi/2} - e^{-3jk\pi/2}}{-jk\pi}
+    \end{equation}
+    \begin{equation}
+        x(t) = \sum_{k = -\infty}^{\infty} \frac{-1 + e^{-jk\pi/2} + e^{-2jk\pi/2} - e^{-3jk\pi/2}}{-jk\pi} e^{jk(\pi/2)t}
+    \end{equation}
+%    \begin{equation}
+%        x(t) = a_0 + \sum_{k=1}^{\infty}b_kcos(kw_0t) - c_ksin(kw_0t)
+%    \end{equation}
+%    \begin{equation}
+%        a_0 = \frac{1}{T}\int_Tx(t)dt
+%    \end{equation}
+%    \begin{equation}
+%        a_0 = \frac{1}{4}\int_0^12dt + \frac{1}{4}\int_2^3-2dt
+%    \end{equation}
+%    \begin{equation}
+%        a_0 = 0
+%    \end{equation}
+%    \begin{equation}
+%        b_k = \frac{2}{T}\int_Tx(t)cos(kw_0t)dt
+%    \end{equation}
+%    \begin{equation}
+%        b_k = \frac{1}{2}\int_0^1 2cos(kw_0t)dt + \frac{1}{2}\int_2^3 -2cos(kw_0t)dt
+%    \end{equation}
+%    \begin{equation}
+%        b_k = \frac{1}{2}(\frac{2sin(kw_0) }{kw_0}) + \frac{1}{2}(\frac{-2sin(3kw_0) + 2sin(2kw_0)}{kw_0})
+%    \end{equation}
+%    \begin{equation}
+%        w_0 = 2\pi/T = \pi/2
+ %   \end{equation}
+ %   \begin{equation}
+ %       b_k = \frac{2sin(k\pi/2) + 2sin(2k\pi/2) - 2sin(3k\pi/2)}{k\pi}
+ %   \end{equation}
+ %   \begin{equation}
+ %       c_k = \frac{2}{T}\int_Tx(t)sin(kw_0t)dt
+ %   \end{equation}
+ %   \begin{equation}
+ %       c_k = \frac{1}{2}\int_0^1 2sin(kw_0t)dt + \frac{1}{2}\int_2^3 -2sin(kw_0t)dt
+ %   \end{equation}
+ %   \begin{equation}
+ %       c_k = \frac{1}{2}(\frac{-2cos(kw_0) +2}{kw_0}) + \frac{1}{2}(\frac{2cos(3kw_0) - 2cos(2kw_0)}{kw_0})
+ %   \end{equation}
+ %   \begin{equation}
+ %       w_0 = 2\pi/T = \pi/2
+ %   \end{equation}
+ %   \begin{equation}
+ %       c_k = \frac{2 - 2cos(k\pi/2) - 2cos(2k\pi/2) + 2cos(3k\pi/2)}{k\pi}
+ %   \end{equation}
+%    \begin{equation}
+%        x(t) = \sum_{k=1}^{\infty} cos(k\pi t/2)\frac{2sin(k\pi/2) + 2sin(2k\pi/2) - 2sin(3k\pi/2)}{k\pi} -sin(k\pi t/2)\frac{2 - 2cos(k\pi/2) - 2cos(2k\pi/2) + 2cos(3k\pi/2)}{k\pi}
+ %   \end{equation}
+\item %write the solution of q4
+    \begin{enumerate}   
+    % Write your solutions in the following items.
+    \item %write the solution of q4a
+    \begin{equation*}
+        x(t) = 1 + sin(\omega_0t) + 2cos(\omega_0t) + cost(2\omega_0t + \frac{\pi}{4})
+    \end{equation*}
+    Let us represent this signal with complex exponentials:
+    \begin{equation*}
+        x(t) = 1 + \frac{1}{2j}(e^{j\omega_0t} - e^{-j\omega_0t}) + (e^{j\omega_0t} + e^{-j\omega_0t}) + \frac{1}{2} (e^{j(2\omega_0t + \pi/4)} + e^{-j(2\omega_0t + \pi/4)})
+    \end{equation*}
+    If we regroup the terms:
+    \begin{equation*}
+        x(t) = 1 + (1 + \frac{1}{2j})e^{j\omega_0t} + (1 - \frac{1}{2j})e^{-j\omega_0t} + (\frac{1}{2}e^{j(\pi/4)})e^{j2\omega_0t} + (\frac{1}{2}e^{-j(\pi/4)})e^{-j2\omega_0t}
+    \end{equation*}
+    So, the coefficients are:
+    \begin{equation*}
+        a_0 = 1
+    \end{equation*}
+
+    \begin{equation*}
+        a_1 = (1 + \frac{1}{2j})
+    \end{equation*}
+
+    \begin{equation*}
+        a_{-1} = (1 - \frac{1}{2j})
+    \end{equation*}
+
+    \begin{equation*}
+        a_{2} = \frac{1}{2}e^{j(\pi/4)}
+    \end{equation*}
+        \begin{equation*}
+        a_{-2} =  \frac{1}{2}e^{-j(\pi/4)}
+    \end{equation*}
+\begin{equation*}
+    a_k = 0, k > 2 \text{ or }k < -2
+\end{equation*}
+Magnitudes and phases are as follows:
+    \begin{equation*}
+        |a_0| = 1
+    \end{equation*}
+    \begin{equation*}
+        \phase{a_0} = 0 
+    \end{equation*}
+    \\
+    \begin{equation*}
+        |a_1| = \frac{\sqrt{5}}{2} = 1.11
+    \end{equation*}
+    \begin{equation*}
+        \phase{a_1} = \arctan(-1/2) = -0.46
+    \end{equation*}\\
+        \begin{equation*}
+        |a_{-1}| = \frac{\sqrt{5}}{2} = 1.11
+    \end{equation*}
+    \begin{equation*}
+        \phase{a_{-1}} = \arctan(1/2) = 0.46
+    \end{equation*}\\
+        \begin{equation*}
+        |a_{2}| = \frac{1}{2} = 0.5
+    \end{equation*}
+    \begin{equation*}
+        \phase{a_{2}} = \arctan(1) = 0.78
+    \end{equation*}\\
+
+    \begin{equation*}
+        |a_{-2}| = \frac{1}{2} = 0.5
+    \end{equation*}
+    \begin{equation*}
+        \phase{a_{-2}} = \arctan(-1) = -0.78
+    \end{equation*}
+ We can plot them as:
+    \begin{center}
+        \includegraphics{q4.pdf}
+    \end{center}
+    \item %write the solution of q4b
+    Let us take the Laplace transform of the original equation:
+    \begin{equation*}
+        \mathscr{L}\{y'(t)\} + \mathscr{L}\{y(t)\} = \mathscr{L}\{x(t)\}
+    \end{equation*}
+    \begin{equation*}
+        sY(s)+ Y(s) = X(s)
+    \end{equation*}
+    The transfer function is equal to the ratio of output and input signals:
+\begin{equation}
+    H(s) = \frac{Y(s)}{X(s)} = \frac{Y(s)}{(s+1)Y(s)} = \frac{1}{s+1}
+\end{equation}
+Since transfer function and eigenvalue both refer to $H(s)$, we have found them.\\
+Another way, let say
+\begin{equation}
+    x(t) = e^{jwt}
+\end{equation}
+\begin{equation}
+    y(t) = H(jw)e^{jwt}
+\end{equation}
+\begin{equation}
+    H(jw)jwe^{jwt} + H(jw)e^{jwt} = e^{jwt}
+\end{equation}
+\begin{equation}
+    H(jw) = \frac{1}{1 +jw}
+\end{equation}
+Both are equal
+	\item %write the solution of q4c
+ \begin{equation}
+     b_k = a_k*H(jw_0k)
+ \end{equation}
+ \begin{equation}
+     b_0 = a_0*H(0) = 1*1 = 1
+ \end{equation}
+ \begin{equation}
+     b_1 = a_1*H(jw_01) = (1+\frac{1}{2j}) * \frac{1}{1+jw_0}
+ \end{equation}
+ \begin{equation}
+     b_{-1} = a_{-1}*H(jw_0(-1)) = (1-\frac{1}{2j}) * \frac{1}{1-jw_0}
+ \end{equation}
+ \begin{equation}
+     b_2 = a_2*H(jw_02) = (\frac{1}{2}e^{j\pi/4}) *\frac{1}{1+2jw_0}
+ \end{equation}
+  \begin{equation}
+     b_{-2} = a_{-2}*H(jw_0(-2)) = (\frac{1}{2}e^{-j\pi/4}) *\frac{1}{1-2jw_0}
+ \end{equation}
+ other $b_k$'s equal to 0
+
+ \begin{equation}
+     |b_0| = |a_0*H(0)| = 1 
+ \end{equation}
+ \begin{equation}
+      |b_1| = |a_1|*|H(jw_01)| = \frac{\sqrt{5}}{2} * \sqrt{\frac{1}{1+w_0^2}} = \sqrt{\frac{5}{4+4w_0^2}}
+ \end{equation}
+ \begin{equation}
+     |b_{-1}| = |a_{-1}|*|H(jw_0(-1))| = \frac{\sqrt{5}}{2} * \sqrt{\frac{1}{1+w_0^2}} = \sqrt{\frac{5}{4+4w_0^2}}
+ \end{equation}
+\begin{equation}
+    |b_2| = |a_2|*|H(jw_02)| = \frac{1}{2} * \sqrt{\frac{1}{1+4w_0^2}} = \sqrt{\frac{1}{4+16w_0^2}}
+\end{equation}
+\begin{equation}
+    |b_{-2}| = |a_{-2}|*|H(jw_0(-2))| = \frac{1}{2} * \sqrt{\frac{1}{1+4w_0^2}} = \sqrt{\frac{1}{4+16w_0^2}}
+\end{equation}
+
+\begin{equation}
+    \phase{ b_0} = \phase{(a_0 * H(jw_01))} =  0 + 0 = 0
+\end{equation}
+\begin{equation}
+    \phase{ b_{1}} = \phase{ (a_1 * H(jw_01))} =  \arctan(-1/2) + \arctan(-w_0)
+\end{equation}
+\begin{equation}
+    \phase{ b_{-1}} = \phase{ (a_{-1} * H(jw_0-1))} = \arctan(1/2) + \arctan(w_0)
+\end{equation}
+\begin{equation}
+    \phase{ b_{2}} = \phase{ (a_{2} * H(jw_02))} = \arctan(1) + \arctan(-2w_0)
+\end{equation}
+\begin{equation}
+    \phase{ b_{-2}} = \phase{ (a_{-2}* H(jw_0-2))} = \arctan(-1) + \arctan(2w_0)
+\end{equation}
+ 
+    \item %write the solution of q4d
+    \begin{equation}
+        y(t) = \sum_{k = -\infty}^{\infty} b_ke^{jkw_0t}
+    \end{equation}
+    \begin{equation}
+        y(t) = \frac{(\frac{1}{2}e^{-j\pi/4})}{1-2jw_0}e^{-2jw_0t} + \frac{(1-\frac{1}{2j})}{1-jw_0}e^{-jw_0t} + 1 + \frac{(1+\frac{1}{2j})}{1+jw_0}e^{jw_0t} + \frac{(\frac{1}{2}e^{j\pi/4})}{1+2jw_0}e^{2jw_0t}
+    \end{equation}
+    \end{enumerate}
+
+\item %write the solution of q5
+    \begin{enumerate}
+    % Write your solutions in the following items.
+    \item %write the solution of q5a
+    \begin{equation}
+        x[n] = sin(\frac{\pi}{2}n) = \frac{e^{j\pi n/2} - e^{-j\pi n/2}}{2i}
+    \end{equation}
+    \begin{equation}
+        x[n] = \sum_{k = <N>} a_ke^{jk\frac{2\pi}{N}n}
+    \end{equation}
+    We know $sin(n\pi/2) $ period is 4, so N=4
+    \begin{equation}
+        a_{-1} = \frac{-1}{2i} = \frac{i}{2}
+    \end{equation}
+    \begin{equation}
+        a_{1} = \frac{1}{2i} = \frac{-i}{2}
+    \end{equation}
+    Because it is periodic
+    \begin{equation}
+        a_{-1} = a_{-1 + N} = a_3 
+    \end{equation}
+    \begin{equation}
+        a_0 = 0, a_1 =  \frac{-i}{2}, a_2 =0,  a_3 = \frac{i}{2}
+    \end{equation}
+    \item %write the solution of q5b
+
+
+    \begin{equation}
+        y[n] =1 + cos(\frac{\pi}{2}n) = 1 + \frac{e^{j\pi n/2} + e^{-j\pi n/2}}{2}
+    \end{equation}
+    \begin{equation}
+        y[n] = \sum_{k = <N>} b_ke^{jk\frac{2\pi}{N}n}
+    \end{equation}
+    We know $1 + cos(n\pi/2) $ period is 4, so N=4
+    \begin{equation}
+        = b_0 + b_1e^{j\pi n/2} + b_2e^{j\pi n} + b_{-1}e^{-j\pi n/2}
+    \end{equation}
+    \begin{equation}
+        b_{0} = 1
+    \end{equation}
+    \begin{equation}
+        b_{1} = \frac{1}{2}
+    \end{equation}
+    \begin{equation}
+        b_{-1} = \frac{1}{2}
+    \end{equation}
+
+    Because it is periodic
+    \begin{equation}
+        b_{-1} = b_{-1 + N} = b_3 
+    \end{equation}
+    \begin{equation}
+        b_0 = 1, b_1 =  \frac{1}{2}, b_2 =0,  b_3 = \frac{1}{2}
+    \end{equation}
+
+    
+	\item
+    \begin{equation}
+        x[n]y[n] \rightarrow c_k
+    \end{equation}
+    \begin{equation}
+        c_k = \sum_{l = <N>} a_lb_{k-l}
+    \end{equation}
+    \begin{equation}
+        c_0 = a_1b_{-1} + a_3b_{-3}
+    \end{equation}
+    \begin{equation}
+        c_0 = -i/2 + i/2 = 0
+    \end{equation}
+    \begin{equation}
+        c_1 = a_1b_{0} + a_3b_{-2}
+    \end{equation}
+    \begin{equation}
+        c_1 = -i/2 
+    \end{equation}
+        \begin{equation}
+        c_2 = a_1b_{1} + a_3b_{-1}
+    \end{equation}
+    \begin{equation}
+        c_2 = 0 
+    \end{equation}
+        \begin{equation}
+        c_3 = a_1b_{2} + a_3b_{0}
+    \end{equation}
+    \begin{equation}
+        c_3 = i/2 
+    \end{equation}
+	\item %write the solution of q5d
+ \begin{equation}
+     x[n]y[n] = sin((\pi/2)n) + \frac{sin(\pi n)}{2}
+ \end{equation}
+ \begin{equation}
+     \frac{sin(\pi n)}{2} = 0
+ \end{equation}
+ Because n is always an integer
+ \begin{equation}
+     x[n]y[n] = \frac{e^{j\pi n/2} - e^{-j\pi n/2}}{2i}
+ \end{equation}
+ \begin{equation}
+     x[n]y[n] = \sum_{k=<N>} c_ke^{jk2\frac{\pi}{N}n}
+ \end{equation}
+ \begin{equation}
+     c_0 = 0
+ \end{equation}
+ \begin{equation}
+     c_1 = \frac{-i}{2}
+ \end{equation}
+ \begin{equation}
+     c_2 = 0
+ \end{equation}
+ \begin{equation}
+     c_{-1} = c_3 = \frac{i}{2}
+ \end{equation}
+ Part c and Part d is equal.
+    \end{enumerate}    
+    
+\item %write the solution of q6
+    \begin{enumerate}
+    % Write your solutions in the following items.
+    \item %write the solution of q6a
+    The period $N$ of this function is equal to 4. We can use the analysis equations for the discrete time Fourier Series  coefficients:
+    \begin{equation*}
+        a_k = \frac{1}{N}\sum_{n = <N>} x[n]e^{-jk\frac{2\pi}{N}n} =  \frac{1}{4}\sum_{n = 0}^{n = 3} x[n]e^{-jk\frac{\pi}{2}n}
+    \end{equation*}
+
+    \begin{equation}
+        a_k = \frac{e^{-jk\pi/2} + 2e^{-jk2\pi/2} + e^{-jk3\pi/2}}{4}
+    \end{equation}
+    \begin{equation}
+        a_0 = 4/4 = 1
+    \end{equation}
+    \begin{equation}
+        a_1 = \frac{e^{-j\pi/2} + 2e^{-j2\pi/2} + e^{-j3\pi/2}}{4} = \frac{-1}{2}
+    \end{equation}
+    \begin{equation}
+        a_2 = \frac{e^{-j\pi} + 2e^{-j2\pi} + e^{-j3\pi}}{4} = 0
+    \end{equation}
+    \begin{equation}
+        a_3 = \frac{e^{-j3\pi/2} + 2e^{-j6\pi/2} + e^{-j9\pi/2}}{4} = \frac{-1}{2}
+    \end{equation}
+%\begin{equation}
+%        a_k = \frac{cos(3\pi k n/2) + 2cos(\pi k n/2) + cos(\pi k n/2)}{4}
+%    \end{equation}
+    \begin{equation}
+        a_{0+N} =1, a_{1+N} = -1/2, a_{2+N}=0, a_{3+N} = -1/2
+    \end{equation}
+
+    The plot is:
+    \begin{center}
+        \includegraphics{q6a/q6a.pdf}
+    \end{center}
+    \item %write the solution of q6b
+    y can be expressed as below:
+    \begin{equation*}
+        y[n] = x[n] - \sum_{m = -\infty}^{\infty} \delta[n+mN+1] = x[n] - \sum_{m = -\infty}^{\infty} \delta[n+4m+1)]
+    \end{equation*}
+    since delta function will only equal to 1 at $n = 1 + N$, this will give us the $y[n]$.
+
+    Let us find the coefficients of $\sum_{m = -\infty}^{\infty} \delta[n+4m+1]$:
+    If we look at 1 period starting from 0, this will be:
+    \begin{equation*}
+        \sum_{m = -\infty}^{\infty} \delta[n+4m+1] = \delta[n+4*(-1)+1]  =\delta[n-3]
+    \end{equation*}
+    We will look for the coefficients $b_k$ of $\delta[n-3]$
+
+    \begin{equation*}
+        b_k = \frac{1}{4} \sum_{n = 0}^{3} \delta[n-3] e^{-jk\frac{\pi}{2}n} =\frac{1}{4} e^{-3jk\frac{\pi}{2}}
+    \end{equation*}
+    \begin{equation}
+        b_{0 + N} = \frac{1}{4}
+    \end{equation}
+    \begin{equation}
+        b_{1 + N} = \frac{1}{4} e^{-3j\frac{\pi}{2}}
+    \end{equation}
+    \begin{equation}
+        b_{2 + N} = \frac{1}{4} e^{-6j\frac{\pi}{2}}
+    \end{equation}
+    \begin{equation}
+        b_{3 + N} = \frac{1}{4} e^{-9j\frac{\pi}{2}}
+    \end{equation}
+
+    Using the linearity property of Discrete-Time Fourier series, the coefficients $c_k$ for $y[n]$ will be:
+    \begin{equation}
+        c_k = a_k + b_k
+    \end{equation}
+    \begin{equation}
+        c_{0 + N} = a_{0 + N} + b_{0 + N} = 1 + \frac{1}{4} = \frac{5}{4} , \phase{c_{0 + N}} = 0
+    \end{equation}
+    \begin{equation}
+        c_{1 + N} = a_{1 + N} + b_{1 + N} = \frac{-1}{2} + \frac{1}{4} e^{-3j\frac{\pi}{2}} , \phase{c_{1 + N}} = \frac{\pi}{2}
+    \end{equation}
+    \begin{equation}
+        c_{2 + N} = a_{2 + N} + b_{2 + N} = 0 + \frac{1}{4} e^{-6j\frac{\pi}{2}} ,\phase{c_{2 + N}} =  -\pi
+    \end{equation}
+    \begin{equation}
+        c_{3 + N} = a_{3 + N} + b_{3 + N} = \frac{-1}{2} + \frac{1}{4} e^{-9j\frac{\pi}{2}},\phase{c_{3 + N}} =  -\pi
+    \end{equation}
+
+    And for all $k$:
+    \begin{equation*}
+        |c_k| = \frac{1}{4}
+    \end{equation*}
+
+    These are the phase and magnitude plots of $c_k$:
+    \begin{center}
+    \includegraphics{q6a/q6b.pdf}
+        
+    \end{center}
+    \end{enumerate}
+    
+\item %write the solution of q7
+    \begin{enumerate}
+    % Write your solutions in the following items.
+    \item %write the solution of q7a
+Remember the below equation:
+\begin{equation}
+    b_k = H(jw_0k)a_k
+\end{equation}
+If $y(t)=x(t)$, then in order to satisfy above equation, coefficients $b_k$ and $a_k$ must be the same for all of the $k$ values, and this is possible if $H(jw_0k) = 1$ for all $k$. 
+We know that $|w|$ $\leq$ 80, so $|w_0k|\leq 80$
+
+\begin{equation}
+    w_0 = 2\pi/T = \frac{2\pi}{\pi/K} = 2K
+\end{equation}
+\begin{equation}
+    |2K*k| \leq 80
+\end{equation}
+\begin{equation}
+    |k| \leq \frac{40}{K}
+\end{equation}
+Therefore, the system have the Fourier Series coefficients $a_k = b_k$ in the range of $k$ found above. And because of these functions equal, $b_k$ is 0 when k is out of the range, because of that $a_k$ must be equal to 0 when k out of the range Since the input is directly transmitted as output, this is a pass-band filter.
+    \item %write the solution of q7b
+If $y(t)\neq x(t)$, then the system will effect the input coefficients. Specifically, for the coefficients $b_k$, if $k$ is in the same range found in part a, then it will be the same as $a_k$. However, if $k$ is out of range, the system will suppress $a_k$. As a result, $b_k$ for that $k$ values will be equal to  $0$. And we cannot know $a_k$. Therefore, this is a low-pass filter, permitting signals with a frequency lower than a value.
+    \end{enumerate}    
+	
+\item %write the solution of q8	
+    Requested functions are implemented using the equations 3.94 and 3.95 from the lecture book. Looking at the results at part c and d, it can be clearly seen that with growing $n$ value, the error between the original signals and their Fourier Series Representations are getting less and less. With small n values, very erroneous plots are obtained. However, the Fourier Series Representations with tens of number of coefficients are almost 100\% fit the original plot. This is due to the convergence property of Fourier Series, stating that every continuous and also many discontinuous (including square vawe and sawtooth function) periodic signals have a Fourier Series Representation for which the approximation error approaches to 0 as n goes to infinity. The code and the plots are below:
+
+
+    \begin{center}
+        \lstinputlisting[language=Python]{q7/q72.py}
+    \end{center}
+
+    \begin{center}
+        \includegraphics{q7/q7-partc.pdf}
+    \end{center}
+    \begin{center}
+        \includegraphics{q7/q7-partd.pdf}
+    \end{center}
+
+\end{enumerate}
+\end{document}

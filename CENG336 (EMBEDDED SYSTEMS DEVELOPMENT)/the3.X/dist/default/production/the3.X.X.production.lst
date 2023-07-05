@@ -1,0 +1,3302 @@
+
+
+Microchip MPLAB XC8 Assembler V2.30 build 20200825195618 
+                                                                                               Wed May 24 23:30:45 2023
+
+Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og1 
+     1                           	processor	18F4620
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1,noexec
+     6                           	psect	idataBANK0,global,class=CODE,delta=1,noexec
+     7                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     8                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     9                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+    10                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+    11                           	psect	bssBANK1,global,class=BANK1,space=1,delta=1,lowdata,noexec
+    12                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+    13                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+    14                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    22                           	psect	intcode,global,reloc=2,class=CODE,delta=1
+    23                           	psect	intcode_body,global,reloc=2,class=CODE,delta=1
+    24                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    25                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    26                           	psect	text11,global,reloc=2,class=CODE,delta=1,group=1
+    27                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    28                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    29                           	psect	temp,global,ovrld,common,class=COMRAM,space=1,delta=1
+    30                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=1,noexec
+    31                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    32  0000                     
+    33                           ; Version 2.20
+    34                           ; Generated 12/02/2020 GMT
+    35                           ; 
+    36                           ; Copyright © 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    37                           ; All rights reserved.
+    38                           ; 
+    39                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    40                           ; 
+    41                           ; Redistribution and use in source and binary forms, with or without modification, are
+    42                           ; permitted provided that the following conditions are met:
+    43                           ; 
+    44                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    45                           ;        conditions and the following disclaimer.
+    46                           ; 
+    47                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    48                           ;        of conditions and the following disclaimer in the documentation and/or other
+    49                           ;        materials provided with the distribution.
+    50                           ; 
+    51                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    52                           ;        software without specific prior written permission.
+    53                           ; 
+    54                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    55                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    56                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    57                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    58                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    59                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    60                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    61                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    62                           ; 
+    63                           ; 
+    64                           ; Code-generator required, PIC18F4620 Definitions
+    65                           ; 
+    66                           ; SFR Addresses
+    67  0000                     
+    68                           	psect	idataCOMRAM
+    69  0008F4                     __pidataCOMRAM:
+    70                           	callstack 0
+    71                           
+    72                           ;initializer for initGame@F2538
+    73  0008F4  0009               	dw	9
+    74  0008F6  0002               	dw	2
+    75                           
+    76                           ;initializer for _mode
+    77  0008F8  01                 	db	1
+    78                           
+    79                           ;initializer for _lcd_y
+    80  0008F9  01                 	db	1
+    81                           
+    82                           ;initializer for _lcd_x
+    83  0008FA  01                 	db	1
+    84                           
+    85                           	psect	idataBANK0
+    86  00071E                     __pidataBANK0:
+    87                           	callstack 0
+    88                           
+    89                           ;initializer for initGame@F2536
+    90  00071E  42                 	db	66
+    91  00071F  000E               	dw	14
+    92  000721  0003               	dw	3
+    93  000723  0000               	dw	0
+    94  000725  0000               	dw	0
+    95                           
+    96                           ;initializer for initGame@F2534
+    97  000727  42                 	db	66
+    98  000728  000E               	dw	14
+    99  00072A  0002               	dw	2
+   100  00072C  0000               	dw	0
+   101  00072E  0000               	dw	0
+   102                           
+   103                           ;initializer for initGame@F2532
+   104  000730  41                 	db	65
+   105  000731  0003               	dw	3
+   106  000733  0003               	dw	3
+   107  000735  0000               	dw	0
+   108  000737  0000               	dw	0
+   109                           
+   110                           ;initializer for initGame@F2530
+   111  000739  41                 	db	65
+   112  00073A  0003               	dw	3
+   113  00073C  0002               	dw	2
+   114  00073E  0001               	dw	1
+   115  000740  0000               	dw	0
+   116                           
+   117                           ;initializer for _digits
+   118  000742  3F                 	db	63
+   119  000743  06                 	db	6
+   120  000744  5B                 	db	91
+   121  000745  4F                 	db	79
+   122  000746  66                 	db	102
+   123  000747  6D                 	db	109
+   124                           
+   125                           ;initializer for _frisbee_target
+   126  000748  0E                 	db	14
+   127  000749  11                 	db	17
+   128  00074A  11                 	db	17
+   129  00074B  11                 	db	17
+   130  00074C  0E                 	db	14
+   131  00074D  00                 	db	0
+   132  00074E  00                 	db	0
+   133  00074F  00                 	db	0
+   134                           
+   135                           ;initializer for _frisbee
+   136  000750  0E                 	db	14
+   137  000751  1F                 	db	31
+   138  000752  1F                 	db	31
+   139  000753  1F                 	db	31
+   140  000754  0E                 	db	14
+   141  000755  00                 	db	0
+   142  000756  00                 	db	0
+   143  000757  00                 	db	0
+   144                           
+   145                           ;initializer for _selected_teamB_player_with_frisbee
+   146  000758  1F                 	db	31
+   147  000759  15                 	db	21
+   148  00075A  0A                 	db	10
+   149  00075B  04                 	db	4
+   150  00075C  0E                 	db	14
+   151  00075D  1F                 	db	31
+   152  00075E  0A                 	db	10
+   153  00075F  1F                 	db	31
+   154                           
+   155                           ;initializer for _selected_teamA_player_with_frisbee
+   156  000760  1F                 	db	31
+   157  000761  15                 	db	21
+   158  000762  0A                 	db	10
+   159  000763  04                 	db	4
+   160  000764  04                 	db	4
+   161  000765  04                 	db	4
+   162  000766  0A                 	db	10
+   163  000767  1F                 	db	31
+   164                           
+   165                           ;initializer for _selected_teamB_player
+   166  000768  11                 	db	17
+   167  000769  15                 	db	21
+   168  00076A  0A                 	db	10
+   169  00076B  04                 	db	4
+   170  00076C  0E                 	db	14
+   171  00076D  1F                 	db	31
+   172  00076E  0A                 	db	10
+   173  00076F  1F                 	db	31
+   174                           
+   175                           ;initializer for _selected_teamA_player
+   176  000770  11                 	db	17
+   177  000771  15                 	db	21
+   178  000772  0A                 	db	10
+   179  000773  04                 	db	4
+   180  000774  04                 	db	4
+   181  000775  04                 	db	4
+   182  000776  0A                 	db	10
+   183  000777  1F                 	db	31
+   184                           
+   185                           ;initializer for _teamB_player
+   186  000778  11                 	db	17
+   187  000779  15                 	db	21
+   188  00077A  0A                 	db	10
+   189  00077B  04                 	db	4
+   190  00077C  0E                 	db	14
+   191  00077D  1F                 	db	31
+   192  00077E  0A                 	db	10
+   193  00077F  0A                 	db	10
+   194                           
+   195                           ;initializer for _teamA_player
+   196  000780  11                 	db	17
+   197  000781  15                 	db	21
+   198  000782  0A                 	db	10
+   199  000783  04                 	db	4
+   200  000784  04                 	db	4
+   201  000785  04                 	db	4
+   202  000786  0A                 	db	10
+   203  000787  0A                 	db	10
+   204  0000                     _TRISBbits	set	3987
+   205  0000                     _LATA	set	3977
+   206  0000                     _TRISAbits	set	3986
+   207  0000                     _INTCON3bits	set	4080
+   208  0000                     _INTCONbits	set	4082
+   209  0000                     _TRISD	set	3989
+   210  0000                     _TRISEbits	set	3990
+   211  0000                     _PORTD	set	3971
+   212  0000                     _PORTEbits	set	3972
+   213                           
+   214                           ; #config settings
+   215                           
+   216                           	psect	cinit
+   217  000788                     __pcinit:
+   218                           	callstack 0
+   219  000788                     start_initialization:
+   220                           	callstack 0
+   221  000788                     __initialization:
+   222                           	callstack 0
+   223                           
+   224                           ; Initialize objects allocated to BANK0 (106 bytes)
+   225                           ; load TBLPTR registers with __pidataBANK0
+   226  000788  0E1E               	movlw	low __pidataBANK0
+   227  00078A  6EF6               	movwf	tblptrl,c
+   228  00078C  0E07               	movlw	high __pidataBANK0
+   229  00078E  6EF7               	movwf	tblptrh,c
+   230  000790  0E00               	movlw	low (__pidataBANK0 shr (0+16))
+   231  000792  6EF8               	movwf	tblptru,c
+   232  000794  EE00  F080         	lfsr	0,__pdataBANK0
+   233  000798  EE10 F06A          	lfsr	1,106
+   234  00079C                     copy_data0:
+   235  00079C  0009               	tblrd		*+
+   236  00079E  CFF5 FFEE          	movff	tablat,postinc0
+   237  0007A2  50E5               	movf	postdec1,w,c
+   238  0007A4  50E1               	movf	fsr1l,w,c
+   239  0007A6  E1FA               	bnz	copy_data0
+   240                           
+   241                           ; Initialize objects allocated to COMRAM (7 bytes)
+   242                           ; load TBLPTR registers with __pidataCOMRAM
+   243  0007A8  0EF4               	movlw	low __pidataCOMRAM
+   244  0007AA  6EF6               	movwf	tblptrl,c
+   245  0007AC  0E08               	movlw	high __pidataCOMRAM
+   246  0007AE  6EF7               	movwf	tblptrh,c
+   247  0007B0  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+   248  0007B2  6EF8               	movwf	tblptru,c
+   249  0007B4  EE00  F05F         	lfsr	0,__pdataCOMRAM
+   250  0007B8  EE10 F007          	lfsr	1,7
+   251  0007BC                     copy_data1:
+   252  0007BC  0009               	tblrd		*+
+   253  0007BE  CFF5 FFEE          	movff	tablat,postinc0
+   254  0007C2  50E5               	movf	postdec1,w,c
+   255  0007C4  50E1               	movf	fsr1l,w,c
+   256  0007C6  E1FA               	bnz	copy_data1
+   257                           
+   258                           ; Clear objects allocated to BANK1 (60 bytes)
+   259  0007C8  EE01  F000         	lfsr	0,__pbssBANK1
+   260  0007CC  0E3C               	movlw	60
+   261  0007CE                     clear_0:
+   262  0007CE  6AEE               	clrf	postinc0,c
+   263  0007D0  06E8               	decf	wreg,f,c
+   264  0007D2  E1FD               	bnz	clear_0
+   265                           
+   266                           ; Clear objects allocated to COMRAM (50 bytes)
+   267  0007D4  EE00  F001         	lfsr	0,__pbssCOMRAM
+   268  0007D8  0E32               	movlw	50
+   269  0007DA                     clear_1:
+   270  0007DA  6AEE               	clrf	postinc0,c
+   271  0007DC  06E8               	decf	wreg,f,c
+   272  0007DE  E1FD               	bnz	clear_1
+   273  0007E0                     end_of_initialization:
+   274                           	callstack 0
+   275  0007E0                     __end_of__initialization:
+   276                           	callstack 0
+   277  0007E0  9066               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
+   278  0007E2  9266               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+   279  0007E4  0100               	movlb	0
+   280  0007E6  EFB5  F001         	goto	_main	;jump to C main() function
+   281                           
+   282                           	psect	bssCOMRAM
+   283  000001                     __pbssCOMRAM:
+   284                           	callstack 0
+   285  000001                     _players:
+   286                           	callstack 0
+   287  000001                     	ds	36
+   288  000025                     _frisbee_target_pos:
+   289                           	callstack 0
+   290  000025                     	ds	4
+   291  000029                     _frisbee_pos:
+   292                           	callstack 0
+   293  000029                     	ds	4
+   294  00002D                     _selected_player:
+   295                           	callstack 0
+   296  00002D                     	ds	2
+   297  00002F                     _teamB_score:
+   298                           	callstack 0
+   299  00002F                     	ds	2
+   300  000031                     _teamA_score:
+   301                           	callstack 0
+   302  000031                     	ds	2
+   303                           
+   304                           	psect	dataCOMRAM
+   305  00005F                     __pdataCOMRAM:
+   306                           	callstack 0
+   307  00005F                     initGame@F2538:
+   308                           	callstack 0
+   309  00005F                     	ds	4
+   310  000063                     _mode:
+   311                           	callstack 0
+   312  000063                     	ds	1
+   313  000064                     _lcd_y:
+   314                           	callstack 0
+   315  000064                     	ds	1
+   316  000065                     _lcd_x:
+   317                           	callstack 0
+   318  000065                     	ds	1
+   319                           
+   320                           	psect	dataBANK0
+   321  000080                     __pdataBANK0:
+   322                           	callstack 0
+   323  000080                     initGame@F2536:
+   324                           	callstack 0
+   325  000080                     	ds	9
+   326  000089                     initGame@F2534:
+   327                           	callstack 0
+   328  000089                     	ds	9
+   329  000092                     initGame@F2532:
+   330                           	callstack 0
+   331  000092                     	ds	9
+   332  00009B                     initGame@F2530:
+   333                           	callstack 0
+   334  00009B                     	ds	9
+   335  0000A4                     _digits:
+   336                           	callstack 0
+   337  0000A4                     	ds	6
+   338  0000AA                     _frisbee_target:
+   339                           	callstack 0
+   340  0000AA                     	ds	8
+   341  0000B2                     _frisbee:
+   342                           	callstack 0
+   343  0000B2                     	ds	8
+   344  0000BA                     _selected_teamB_player_with_frisbee:
+   345                           	callstack 0
+   346  0000BA                     	ds	8
+   347  0000C2                     _selected_teamA_player_with_frisbee:
+   348                           	callstack 0
+   349  0000C2                     	ds	8
+   350  0000CA                     _selected_teamB_player:
+   351                           	callstack 0
+   352  0000CA                     	ds	8
+   353  0000D2                     _selected_teamA_player:
+   354                           	callstack 0
+   355  0000D2                     	ds	8
+   356  0000DA                     _teamB_player:
+   357                           	callstack 0
+   358  0000DA                     	ds	8
+   359  0000E2                     _teamA_player:
+   360                           	callstack 0
+   361  0000E2                     	ds	8
+   362                           
+   363                           	psect	bssBANK1
+   364  000100                     __pbssBANK1:
+   365                           	callstack 0
+   366  000100                     _frisbee_steps:
+   367                           	callstack 0
+   368  000100                     	ds	60
+   369                           
+   370                           	psect	cstackBANK0
+   371  0000EA                     __pcstackBANK0:
+   372                           	callstack 0
+   373  0000EA                     ??_LCDCmd:
+   374  0000EA                     ??_LCDDat:
+   375  0000EA                     
+   376                           ; 1 bytes @ 0x0
+   377  0000EA                     	ds	1
+   378  0000EB                     LCDCmd@cmd:
+   379                           	callstack 0
+   380  0000EB                     LCDDat@dat:
+   381                           	callstack 0
+   382                           
+   383                           ; 1 bytes @ 0x1
+   384  0000EB                     	ds	1
+   385  0000EC                     LCDGoto@p_1:
+   386                           	callstack 0
+   387  0000EC                     LCDAddSpecialCharacter@data:
+   388                           	callstack 0
+   389                           
+   390                           ; 2 bytes @ 0x2
+   391  0000EC                     	ds	1
+   392  0000ED                     LCDGoto@p_2:
+   393                           	callstack 0
+   394                           
+   395                           ; 1 bytes @ 0x3
+   396  0000ED                     	ds	1
+   397  0000EE                     LCDAddSpecialCharacter@character_index:
+   398                           	callstack 0
+   399                           
+   400                           ; 1 bytes @ 0x4
+   401  0000EE                     	ds	1
+   402  0000EF                     LCDAddSpecialCharacter@i:
+   403                           	callstack 0
+   404                           
+   405                           ; 1 bytes @ 0x5
+   406  0000EF                     	ds	1
+   407  0000F0                     _main$556:
+   408                           	callstack 0
+   409                           
+   410                           ; 2 bytes @ 0x6
+   411  0000F0                     	ds	2
+   412  0000F2                     _main$557:
+   413                           	callstack 0
+   414                           
+   415                           ; 2 bytes @ 0x8
+   416  0000F2                     	ds	2
+   417  0000F4                     _main$558:
+   418                           	callstack 0
+   419                           
+   420                           ; 2 bytes @ 0xA
+   421  0000F4                     	ds	2
+   422  0000F6                     _main$559:
+   423                           	callstack 0
+   424                           
+   425                           ; 2 bytes @ 0xC
+   426  0000F6                     	ds	2
+   427  0000F8                     _main$560:
+   428                           	callstack 0
+   429                           
+   430                           ; 2 bytes @ 0xE
+   431  0000F8                     	ds	2
+   432  0000FA                     _main$561:
+   433                           	callstack 0
+   434                           
+   435                           ; 2 bytes @ 0x10
+   436  0000FA                     	ds	2
+   437  0000FC                     _main$562:
+   438                           	callstack 0
+   439                           
+   440                           ; 2 bytes @ 0x12
+   441  0000FC                     	ds	2
+   442  0000FE                     _main$563:
+   443                           	callstack 0
+   444                           
+   445                           ; 2 bytes @ 0x14
+   446  0000FE                     	ds	2
+   447                           
+   448                           	psect	cstackCOMRAM
+   449  000033                     __pcstackCOMRAM:
+   450                           	callstack 0
+   451  000033                     ?_random_generator:
+   452  000033                     ?___wmul:
+   453                           	callstack 0
+   454  000033                     random_generator@modulo:
+   455                           	callstack 0
+   456  000033                     ___wmul@multiplier:
+   457                           	callstack 0
+   458                           
+   459                           ; 2 bytes @ 0x0
+   460  000033                     	ds	2
+   461  000035                     ?_compute_frisbee_target_and_route:
+   462                           	callstack 0
+   463  000035                     compute_frisbee_target_and_route@current_fisbee_x_position:
+   464                           	callstack 0
+   465  000035                     ___wmul@multiplicand:
+   466                           	callstack 0
+   467                           
+   468                           ; 2 bytes @ 0x2
+   469  000035                     	ds	2
+   470  000037                     compute_frisbee_target_and_route@current_fisbee_y_position:
+   471                           	callstack 0
+   472  000037                     ___wmul@product:
+   473                           	callstack 0
+   474                           
+   475                           ; 2 bytes @ 0x4
+   476  000037                     	ds	2
+   477  000039                     ??_compute_frisbee_target_and_route:
+   478                           
+   479                           ; 1 bytes @ 0x6
+   480  000039                     	ds	2
+   481  00003B                     compute_frisbee_target_and_route@i:
+   482                           	callstack 0
+   483                           
+   484                           ; 2 bytes @ 0x8
+   485  00003B                     	ds	2
+   486  00003D                     compute_frisbee_target_and_route@i_396:
+   487                           	callstack 0
+   488                           
+   489                           ; 2 bytes @ 0xA
+   490  00003D                     	ds	2
+   491  00003F                     compute_frisbee_target_and_route@i_397:
+   492                           	callstack 0
+   493                           
+   494                           ; 2 bytes @ 0xC
+   495  00003F                     	ds	2
+   496  000041                     compute_frisbee_target_and_route@i_399:
+   497                           	callstack 0
+   498                           
+   499                           ; 2 bytes @ 0xE
+   500  000041                     	ds	2
+   501  000043                     compute_frisbee_target_and_route@i_400:
+   502                           	callstack 0
+   503                           
+   504                           ; 2 bytes @ 0x10
+   505  000043                     	ds	2
+   506  000045                     compute_frisbee_target_and_route@i_401:
+   507                           	callstack 0
+   508                           
+   509                           ; 2 bytes @ 0x12
+   510  000045                     	ds	2
+   511  000047                     compute_frisbee_target_and_route@number_of_steps:
+   512                           	callstack 0
+   513                           
+   514                           ; 2 bytes @ 0x14
+   515  000047                     	ds	2
+   516  000049                     compute_frisbee_target_and_route@target_x:
+   517                           	callstack 0
+   518                           
+   519                           ; 2 bytes @ 0x16
+   520  000049                     	ds	2
+   521  00004B                     compute_frisbee_target_and_route@target_y:
+   522                           	callstack 0
+   523                           
+   524                           ; 2 bytes @ 0x18
+   525  00004B                     	ds	2
+   526  00004D                     compute_frisbee_target_and_route@x:
+   527                           	callstack 0
+   528                           
+   529                           ; 2 bytes @ 0x1A
+   530  00004D                     	ds	2
+   531  00004F                     compute_frisbee_target_and_route@y:
+   532                           	callstack 0
+   533                           
+   534                           ; 2 bytes @ 0x1C
+   535  00004F                     	ds	2
+   536  000051                     compute_frisbee_target_and_route@x_step_size:
+   537                           	callstack 0
+   538                           
+   539                           ; 2 bytes @ 0x1E
+   540  000051                     	ds	2
+   541  000053                     compute_frisbee_target_and_route@y_step_size:
+   542                           	callstack 0
+   543                           
+   544                           ; 2 bytes @ 0x20
+   545  000053                     	ds	2
+   546  000055                     ??_FNC:
+   547                           
+   548                           ; 1 bytes @ 0x22
+   549  000055                     	ds	8
+   550  00005D                     FNC@i:
+   551                           	callstack 0
+   552                           
+   553                           ; 2 bytes @ 0x2A
+   554  00005D                     	ds	2
+   555                           
+   556 ;;
+   557 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   558 ;;
+   559 ;; *************** function _main *****************
+   560 ;; Defined at:
+   561 ;;		line 136 in file "main.c"
+   562 ;; Parameters:    Size  Location     Type
+   563 ;;		None
+   564 ;; Auto vars:     Size  Location     Type
+   565 ;;		None
+   566 ;; Return value:  Size  Location     Type
+   567 ;;                  1    wreg      void 
+   568 ;; Registers used:
+   569 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   570 ;; Tracked objects:
+   571 ;;		On entry : 0/0
+   572 ;;		On exit  : 0/0
+   573 ;;		Unchanged: 0/0
+   574 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   575 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   576 ;;      Locals:         0      16       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   577 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   578 ;;      Totals:         0      16       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   579 ;;Total ram usage:       16 bytes
+   580 ;; Hardware stack levels required when called:    6
+   581 ;; This function calls:
+   582 ;;		_LCDDat
+   583 ;;		_LCDGoto
+   584 ;;		_set7Segment
+   585 ;;		_setLCD
+   586 ;; This function is called by:
+   587 ;;		Startup code after reset
+   588 ;; This function uses a non-reentrant model
+   589 ;;
+   590                           
+   591                           	psect	text0
+   592  00036A                     __ptext0:
+   593                           	callstack 0
+   594  00036A                     _main:
+   595                           	callstack 25
+   596  00036A                     
+   597                           ;main.c: 138:     setLCD();
+   598  00036A  EC10  F003         	call	_setLCD	;wreg free
+   599  00036E                     
+   600                           ;main.c: 139:     set7Segment();
+   601  00036E  EC74  F004         	call	_set7Segment	;wreg free
+   602  000372                     
+   603                           ;main.c: 144:     TRISBbits.RB0 = 1;
+   604  000372  8093               	bsf	147,0,c	;volatile
+   605  000374                     
+   606                           ;main.c: 145:     TRISBbits.RB1 = 1;
+   607  000374  8293               	bsf	147,1,c	;volatile
+   608  000376                     
+   609                           ;main.c: 147:     INTCONbits.INT0IE = 1;
+   610  000376  88F2               	bsf	242,4,c	;volatile
+   611  000378                     
+   612                           ;main.c: 148:     INTCONbits.INT0IF = 0;
+   613  000378  92F2               	bcf	242,1,c	;volatile
+   614  00037A                     
+   615                           ;main.c: 149:     INTCONbits.GIE = 1;
+   616  00037A  8EF2               	bsf	242,7,c	;volatile
+   617  00037C                     
+   618                           ;main.c: 150:     INTCONbits.PEIE = 1;
+   619  00037C  8CF2               	bsf	242,6,c	;volatile
+   620  00037E                     
+   621                           ;main.c: 152:     INTCON3bits.INT1IE = 1;
+   622  00037E  86F0               	bsf	240,3,c	;volatile
+   623  000380                     
+   624                           ;main.c: 153:     INTCON3bits.INT1IF = 0;
+   625  000380  90F0               	bcf	240,0,c	;volatile
+   626  000382                     l1720:
+   627                           
+   628                           ;main.c: 156:     {;main.c: 157:         LCDGoto(players[A1].position.x, players[A1].pos
+      +                          ition.y);
+   629  000382  C004  F0EC         	movff	_players+3,LCDGoto@p_1
+   630  000386  5002               	movf	(_players+1)^0,w,c
+   631  000388  EC53  F003         	call	_LCDGoto
+   632  00038C                     
+   633                           ;main.c: 158:         LCDDat(players[A1].selected ? (players[A1].holding_frisbee ? 2 : 1
+      +                          ) : 0);
+   634  00038C  5006               	movf	(_players+5)^0,w,c
+   635  00038E  1007               	iorwf	(_players+6)^0,w,c
+   636  000390  A4D8               	btfss	status,2,c
+   637  000392  EFCD  F001         	goto	u921
+   638  000396  EFCF  F001         	goto	u920
+   639  00039A                     u921:
+   640  00039A  EFD6  F001         	goto	l1726
+   641  00039E                     u920:
+   642  00039E  0E00               	movlw	0
+   643  0003A0  0100               	movlb	0	; () banked
+   644  0003A2  6FF1               	movwf	(_main$556+1)& (0+255),b
+   645  0003A4  0E00               	movlw	0
+   646  0003A6  6FF0               	movwf	_main$556& (0+255),b
+   647  0003A8  EFEF  F001         	goto	l1734
+   648  0003AC                     l1726:
+   649  0003AC  5008               	movf	(_players+7)^0,w,c
+   650  0003AE  1009               	iorwf	(_players+8)^0,w,c
+   651  0003B0  A4D8               	btfss	status,2,c
+   652  0003B2  EFDD  F001         	goto	u931
+   653  0003B6  EFDF  F001         	goto	u930
+   654  0003BA                     u931:
+   655  0003BA  EFE6  F001         	goto	l1730
+   656  0003BE                     u930:
+   657  0003BE  0E00               	movlw	0
+   658  0003C0  0100               	movlb	0	; () banked
+   659  0003C2  6FF3               	movwf	(_main$557+1)& (0+255),b
+   660  0003C4  0E01               	movlw	1
+   661  0003C6  6FF2               	movwf	_main$557& (0+255),b
+   662  0003C8  EFEB  F001         	goto	l1732
+   663  0003CC                     l1730:
+   664  0003CC  0E00               	movlw	0
+   665  0003CE  0100               	movlb	0	; () banked
+   666  0003D0  6FF3               	movwf	(_main$557+1)& (0+255),b
+   667  0003D2  0E02               	movlw	2
+   668  0003D4  6FF2               	movwf	_main$557& (0+255),b
+   669  0003D6                     l1732:
+   670                           
+   671                           ; BSR set to: 0
+   672  0003D6  C0F2  F0F0         	movff	_main$557,_main$556
+   673  0003DA  C0F3  F0F1         	movff	_main$557+1,_main$556+1
+   674  0003DE                     l1734:
+   675                           
+   676                           ; BSR set to: 0
+   677  0003DE  51F0               	movf	_main$556& (0+255),w,b
+   678  0003E0  EC15  F004         	call	_LCDDat
+   679  0003E4                     
+   680                           ;main.c: 160:         LCDGoto(players[A2].position.x, players[A2].position.y);
+   681  0003E4  C00D  F0EC         	movff	_players+12,LCDGoto@p_1
+   682  0003E8  500B               	movf	(_players+10)^0,w,c
+   683  0003EA  EC53  F003         	call	_LCDGoto
+   684                           
+   685                           ;main.c: 161:         LCDDat(players[A2].selected ? (players[A2].holding_frisbee ? 2 : 1
+      +                          ) : 0);
+   686  0003EE  500F               	movf	(_players+14)^0,w,c
+   687  0003F0  1010               	iorwf	(_players+15)^0,w,c
+   688  0003F2  A4D8               	btfss	status,2,c
+   689  0003F4  EFFE  F001         	goto	u941
+   690  0003F8  EF00  F002         	goto	u940
+   691  0003FC                     u941:
+   692  0003FC  EF07  F002         	goto	l1740
+   693  000400                     u940:
+   694  000400  0E00               	movlw	0
+   695  000402  0100               	movlb	0	; () banked
+   696  000404  6FF5               	movwf	(_main$558+1)& (0+255),b
+   697  000406  0E00               	movlw	0
+   698  000408  6FF4               	movwf	_main$558& (0+255),b
+   699  00040A  EF20  F002         	goto	l1748
+   700  00040E                     l1740:
+   701  00040E  5011               	movf	(_players+16)^0,w,c
+   702  000410  1012               	iorwf	(_players+17)^0,w,c
+   703  000412  A4D8               	btfss	status,2,c
+   704  000414  EF0E  F002         	goto	u951
+   705  000418  EF10  F002         	goto	u950
+   706  00041C                     u951:
+   707  00041C  EF17  F002         	goto	l1744
+   708  000420                     u950:
+   709  000420  0E00               	movlw	0
+   710  000422  0100               	movlb	0	; () banked
+   711  000424  6FF7               	movwf	(_main$559+1)& (0+255),b
+   712  000426  0E01               	movlw	1
+   713  000428  6FF6               	movwf	_main$559& (0+255),b
+   714  00042A  EF1C  F002         	goto	l1746
+   715  00042E                     l1744:
+   716  00042E  0E00               	movlw	0
+   717  000430  0100               	movlb	0	; () banked
+   718  000432  6FF7               	movwf	(_main$559+1)& (0+255),b
+   719  000434  0E02               	movlw	2
+   720  000436  6FF6               	movwf	_main$559& (0+255),b
+   721  000438                     l1746:
+   722                           
+   723                           ; BSR set to: 0
+   724  000438  C0F6  F0F4         	movff	_main$559,_main$558
+   725  00043C  C0F7  F0F5         	movff	_main$559+1,_main$558+1
+   726  000440                     l1748:
+   727                           
+   728                           ; BSR set to: 0
+   729  000440  51F4               	movf	_main$558& (0+255),w,b
+   730  000442  EC15  F004         	call	_LCDDat
+   731  000446                     
+   732                           ;main.c: 163:         LCDGoto(players[B1].position.x, players[B1].position.y);
+   733  000446  C016  F0EC         	movff	_players+21,LCDGoto@p_1
+   734  00044A  5014               	movf	(_players+19)^0,w,c
+   735  00044C  EC53  F003         	call	_LCDGoto
+   736                           
+   737                           ;main.c: 164:         LCDDat(players[B1].selected ? (players[B1].holding_frisbee ? 5 : 4
+      +                          ) : 3);
+   738  000450  5018               	movf	(_players+23)^0,w,c
+   739  000452  1019               	iorwf	(_players+24)^0,w,c
+   740  000454  A4D8               	btfss	status,2,c
+   741  000456  EF2F  F002         	goto	u961
+   742  00045A  EF31  F002         	goto	u960
+   743  00045E                     u961:
+   744  00045E  EF38  F002         	goto	l1754
+   745  000462                     u960:
+   746  000462  0E00               	movlw	0
+   747  000464  0100               	movlb	0	; () banked
+   748  000466  6FF9               	movwf	(_main$560+1)& (0+255),b
+   749  000468  0E03               	movlw	3
+   750  00046A  6FF8               	movwf	_main$560& (0+255),b
+   751  00046C  EF51  F002         	goto	l1762
+   752  000470                     l1754:
+   753  000470  501A               	movf	(_players+25)^0,w,c
+   754  000472  101B               	iorwf	(_players+26)^0,w,c
+   755  000474  A4D8               	btfss	status,2,c
+   756  000476  EF3F  F002         	goto	u971
+   757  00047A  EF41  F002         	goto	u970
+   758  00047E                     u971:
+   759  00047E  EF48  F002         	goto	l1758
+   760  000482                     u970:
+   761  000482  0E00               	movlw	0
+   762  000484  0100               	movlb	0	; () banked
+   763  000486  6FFB               	movwf	(_main$561+1)& (0+255),b
+   764  000488  0E04               	movlw	4
+   765  00048A  6FFA               	movwf	_main$561& (0+255),b
+   766  00048C  EF4D  F002         	goto	l1760
+   767  000490                     l1758:
+   768  000490  0E00               	movlw	0
+   769  000492  0100               	movlb	0	; () banked
+   770  000494  6FFB               	movwf	(_main$561+1)& (0+255),b
+   771  000496  0E05               	movlw	5
+   772  000498  6FFA               	movwf	_main$561& (0+255),b
+   773  00049A                     l1760:
+   774                           
+   775                           ; BSR set to: 0
+   776  00049A  C0FA  F0F8         	movff	_main$561,_main$560
+   777  00049E  C0FB  F0F9         	movff	_main$561+1,_main$560+1
+   778  0004A2                     l1762:
+   779                           
+   780                           ; BSR set to: 0
+   781  0004A2  51F8               	movf	_main$560& (0+255),w,b
+   782  0004A4  EC15  F004         	call	_LCDDat
+   783  0004A8                     
+   784                           ;main.c: 166:         LCDGoto(players[A1].position.x, players[A1].position.y);
+   785  0004A8  C004  F0EC         	movff	_players+3,LCDGoto@p_1
+   786  0004AC  5002               	movf	(_players+1)^0,w,c
+   787  0004AE  EC53  F003         	call	_LCDGoto
+   788                           
+   789                           ;main.c: 167:         LCDDat(players[B2].selected ? (players[B2].holding_frisbee ? 5 : 4
+      +                          ) : 3);
+   790  0004B2  5021               	movf	(_players+32)^0,w,c
+   791  0004B4  1022               	iorwf	(_players+33)^0,w,c
+   792  0004B6  A4D8               	btfss	status,2,c
+   793  0004B8  EF60  F002         	goto	u981
+   794  0004BC  EF62  F002         	goto	u980
+   795  0004C0                     u981:
+   796  0004C0  EF69  F002         	goto	l1768
+   797  0004C4                     u980:
+   798  0004C4  0E00               	movlw	0
+   799  0004C6  0100               	movlb	0	; () banked
+   800  0004C8  6FFD               	movwf	(_main$562+1)& (0+255),b
+   801  0004CA  0E03               	movlw	3
+   802  0004CC  6FFC               	movwf	_main$562& (0+255),b
+   803  0004CE  EF82  F002         	goto	l1776
+   804  0004D2                     l1768:
+   805  0004D2  5023               	movf	(_players+34)^0,w,c
+   806  0004D4  1024               	iorwf	(_players+35)^0,w,c
+   807  0004D6  A4D8               	btfss	status,2,c
+   808  0004D8  EF70  F002         	goto	u991
+   809  0004DC  EF72  F002         	goto	u990
+   810  0004E0                     u991:
+   811  0004E0  EF79  F002         	goto	l1772
+   812  0004E4                     u990:
+   813  0004E4  0E00               	movlw	0
+   814  0004E6  0100               	movlb	0	; () banked
+   815  0004E8  6FFF               	movwf	(_main$563+1)& (0+255),b
+   816  0004EA  0E04               	movlw	4
+   817  0004EC  6FFE               	movwf	_main$563& (0+255),b
+   818  0004EE  EF7E  F002         	goto	l1774
+   819  0004F2                     l1772:
+   820  0004F2  0E00               	movlw	0
+   821  0004F4  0100               	movlb	0	; () banked
+   822  0004F6  6FFF               	movwf	(_main$563+1)& (0+255),b
+   823  0004F8  0E05               	movlw	5
+   824  0004FA  6FFE               	movwf	_main$563& (0+255),b
+   825  0004FC                     l1774:
+   826                           
+   827                           ; BSR set to: 0
+   828  0004FC  C0FE  F0FC         	movff	_main$563,_main$562
+   829  000500  C0FF  F0FD         	movff	_main$563+1,_main$562+1
+   830  000504                     l1776:
+   831                           
+   832                           ; BSR set to: 0
+   833  000504  51FC               	movf	_main$562& (0+255),w,b
+   834  000506  EC15  F004         	call	_LCDDat
+   835  00050A  EFC1  F001         	goto	l1720
+   836  00050E  EF07  F000         	goto	start
+   837  000512                     __end_of_main:
+   838                           	callstack 0
+   839                           
+   840 ;; *************** function _setLCD *****************
+   841 ;; Defined at:
+   842 ;;		line 89 in file "main.c"
+   843 ;; Parameters:    Size  Location     Type
+   844 ;;		None
+   845 ;; Auto vars:     Size  Location     Type
+   846 ;;		None
+   847 ;; Return value:  Size  Location     Type
+   848 ;;                  1    wreg      void 
+   849 ;; Registers used:
+   850 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   851 ;; Tracked objects:
+   852 ;;		On entry : 0/0
+   853 ;;		On exit  : 0/0
+   854 ;;		Unchanged: 0/0
+   855 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   856 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   857 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   858 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   859 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   860 ;;Total ram usage:        0 bytes
+   861 ;; Hardware stack levels used:    1
+   862 ;; Hardware stack levels required when called:    5
+   863 ;; This function calls:
+   864 ;;		_InitLCD
+   865 ;;		_LCDAddSpecialCharacter
+   866 ;; This function is called by:
+   867 ;;		_main
+   868 ;; This function uses a non-reentrant model
+   869 ;;
+   870                           
+   871                           	psect	text1
+   872  000620                     __ptext1:
+   873                           	callstack 0
+   874  000620                     _setLCD:
+   875                           	callstack 25
+   876  000620                     
+   877                           ;main.c: 91:     InitLCD();
+   878  000620  EC2F  F004         	call	_InitLCD	;wreg free
+   879  000624                     
+   880                           ;main.c: 93:     LCDAddSpecialCharacter(0, teamA_player);
+   881  000624  0EE2               	movlw	low _teamA_player
+   882  000626  0100               	movlb	0	; () banked
+   883  000628  6FEC               	movwf	LCDAddSpecialCharacter@data& (0+255),b
+   884  00062A  0E00               	movlw	high _teamA_player
+   885  00062C  6FED               	movwf	(LCDAddSpecialCharacter@data+1)& (0+255),b
+   886  00062E  0E00               	movlw	0
+   887  000630  ECF5  F003         	call	_LCDAddSpecialCharacter
+   888  000634                     
+   889                           ;main.c: 94:     LCDAddSpecialCharacter(1, selected_teamA_player);
+   890  000634  0ED2               	movlw	low _selected_teamA_player
+   891  000636  0100               	movlb	0	; () banked
+   892  000638  6FEC               	movwf	LCDAddSpecialCharacter@data& (0+255),b
+   893  00063A  0E00               	movlw	high _selected_teamA_player
+   894  00063C  6FED               	movwf	(LCDAddSpecialCharacter@data+1)& (0+255),b
+   895  00063E  0E01               	movlw	1
+   896  000640  ECF5  F003         	call	_LCDAddSpecialCharacter
+   897  000644                     
+   898                           ;main.c: 95:     LCDAddSpecialCharacter(2, selected_teamA_player_with_frisbee);
+   899  000644  0EC2               	movlw	low _selected_teamA_player_with_frisbee
+   900  000646  0100               	movlb	0	; () banked
+   901  000648  6FEC               	movwf	LCDAddSpecialCharacter@data& (0+255),b
+   902  00064A  0E00               	movlw	high _selected_teamA_player_with_frisbee
+   903  00064C  6FED               	movwf	(LCDAddSpecialCharacter@data+1)& (0+255),b
+   904  00064E  0E02               	movlw	2
+   905  000650  ECF5  F003         	call	_LCDAddSpecialCharacter
+   906  000654                     
+   907                           ;main.c: 97:     LCDAddSpecialCharacter(3, teamB_player);
+   908  000654  0EDA               	movlw	low _teamB_player
+   909  000656  0100               	movlb	0	; () banked
+   910  000658  6FEC               	movwf	LCDAddSpecialCharacter@data& (0+255),b
+   911  00065A  0E00               	movlw	high _teamB_player
+   912  00065C  6FED               	movwf	(LCDAddSpecialCharacter@data+1)& (0+255),b
+   913  00065E  0E03               	movlw	3
+   914  000660  ECF5  F003         	call	_LCDAddSpecialCharacter
+   915  000664                     
+   916                           ;main.c: 98:     LCDAddSpecialCharacter(4, selected_teamB_player);
+   917  000664  0ECA               	movlw	low _selected_teamB_player
+   918  000666  0100               	movlb	0	; () banked
+   919  000668  6FEC               	movwf	LCDAddSpecialCharacter@data& (0+255),b
+   920  00066A  0E00               	movlw	high _selected_teamB_player
+   921  00066C  6FED               	movwf	(LCDAddSpecialCharacter@data+1)& (0+255),b
+   922  00066E  0E04               	movlw	4
+   923  000670  ECF5  F003         	call	_LCDAddSpecialCharacter
+   924  000674                     
+   925                           ;main.c: 99:     LCDAddSpecialCharacter(5, selected_teamB_player_with_frisbee);
+   926  000674  0EBA               	movlw	low _selected_teamB_player_with_frisbee
+   927  000676  0100               	movlb	0	; () banked
+   928  000678  6FEC               	movwf	LCDAddSpecialCharacter@data& (0+255),b
+   929  00067A  0E00               	movlw	high _selected_teamB_player_with_frisbee
+   930  00067C  6FED               	movwf	(LCDAddSpecialCharacter@data+1)& (0+255),b
+   931  00067E  0E05               	movlw	5
+   932  000680  ECF5  F003         	call	_LCDAddSpecialCharacter
+   933  000684                     
+   934                           ;main.c: 101:     LCDAddSpecialCharacter(6, frisbee);
+   935  000684  0EB2               	movlw	low _frisbee
+   936  000686  0100               	movlb	0	; () banked
+   937  000688  6FEC               	movwf	LCDAddSpecialCharacter@data& (0+255),b
+   938  00068A  0E00               	movlw	high _frisbee
+   939  00068C  6FED               	movwf	(LCDAddSpecialCharacter@data+1)& (0+255),b
+   940  00068E  0E06               	movlw	6
+   941  000690  ECF5  F003         	call	_LCDAddSpecialCharacter
+   942  000694                     
+   943                           ;main.c: 102:     LCDAddSpecialCharacter(7, frisbee_target);
+   944  000694  0EAA               	movlw	low _frisbee_target
+   945  000696  0100               	movlb	0	; () banked
+   946  000698  6FEC               	movwf	LCDAddSpecialCharacter@data& (0+255),b
+   947  00069A  0E00               	movlw	high _frisbee_target
+   948  00069C  6FED               	movwf	(LCDAddSpecialCharacter@data+1)& (0+255),b
+   949  00069E  0E07               	movlw	7
+   950  0006A0  ECF5  F003         	call	_LCDAddSpecialCharacter
+   951  0006A4  0012               	return		;funcret
+   952  0006A6                     __end_of_setLCD:
+   953                           	callstack 0
+   954                           
+   955 ;; *************** function _LCDAddSpecialCharacter *****************
+   956 ;; Defined at:
+   957 ;;		line 129 in file "./lcd.h"
+   958 ;; Parameters:    Size  Location     Type
+   959 ;;  character_in    1    wreg     unsigned char 
+   960 ;;  data            2    2[BANK0 ] PTR unsigned char 
+   961 ;;		 -> frisbee_target(8), frisbee(8), selected_teamB_player_with_frisbee(8), selected_teamB_player(8), 
+   962 ;;		 -> teamB_player(8), selected_teamA_player_with_frisbee(8), selected_teamA_player(8), teamA_player(8), 
+   963 ;; Auto vars:     Size  Location     Type
+   964 ;;  character_in    1    4[BANK0 ] unsigned char 
+   965 ;;  i               1    5[BANK0 ] unsigned char 
+   966 ;; Return value:  Size  Location     Type
+   967 ;;                  1    wreg      void 
+   968 ;; Registers used:
+   969 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   970 ;; Tracked objects:
+   971 ;;		On entry : 0/0
+   972 ;;		On exit  : 0/0
+   973 ;;		Unchanged: 0/0
+   974 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   975 ;;      Params:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   976 ;;      Locals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   977 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   978 ;;      Totals:         0       4       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   979 ;;Total ram usage:        4 bytes
+   980 ;; Hardware stack levels used:    1
+   981 ;; Hardware stack levels required when called:    4
+   982 ;; This function calls:
+   983 ;;		_LCDCmd
+   984 ;;		_LCDDat
+   985 ;; This function is called by:
+   986 ;;		_setLCD
+   987 ;; This function uses a non-reentrant model
+   988 ;;
+   989                           
+   990                           	psect	text2
+   991  0007EA                     __ptext2:
+   992                           	callstack 0
+   993  0007EA                     _LCDAddSpecialCharacter:
+   994                           	callstack 25
+   995                           
+   996                           ;incstack = 0
+   997                           ;LCDAddSpecialCharacter@character_index stored from wreg
+   998  0007EA  0100               	movlb	0	; () banked
+   999  0007EC  6FEE               	movwf	LCDAddSpecialCharacter@character_index& (0+255),b
+  1000  0007EE                     
+  1001                           ;./lcd.h: 135:     LCDCmd(0b01000000+(character_index*8));
+  1002  0007EE  0100               	movlb	0	; () banked
+  1003  0007F0  51EE               	movf	LCDAddSpecialCharacter@character_index& (0+255),w,b
+  1004  0007F2  0D08               	mullw	8
+  1005  0007F4  50F3               	movf	243,w,c
+  1006  0007F6  0F40               	addlw	64
+  1007  0007F8  EC48  F004         	call	_LCDCmd
+  1008  0007FC                     
+  1009                           ;./lcd.h: 136:     for(byte i=0; i < 8; i++) {
+  1010  0007FC  0E00               	movlw	0
+  1011  0007FE  0100               	movlb	0	; () banked
+  1012  000800  6FEF               	movwf	LCDAddSpecialCharacter@i& (0+255),b
+  1013  000802                     l1626:
+  1014                           
+  1015                           ; BSR set to: 0
+  1016                           ;./lcd.h: 137:         LCDDat(data[i]);
+  1017  000802  51EF               	movf	LCDAddSpecialCharacter@i& (0+255),w,b
+  1018  000804  25EC               	addwf	LCDAddSpecialCharacter@data& (0+255),w,b
+  1019  000806  6ED9               	movwf	fsr2l,c
+  1020  000808  0E00               	movlw	0
+  1021  00080A  21ED               	addwfc	(LCDAddSpecialCharacter@data+1)& (0+255),w,b
+  1022  00080C  6EDA               	movwf	fsr2h,c
+  1023  00080E  50DF               	movf	indf2,w,c
+  1024  000810  EC15  F004         	call	_LCDDat
+  1025  000814                     
+  1026                           ;./lcd.h: 138:     }
+  1027  000814  0100               	movlb	0	; () banked
+  1028  000816  2BEF               	incf	LCDAddSpecialCharacter@i& (0+255),f,b
+  1029  000818                     
+  1030                           ; BSR set to: 0
+  1031  000818  0E07               	movlw	7
+  1032  00081A  65EF               	cpfsgt	LCDAddSpecialCharacter@i& (0+255),b
+  1033  00081C  EF12  F004         	goto	u851
+  1034  000820  EF14  F004         	goto	u850
+  1035  000824                     u851:
+  1036  000824  EF01  F004         	goto	l1626
+  1037  000828                     u850:
+  1038  000828                     
+  1039                           ; BSR set to: 0
+  1040  000828  0012               	return		;funcret
+  1041  00082A                     __end_of_LCDAddSpecialCharacter:
+  1042                           	callstack 0
+  1043                           
+  1044 ;; *************** function _LCDDat *****************
+  1045 ;; Defined at:
+  1046 ;;		line 58 in file "./lcd.h"
+  1047 ;; Parameters:    Size  Location     Type
+  1048 ;;  dat             1    wreg     unsigned char 
+  1049 ;; Auto vars:     Size  Location     Type
+  1050 ;;  dat             1    1[BANK0 ] unsigned char 
+  1051 ;; Return value:  Size  Location     Type
+  1052 ;;                  1    wreg      void 
+  1053 ;; Registers used:
+  1054 ;;		wreg
+  1055 ;; Tracked objects:
+  1056 ;;		On entry : 0/0
+  1057 ;;		On exit  : 0/0
+  1058 ;;		Unchanged: 0/0
+  1059 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1060 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1061 ;;      Locals:         0       1       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1062 ;;      Temps:          0       1       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1063 ;;      Totals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1064 ;;Total ram usage:        2 bytes
+  1065 ;; Hardware stack levels used:    1
+  1066 ;; Hardware stack levels required when called:    3
+  1067 ;; This function calls:
+  1068 ;;		Nothing
+  1069 ;; This function is called by:
+  1070 ;;		_LCDAddSpecialCharacter
+  1071 ;;		_main
+  1072 ;;		_LCDStr
+  1073 ;; This function uses a non-reentrant model
+  1074 ;;
+  1075                           
+  1076                           	psect	text3
+  1077  00082A                     __ptext3:
+  1078                           	callstack 0
+  1079  00082A                     _LCDDat:
+  1080                           	callstack 25
+  1081                           
+  1082                           ; BSR set to: 0
+  1083                           ;incstack = 0
+  1084                           ;LCDDat@dat stored from wreg
+  1085  00082A  0100               	movlb	0	; () banked
+  1086  00082C  6FEB               	movwf	LCDDat@dat& (0+255),b
+  1087  00082E                     
+  1088                           ;./lcd.h: 59:   PORTEbits.RE1 = 0;
+  1089  00082E  9284               	bcf	132,1,c	;volatile
+  1090                           
+  1091                           ;./lcd.h: 60:   PORTEbits.RE2 = 1;
+  1092  000830  8484               	bsf	132,2,c	;volatile
+  1093  000832                     
+  1094                           ;./lcd.h: 61:   PORTD = dat;
+  1095  000832  C0EB  FF83         	movff	LCDDat@dat,3971	;volatile
+  1096  000836                     
+  1097                           ;./lcd.h: 62:   PORTEbits.RE1 = 1;
+  1098  000836  8284               	bsf	132,1,c	;volatile
+  1099  000838                     
+  1100                           ;./lcd.h: 63:   _delay((unsigned long)((2000)*(10000000L/4000000.0)));
+  1101  000838  0E07               	movlw	7
+  1102  00083A  0100               	movlb	0	; () banked
+  1103  00083C  6FEA               	movwf	??_LCDDat& (0+255),b
+  1104  00083E  0E7D               	movlw	125
+  1105  000840                     u1007:
+  1106  000840  2EE8               	decfsz	wreg,f,c
+  1107  000842  D7FE               	bra	u1007
+  1108  000844  2FEA               	decfsz	??_LCDDat& (0+255),f,b
+  1109  000846  D7FC               	bra	u1007
+  1110  000848                     
+  1111                           ;./lcd.h: 64:   PORTEbits.RE1 = 0;
+  1112  000848  9284               	bcf	132,1,c	;volatile
+  1113  00084A                     
+  1114                           ;./lcd.h: 65:   _delay((unsigned long)((2000)*(10000000L/4000000.0)));
+  1115  00084A  0E07               	movlw	7
+  1116  00084C  0100               	movlb	0	; () banked
+  1117  00084E  6FEA               	movwf	??_LCDDat& (0+255),b
+  1118  000850  0E7D               	movlw	125
+  1119  000852                     u1017:
+  1120  000852  2EE8               	decfsz	wreg,f,c
+  1121  000854  D7FE               	bra	u1017
+  1122  000856  2FEA               	decfsz	??_LCDDat& (0+255),f,b
+  1123  000858  D7FC               	bra	u1017
+  1124  00085A                     
+  1125                           ;./lcd.h: 66:   PORTEbits.RE2 = 0;
+  1126  00085A  9484               	bcf	132,2,c	;volatile
+  1127  00085C  0012               	return		;funcret
+  1128  00085E                     __end_of_LCDDat:
+  1129                           	callstack 0
+  1130                           
+  1131 ;; *************** function _InitLCD *****************
+  1132 ;; Defined at:
+  1133 ;;		line 108 in file "./lcd.h"
+  1134 ;; Parameters:    Size  Location     Type
+  1135 ;;		None
+  1136 ;; Auto vars:     Size  Location     Type
+  1137 ;;		None
+  1138 ;; Return value:  Size  Location     Type
+  1139 ;;                  1    wreg      void 
+  1140 ;; Registers used:
+  1141 ;;		wreg, status,2, cstack
+  1142 ;; Tracked objects:
+  1143 ;;		On entry : 0/0
+  1144 ;;		On exit  : 0/0
+  1145 ;;		Unchanged: 0/0
+  1146 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1147 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1148 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1149 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1150 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1151 ;;Total ram usage:        0 bytes
+  1152 ;; Hardware stack levels used:    1
+  1153 ;; Hardware stack levels required when called:    4
+  1154 ;; This function calls:
+  1155 ;;		_LCDCmd
+  1156 ;; This function is called by:
+  1157 ;;		_setLCD
+  1158 ;; This function uses a non-reentrant model
+  1159 ;;
+  1160                           
+  1161                           	psect	text4
+  1162  00085E                     __ptext4:
+  1163                           	callstack 0
+  1164  00085E                     _InitLCD:
+  1165                           	callstack 25
+  1166  00085E                     
+  1167                           ;./lcd.h: 109:   TRISEbits.RE1 = 0;
+  1168  00085E  9296               	bcf	150,1,c	;volatile
+  1169                           
+  1170                           ;./lcd.h: 110:   TRISEbits.RE2 = 0;
+  1171  000860  9496               	bcf	150,2,c	;volatile
+  1172  000862                     
+  1173                           ;./lcd.h: 111:   TRISD = 0;
+  1174  000862  0E00               	movlw	0
+  1175  000864  6E95               	movwf	149,c	;volatile
+  1176  000866                     
+  1177                           ;./lcd.h: 113:   PORTEbits.RE1 = 0;
+  1178  000866  9284               	bcf	132,1,c	;volatile
+  1179  000868                     
+  1180                           ;./lcd.h: 114:   PORTEbits.RE2 = 0;
+  1181  000868  9484               	bcf	132,2,c	;volatile
+  1182  00086A                     
+  1183                           ;./lcd.h: 115:   LCDCmd(0x38);
+  1184  00086A  0E38               	movlw	56
+  1185  00086C  EC48  F004         	call	_LCDCmd
+  1186  000870                     
+  1187                           ;./lcd.h: 116:   LCDCmd(0x08);
+  1188  000870  0E08               	movlw	8
+  1189  000872  EC48  F004         	call	_LCDCmd
+  1190  000876                     
+  1191                           ;./lcd.h: 117:   LCDCmd(0x0C);
+  1192  000876  0E0C               	movlw	12
+  1193  000878  EC48  F004         	call	_LCDCmd
+  1194  00087C                     
+  1195                           ;./lcd.h: 118:   LCDCmd(0x06);
+  1196  00087C  0E06               	movlw	6
+  1197  00087E  EC48  F004         	call	_LCDCmd
+  1198  000882                     
+  1199                           ;./lcd.h: 119:   LCDCmd(0x01);
+  1200  000882  0E01               	movlw	1
+  1201  000884  EC48  F004         	call	_LCDCmd
+  1202  000888                     
+  1203                           ;./lcd.h: 120:   LCDCmd(0x80);
+  1204  000888  0E80               	movlw	128
+  1205  00088A  EC48  F004         	call	_LCDCmd
+  1206  00088E  0012               	return		;funcret
+  1207  000890                     __end_of_InitLCD:
+  1208                           	callstack 0
+  1209                           
+  1210 ;; *************** function _set7Segment *****************
+  1211 ;; Defined at:
+  1212 ;;		line 108 in file "main.c"
+  1213 ;; Parameters:    Size  Location     Type
+  1214 ;;		None
+  1215 ;; Auto vars:     Size  Location     Type
+  1216 ;;		None
+  1217 ;; Return value:  Size  Location     Type
+  1218 ;;                  1    wreg      void 
+  1219 ;; Registers used:
+  1220 ;;		wreg, status,2
+  1221 ;; Tracked objects:
+  1222 ;;		On entry : 0/0
+  1223 ;;		On exit  : 0/0
+  1224 ;;		Unchanged: 0/0
+  1225 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1226 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1227 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1228 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1229 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1230 ;;Total ram usage:        0 bytes
+  1231 ;; Hardware stack levels used:    1
+  1232 ;; Hardware stack levels required when called:    3
+  1233 ;; This function calls:
+  1234 ;;		Nothing
+  1235 ;; This function is called by:
+  1236 ;;		_main
+  1237 ;; This function uses a non-reentrant model
+  1238 ;;
+  1239                           
+  1240                           	psect	text5
+  1241  0008E8                     __ptext5:
+  1242                           	callstack 0
+  1243  0008E8                     _set7Segment:
+  1244                           	callstack 27
+  1245  0008E8                     
+  1246                           ;main.c: 110:     TRISD = 0;
+  1247  0008E8  0E00               	movlw	0
+  1248  0008EA  6E95               	movwf	149,c	;volatile
+  1249  0008EC                     
+  1250                           ;main.c: 112:     TRISAbits.RA3 = 0;
+  1251  0008EC  9692               	bcf	146,3,c	;volatile
+  1252  0008EE                     
+  1253                           ;main.c: 113:     TRISAbits.RA4 = 0;
+  1254  0008EE  9892               	bcf	146,4,c	;volatile
+  1255  0008F0                     
+  1256                           ;main.c: 114:     TRISAbits.RA5 = 0;
+  1257  0008F0  9A92               	bcf	146,5,c	;volatile
+  1258  0008F2  0012               	return		;funcret
+  1259  0008F4                     __end_of_set7Segment:
+  1260                           	callstack 0
+  1261                           
+  1262 ;; *************** function _LCDGoto *****************
+  1263 ;; Defined at:
+  1264 ;;		line 72 in file "./lcd.h"
+  1265 ;; Parameters:    Size  Location     Type
+  1266 ;;  p_2             1    wreg     unsigned char 
+  1267 ;;  p_1             1    2[BANK0 ] unsigned char 
+  1268 ;; Auto vars:     Size  Location     Type
+  1269 ;;  p_2             1    3[BANK0 ] unsigned char 
+  1270 ;; Return value:  Size  Location     Type
+  1271 ;;                  1    wreg      void 
+  1272 ;; Registers used:
+  1273 ;;		wreg, status,2, status,0, cstack
+  1274 ;; Tracked objects:
+  1275 ;;		On entry : 0/0
+  1276 ;;		On exit  : 0/0
+  1277 ;;		Unchanged: 0/0
+  1278 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1279 ;;      Params:         0       1       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1280 ;;      Locals:         0       1       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1281 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1282 ;;      Totals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1283 ;;Total ram usage:        2 bytes
+  1284 ;; Hardware stack levels used:    1
+  1285 ;; Hardware stack levels required when called:    4
+  1286 ;; This function calls:
+  1287 ;;		_LCDCmd
+  1288 ;; This function is called by:
+  1289 ;;		_main
+  1290 ;; This function uses a non-reentrant model
+  1291 ;;
+  1292                           
+  1293                           	psect	text6
+  1294  0006A6                     __ptext6:
+  1295                           	callstack 0
+  1296  0006A6                     _LCDGoto:
+  1297                           	callstack 26
+  1298                           
+  1299                           ;incstack = 0
+  1300                           ;LCDGoto@p_2 stored from wreg
+  1301  0006A6  0100               	movlb	0	; () banked
+  1302  0006A8  6FED               	movwf	LCDGoto@p_2& (0+255),b
+  1303  0006AA                     
+  1304                           ;./lcd.h: 73:   if(p_1==1) {
+  1305  0006AA  0100               	movlb	0	; () banked
+  1306  0006AC  05EC               	decf	LCDGoto@p_1& (0+255),w,b
+  1307  0006AE  A4D8               	btfss	status,2,c
+  1308  0006B0  EF5C  F003         	goto	u861
+  1309  0006B4  EF5E  F003         	goto	u860
+  1310  0006B8                     u861:
+  1311  0006B8  EF65  F003         	goto	l1636
+  1312  0006BC                     u860:
+  1313  0006BC                     
+  1314                           ; BSR set to: 0
+  1315                           ;./lcd.h: 74:     LCDCmd(0x80 +((p_2-1)%16));
+  1316  0006BC  05ED               	decf	LCDGoto@p_2& (0+255),w,b
+  1317  0006BE  0B0F               	andlw	15
+  1318  0006C0  0F80               	addlw	128
+  1319  0006C2  EC48  F004         	call	_LCDCmd
+  1320                           
+  1321                           ;./lcd.h: 75:   }
+  1322  0006C6  EF8A  F003         	goto	l1646
+  1323  0006CA                     l1636:
+  1324                           
+  1325                           ; BSR set to: 0
+  1326  0006CA  0E02               	movlw	2
+  1327  0006CC  19EC               	xorwf	LCDGoto@p_1& (0+255),w,b
+  1328  0006CE  A4D8               	btfss	status,2,c
+  1329  0006D0  EF6C  F003         	goto	u871
+  1330  0006D4  EF6E  F003         	goto	u870
+  1331  0006D8                     u871:
+  1332  0006D8  EF75  F003         	goto	l1640
+  1333  0006DC                     u870:
+  1334  0006DC                     
+  1335                           ; BSR set to: 0
+  1336                           ;./lcd.h: 77:     LCDCmd(0xC0 +((p_2-1)%16));
+  1337  0006DC  05ED               	decf	LCDGoto@p_2& (0+255),w,b
+  1338  0006DE  0B0F               	andlw	15
+  1339  0006E0  0FC0               	addlw	192
+  1340  0006E2  EC48  F004         	call	_LCDCmd
+  1341                           
+  1342                           ;./lcd.h: 78:   }
+  1343  0006E6  EF8A  F003         	goto	l1646
+  1344  0006EA                     l1640:
+  1345                           
+  1346                           ; BSR set to: 0
+  1347  0006EA  0E03               	movlw	3
+  1348  0006EC  19EC               	xorwf	LCDGoto@p_1& (0+255),w,b
+  1349  0006EE  A4D8               	btfss	status,2,c
+  1350  0006F0  EF7C  F003         	goto	u881
+  1351  0006F4  EF7E  F003         	goto	u880
+  1352  0006F8                     u881:
+  1353  0006F8  EF85  F003         	goto	l1644
+  1354  0006FC                     u880:
+  1355  0006FC                     
+  1356                           ; BSR set to: 0
+  1357                           ;./lcd.h: 80:     LCDCmd(0x90 +((p_2-1)%16));
+  1358  0006FC  05ED               	decf	LCDGoto@p_2& (0+255),w,b
+  1359  0006FE  0B0F               	andlw	15
+  1360  000700  0F90               	addlw	144
+  1361  000702  EC48  F004         	call	_LCDCmd
+  1362                           
+  1363                           ;./lcd.h: 81:   }
+  1364  000706  EF8A  F003         	goto	l1646
+  1365  00070A                     l1644:
+  1366                           
+  1367                           ; BSR set to: 0
+  1368                           ;./lcd.h: 83:     LCDCmd(0xD0 +((p_2-1)%16));
+  1369  00070A  05ED               	decf	LCDGoto@p_2& (0+255),w,b
+  1370  00070C  0B0F               	andlw	15
+  1371  00070E  0FD0               	addlw	208
+  1372  000710  EC48  F004         	call	_LCDCmd
+  1373  000714                     l1646:
+  1374                           
+  1375                           ;./lcd.h: 85:   lcd_x = p_2;
+  1376  000714  C0ED  F065         	movff	LCDGoto@p_2,_lcd_x
+  1377  000718                     
+  1378                           ;./lcd.h: 86:   lcd_y = p_1;
+  1379  000718  C0EC  F064         	movff	LCDGoto@p_1,_lcd_y
+  1380  00071C  0012               	return		;funcret
+  1381  00071E                     __end_of_LCDGoto:
+  1382                           	callstack 0
+  1383                           
+  1384 ;; *************** function _LCDCmd *****************
+  1385 ;; Defined at:
+  1386 ;;		line 48 in file "./lcd.h"
+  1387 ;; Parameters:    Size  Location     Type
+  1388 ;;  cmd             1    wreg     unsigned char 
+  1389 ;; Auto vars:     Size  Location     Type
+  1390 ;;  cmd             1    1[BANK0 ] unsigned char 
+  1391 ;; Return value:  Size  Location     Type
+  1392 ;;                  1    wreg      void 
+  1393 ;; Registers used:
+  1394 ;;		wreg
+  1395 ;; Tracked objects:
+  1396 ;;		On entry : 0/0
+  1397 ;;		On exit  : 0/0
+  1398 ;;		Unchanged: 0/0
+  1399 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1400 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1401 ;;      Locals:         0       1       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1402 ;;      Temps:          0       1       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1403 ;;      Totals:         0       2       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1404 ;;Total ram usage:        2 bytes
+  1405 ;; Hardware stack levels used:    1
+  1406 ;; Hardware stack levels required when called:    3
+  1407 ;; This function calls:
+  1408 ;;		Nothing
+  1409 ;; This function is called by:
+  1410 ;;		_LCDGoto
+  1411 ;;		_InitLCD
+  1412 ;;		_LCDAddSpecialCharacter
+  1413 ;; This function uses a non-reentrant model
+  1414 ;;
+  1415                           
+  1416                           	psect	text7
+  1417  000890                     __ptext7:
+  1418                           	callstack 0
+  1419  000890                     _LCDCmd:
+  1420                           	callstack 25
+  1421                           
+  1422                           ;incstack = 0
+  1423                           ;LCDCmd@cmd stored from wreg
+  1424  000890  0100               	movlb	0	; () banked
+  1425  000892  6FEB               	movwf	LCDCmd@cmd& (0+255),b
+  1426  000894                     
+  1427                           ;./lcd.h: 49:   PORTEbits.RE1 = 0;
+  1428  000894  9284               	bcf	132,1,c	;volatile
+  1429                           
+  1430                           ;./lcd.h: 50:   PORTEbits.RE2 = 0;
+  1431  000896  9484               	bcf	132,2,c	;volatile
+  1432  000898                     
+  1433                           ;./lcd.h: 51:   PORTD = cmd;
+  1434  000898  C0EB  FF83         	movff	LCDCmd@cmd,3971	;volatile
+  1435  00089C                     
+  1436                           ;./lcd.h: 52:   PORTEbits.RE1 = 1;
+  1437  00089C  8284               	bsf	132,1,c	;volatile
+  1438  00089E                     
+  1439                           ;./lcd.h: 53:   _delay((unsigned long)((2000)*(10000000L/4000000.0)));
+  1440  00089E  0E07               	movlw	7
+  1441  0008A0  0100               	movlb	0	; () banked
+  1442  0008A2  6FEA               	movwf	??_LCDCmd& (0+255),b
+  1443  0008A4  0E7D               	movlw	125
+  1444  0008A6                     u1027:
+  1445  0008A6  2EE8               	decfsz	wreg,f,c
+  1446  0008A8  D7FE               	bra	u1027
+  1447  0008AA  2FEA               	decfsz	??_LCDCmd& (0+255),f,b
+  1448  0008AC  D7FC               	bra	u1027
+  1449  0008AE                     
+  1450                           ;./lcd.h: 54:   PORTEbits.RE1 = 0;
+  1451  0008AE  9284               	bcf	132,1,c	;volatile
+  1452  0008B0                     
+  1453                           ;./lcd.h: 55:   _delay((unsigned long)((2000)*(10000000L/4000000.0)));
+  1454  0008B0  0E07               	movlw	7
+  1455  0008B2  0100               	movlb	0	; () banked
+  1456  0008B4  6FEA               	movwf	??_LCDCmd& (0+255),b
+  1457  0008B6  0E7D               	movlw	125
+  1458  0008B8                     u1037:
+  1459  0008B8  2EE8               	decfsz	wreg,f,c
+  1460  0008BA  D7FE               	bra	u1037
+  1461  0008BC  2FEA               	decfsz	??_LCDCmd& (0+255),f,b
+  1462  0008BE  D7FC               	bra	u1037
+  1463  0008C0  0012               	return		;funcret
+  1464  0008C2                     __end_of_LCDCmd:
+  1465                           	callstack 0
+  1466                           
+  1467 ;; *************** function _FNC *****************
+  1468 ;; Defined at:
+  1469 ;;		line 39 in file "main.c"
+  1470 ;; Parameters:    Size  Location     Type
+  1471 ;;		None
+  1472 ;; Auto vars:     Size  Location     Type
+  1473 ;;  number_of_st    2    0        unsigned short 
+  1474 ;;  i               2   42[COMRAM] int 
+  1475 ;; Return value:  Size  Location     Type
+  1476 ;;                  1    wreg      void 
+  1477 ;; Registers used:
+  1478 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+  1479 ;; Tracked objects:
+  1480 ;;		On entry : 0/0
+  1481 ;;		On exit  : 0/0
+  1482 ;;		Unchanged: 0/0
+  1483 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1484 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1485 ;;      Locals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1486 ;;      Temps:          6       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1487 ;;      Totals:        10       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1488 ;;Total ram usage:       10 bytes
+  1489 ;; Hardware stack levels used:    1
+  1490 ;; Hardware stack levels required when called:    2
+  1491 ;; This function calls:
+  1492 ;;		___wmul
+  1493 ;;		_compute_frisbee_target_and_route
+  1494 ;; This function is called by:
+  1495 ;;		Interrupt level 2
+  1496 ;; This function uses a non-reentrant model
+  1497 ;;
+  1498                           
+  1499                           	psect	intcode
+  1500  000008                     __pintcode:
+  1501                           	callstack 0
+  1502  000008                     _FNC:
+  1503                           	callstack 25
+  1504                           
+  1505                           ;incstack = 0
+  1506  000008  8266               	bsf	int$flags,1,c	;set compiler interrupt flag (level 2)
+  1507  00000A  ED89  F002         	call	int_func,f	;refresh shadow registers
+  1508                           
+  1509                           	psect	intcode_body
+  1510  000512                     __pintcode_body:
+  1511                           	callstack 25
+  1512  000512                     int_func:
+  1513                           	callstack 25
+  1514  000512  0006               	pop		; remove dummy address from shadow register refresh
+  1515  000514  CFD9 F057          	movff	fsr2l,??_FNC+2
+  1516  000518  CFDA F058          	movff	fsr2h,??_FNC+3
+  1517  00051C  CFF3 F059          	movff	prodl,??_FNC+4
+  1518  000520  CFF4 F05A          	movff	prodh,??_FNC+5
+  1519  000524                     
+  1520                           ;main.c: 41:     if(INTCONbits.INT0IF)
+  1521  000524  A2F2               	btfss	242,1,c	;volatile
+  1522  000526  EF97  F002         	goto	i2u63_41
+  1523  00052A  EF99  F002         	goto	i2u63_40
+  1524  00052E                     i2u63_41:
+  1525  00052E  EFFE  F002         	goto	i2l134
+  1526  000532                     i2u63_40:
+  1527  000532                     
+  1528                           ;main.c: 42:     {;main.c: 43:         if(mode == INACTIVE_MODE)
+  1529  000532  0463               	decf	_mode^0,w,c
+  1530  000534  A4D8               	btfss	status,2,c
+  1531  000536  EF9F  F002         	goto	i2u64_41
+  1532  00053A  EFA1  F002         	goto	i2u64_40
+  1533  00053E                     i2u64_41:
+  1534  00053E  EFFB  F002         	goto	i2l135
+  1535  000542                     i2u64_40:
+  1536  000542                     
+  1537                           ;main.c: 44:         {;main.c: 45:             int i;;main.c: 46:             for(i = 0 
+      +                          ; i < 4; i++)
+  1538  000542  0E00               	movlw	0
+  1539  000544  6E5E               	movwf	(FNC@i+1)^0,c
+  1540  000546  0E00               	movlw	0
+  1541  000548  6E5D               	movwf	FNC@i^0,c
+  1542  00054A                     i2l1446:
+  1543                           
+  1544                           ;main.c: 47:             {;main.c: 48:                 if(players[i].position.x == frisb
+      +                          ee_pos.x && players[i].position.y == frisbee_pos.y)
+  1545  00054A  C05D  F033         	movff	FNC@i,___wmul@multiplier
+  1546  00054E  C05E  F034         	movff	FNC@i+1,___wmul@multiplier+1
+  1547  000552  0E00               	movlw	0
+  1548  000554  6E36               	movwf	(___wmul@multiplicand+1)^0,c
+  1549  000556  0E09               	movlw	9
+  1550  000558  6E35               	movwf	___wmul@multiplicand^0,c
+  1551  00055A  EC61  F004         	call	___wmul	;wreg free
+  1552  00055E  0E02               	movlw	low (_players+1)
+  1553  000560  2433               	addwf	?___wmul^0,w,c
+  1554  000562  6ED9               	movwf	fsr2l,c
+  1555  000564  0E00               	movlw	high (_players+1)
+  1556  000566  2034               	addwfc	(?___wmul+1)^0,w,c
+  1557  000568  6EDA               	movwf	fsr2h,c
+  1558  00056A  5029               	movf	_frisbee_pos^0,w,c
+  1559  00056C  18DE               	xorwf	postinc2,w,c
+  1560  00056E  E107               	bnz	i2u65_41
+  1561  000570  502A               	movf	(_frisbee_pos+1)^0,w,c
+  1562  000572  18DE               	xorwf	postinc2,w,c
+  1563  000574  A4D8               	btfss	status,2,c
+  1564  000576  EFBF  F002         	goto	i2u65_41
+  1565  00057A  EFC1  F002         	goto	i2u65_40
+  1566  00057E                     i2u65_41:
+  1567  00057E  EFEB  F002         	goto	i2l1454
+  1568  000582                     i2u65_40:
+  1569  000582  C05D  F033         	movff	FNC@i,___wmul@multiplier
+  1570  000586  C05E  F034         	movff	FNC@i+1,___wmul@multiplier+1
+  1571  00058A  0E00               	movlw	0
+  1572  00058C  6E36               	movwf	(___wmul@multiplicand+1)^0,c
+  1573  00058E  0E09               	movlw	9
+  1574  000590  6E35               	movwf	___wmul@multiplicand^0,c
+  1575  000592  EC61  F004         	call	___wmul	;wreg free
+  1576  000596  0E04               	movlw	low (_players+3)
+  1577  000598  2433               	addwf	?___wmul^0,w,c
+  1578  00059A  6ED9               	movwf	fsr2l,c
+  1579  00059C  0E00               	movlw	high (_players+3)
+  1580  00059E  2034               	addwfc	(?___wmul+1)^0,w,c
+  1581  0005A0  6EDA               	movwf	fsr2h,c
+  1582  0005A2  502B               	movf	(_frisbee_pos+2)^0,w,c
+  1583  0005A4  18DE               	xorwf	postinc2,w,c
+  1584  0005A6  E107               	bnz	i2u66_41
+  1585  0005A8  502C               	movf	(_frisbee_pos+3)^0,w,c
+  1586  0005AA  18DE               	xorwf	postinc2,w,c
+  1587  0005AC  A4D8               	btfss	status,2,c
+  1588  0005AE  EFDB  F002         	goto	i2u66_41
+  1589  0005B2  EFDD  F002         	goto	i2u66_40
+  1590  0005B6                     i2u66_41:
+  1591  0005B6  EFEB  F002         	goto	i2l1454
+  1592  0005BA                     i2u66_40:
+  1593  0005BA                     
+  1594                           ;main.c: 49:                 {;main.c: 50:                     mode = ACTIVE_MODE;
+  1595  0005BA  0E00               	movlw	0
+  1596  0005BC  6E63               	movwf	_mode^0,c
+  1597  0005BE  C029  F035         	movff	_frisbee_pos,compute_frisbee_target_and_route@current_fisbee_x_position
+  1598  0005C2  C02A  F036         	movff	_frisbee_pos+1,compute_frisbee_target_and_route@current_fisbee_x_position+1
+  1599  0005C6  C02B  F037         	movff	_frisbee_pos+2,compute_frisbee_target_and_route@current_fisbee_y_position
+  1600  0005CA  C02C  F038         	movff	_frisbee_pos+3,compute_frisbee_target_and_route@current_fisbee_y_position+1
+  1601  0005CE  EC09  F000         	call	_compute_frisbee_target_and_route	;wreg free
+  1602                           
+  1603                           ;main.c: 55:                     break;
+  1604  0005D2  EFFB  F002         	goto	i2l135
+  1605  0005D6                     i2l1454:
+  1606                           
+  1607                           ;main.c: 57:             }
+  1608  0005D6  4A5D               	infsnz	FNC@i^0,f,c
+  1609  0005D8  2A5E               	incf	(FNC@i+1)^0,f,c
+  1610  0005DA  BE5E               	btfsc	(FNC@i+1)^0,7,c
+  1611  0005DC  EFF9  F002         	goto	i2u67_41
+  1612  0005E0  505E               	movf	(FNC@i+1)^0,w,c
+  1613  0005E2  E109               	bnz	i2u67_40
+  1614  0005E4  0E04               	movlw	4
+  1615  0005E6  5C5D               	subwf	FNC@i^0,w,c
+  1616  0005E8  A0D8               	btfss	status,0,c
+  1617  0005EA  EFF9  F002         	goto	i2u67_41
+  1618  0005EE  EFFB  F002         	goto	i2u67_40
+  1619  0005F2                     i2u67_41:
+  1620  0005F2  EFA5  F002         	goto	i2l1446
+  1621  0005F6                     i2u67_40:
+  1622  0005F6                     i2l135:
+  1623                           
+  1624                           ;main.c: 60:         INTCONbits.INT0IF = 0;
+  1625  0005F6  92F2               	bcf	242,1,c	;volatile
+  1626                           
+  1627                           ;main.c: 61:     }
+  1628  0005F8  EF06  F003         	goto	i2l142
+  1629  0005FC                     i2l134:
+  1630  0005FC  A0F0               	btfss	240,0,c	;volatile
+  1631  0005FE  EF03  F003         	goto	i2u68_41
+  1632  000602  EF05  F003         	goto	i2u68_40
+  1633  000606                     i2u68_41:
+  1634  000606  EF06  F003         	goto	i2l142
+  1635  00060A                     i2u68_40:
+  1636  00060A                     
+  1637                           ;main.c: 69:         INTCON3bits.INT1IF = 0;
+  1638  00060A  90F0               	bcf	240,0,c	;volatile
+  1639  00060C                     i2l142:
+  1640  00060C  C05A  FFF4         	movff	??_FNC+5,prodh
+  1641  000610  C059  FFF3         	movff	??_FNC+4,prodl
+  1642  000614  C058  FFDA         	movff	??_FNC+3,fsr2h
+  1643  000618  C057  FFD9         	movff	??_FNC+2,fsr2l
+  1644  00061C  9266               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+  1645  00061E  0011               	retfie		f
+  1646  000620                     __end_of_FNC:
+  1647                           	callstack 0
+  1648                           
+  1649 ;; *************** function _compute_frisbee_target_and_route *****************
+  1650 ;; Defined at:
+  1651 ;;		line 117 in file "./the3.h"
+  1652 ;; Parameters:    Size  Location     Type
+  1653 ;;  current_fisb    2    2[COMRAM] unsigned short 
+  1654 ;;  current_fisb    2    4[COMRAM] unsigned short 
+  1655 ;; Auto vars:     Size  Location     Type
+  1656 ;;  i               2   16[COMRAM] unsigned short 
+  1657 ;;  i               2   14[COMRAM] unsigned short 
+  1658 ;;  i               2   10[COMRAM] unsigned short 
+  1659 ;;  i               2    8[COMRAM] unsigned short 
+  1660 ;;  i               2   18[COMRAM] unsigned short 
+  1661 ;;  i               2   12[COMRAM] unsigned short 
+  1662 ;;  y_step_size     2   32[COMRAM] unsigned short 
+  1663 ;;  x_step_size     2   30[COMRAM] unsigned short 
+  1664 ;;  y               2   28[COMRAM] unsigned short 
+  1665 ;;  x               2   26[COMRAM] unsigned short 
+  1666 ;;  target_y        2   24[COMRAM] unsigned short 
+  1667 ;;  target_x        2   22[COMRAM] unsigned short 
+  1668 ;;  number_of_st    2   20[COMRAM] unsigned short 
+  1669 ;; Return value:  Size  Location     Type
+  1670 ;;                  2    2[COMRAM] unsigned short 
+  1671 ;; Registers used:
+  1672 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1673 ;; Tracked objects:
+  1674 ;;		On entry : 0/0
+  1675 ;;		On exit  : 0/0
+  1676 ;;		Unchanged: 0/0
+  1677 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1678 ;;      Params:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1679 ;;      Locals:        26       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1680 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1681 ;;      Totals:        32       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1682 ;;Total ram usage:       32 bytes
+  1683 ;; Hardware stack levels used:    1
+  1684 ;; Hardware stack levels required when called:    1
+  1685 ;; This function calls:
+  1686 ;;		_random_generator
+  1687 ;; This function is called by:
+  1688 ;;		_FNC
+  1689 ;; This function uses a non-reentrant model
+  1690 ;;
+  1691                           
+  1692                           	psect	text9
+  1693  000012                     __ptext9:
+  1694                           	callstack 0
+  1695  000012                     _compute_frisbee_target_and_route:
+  1696                           	callstack 25
+  1697  000012                     i2l78:
+  1698  000012                     
+  1699                           ;./the3.h: 131:         target_x = random_generator(16) + 1;
+  1700  000012  0E00               	movlw	0
+  1701  000014  6E34               	movwf	(random_generator@modulo+1)^0,c
+  1702  000016  0E10               	movlw	16
+  1703  000018  6E33               	movwf	random_generator@modulo^0,c
+  1704  00001A  EC7E  F004         	call	_random_generator	;wreg free
+  1705  00001E  0E01               	movlw	1
+  1706  000020  2433               	addwf	?_random_generator^0,w,c
+  1707  000022  6E49               	movwf	compute_frisbee_target_and_route@target_x^0,c
+  1708  000024  0E00               	movlw	0
+  1709  000026  2034               	addwfc	(?_random_generator+1)^0,w,c
+  1710  000028  6E4A               	movwf	(compute_frisbee_target_and_route@target_x+1)^0,c
+  1711                           
+  1712                           ;./the3.h: 132:         target_y = random_generator(4) + 1;
+  1713  00002A  0E00               	movlw	0
+  1714  00002C  6E34               	movwf	(random_generator@modulo+1)^0,c
+  1715  00002E  0E04               	movlw	4
+  1716  000030  6E33               	movwf	random_generator@modulo^0,c
+  1717  000032  EC7E  F004         	call	_random_generator	;wreg free
+  1718  000036  0E01               	movlw	1
+  1719  000038  2433               	addwf	?_random_generator^0,w,c
+  1720  00003A  6E4B               	movwf	compute_frisbee_target_and_route@target_y^0,c
+  1721  00003C  0E00               	movlw	0
+  1722  00003E  2034               	addwfc	(?_random_generator+1)^0,w,c
+  1723  000040  6E4C               	movwf	(compute_frisbee_target_and_route@target_y+1)^0,c
+  1724  000042                     
+  1725                           ;./the3.h: 135:         if (target_x < current_fisbee_x_position)
+  1726  000042  5035               	movf	compute_frisbee_target_and_route@current_fisbee_x_position^0,w,c
+  1727  000044  5C49               	subwf	compute_frisbee_target_and_route@target_x^0,w,c
+  1728  000046  5036               	movf	(compute_frisbee_target_and_route@current_fisbee_x_position+1)^0,w,c
+  1729  000048  584A               	subwfb	(compute_frisbee_target_and_route@target_x+1)^0,w,c
+  1730  00004A  B0D8               	btfsc	status,0,c
+  1731  00004C  EF2A  F000         	goto	i2u47_41
+  1732  000050  EF2C  F000         	goto	i2u47_40
+  1733  000054                     i2u47_41:
+  1734  000054  EF34  F000         	goto	i2l1310
+  1735  000058                     i2u47_40:
+  1736  000058                     
+  1737                           ;./the3.h: 136:             x_step_size = current_fisbee_x_position - target_x;
+  1738  000058  5049               	movf	compute_frisbee_target_and_route@target_x^0,w,c
+  1739  00005A  5C35               	subwf	compute_frisbee_target_and_route@current_fisbee_x_position^0,w,c
+  1740  00005C  6E51               	movwf	compute_frisbee_target_and_route@x_step_size^0,c
+  1741  00005E  504A               	movf	(compute_frisbee_target_and_route@target_x+1)^0,w,c
+  1742  000060  5836               	subwfb	(compute_frisbee_target_and_route@current_fisbee_x_position+1)^0,w,c
+  1743  000062  6E52               	movwf	(compute_frisbee_target_and_route@x_step_size+1)^0,c
+  1744  000064  EF3A  F000         	goto	i2l80
+  1745  000068                     i2l1310:
+  1746                           
+  1747                           ;./the3.h: 138:             x_step_size = target_x - current_fisbee_x_position;
+  1748  000068  5035               	movf	compute_frisbee_target_and_route@current_fisbee_x_position^0,w,c
+  1749  00006A  5C49               	subwf	compute_frisbee_target_and_route@target_x^0,w,c
+  1750  00006C  6E51               	movwf	compute_frisbee_target_and_route@x_step_size^0,c
+  1751  00006E  5036               	movf	(compute_frisbee_target_and_route@current_fisbee_x_position+1)^0,w,c
+  1752  000070  584A               	subwfb	(compute_frisbee_target_and_route@target_x+1)^0,w,c
+  1753  000072  6E52               	movwf	(compute_frisbee_target_and_route@x_step_size+1)^0,c
+  1754  000074                     i2l80:
+  1755                           
+  1756                           ;./the3.h: 141:         if (target_y < current_fisbee_y_position)
+  1757  000074  5037               	movf	compute_frisbee_target_and_route@current_fisbee_y_position^0,w,c
+  1758  000076  5C4B               	subwf	compute_frisbee_target_and_route@target_y^0,w,c
+  1759  000078  5038               	movf	(compute_frisbee_target_and_route@current_fisbee_y_position+1)^0,w,c
+  1760  00007A  584C               	subwfb	(compute_frisbee_target_and_route@target_y+1)^0,w,c
+  1761  00007C  B0D8               	btfsc	status,0,c
+  1762  00007E  EF43  F000         	goto	i2u48_41
+  1763  000082  EF45  F000         	goto	i2u48_40
+  1764  000086                     i2u48_41:
+  1765  000086  EF4D  F000         	goto	i2l1314
+  1766  00008A                     i2u48_40:
+  1767  00008A                     
+  1768                           ;./the3.h: 142:             y_step_size = current_fisbee_y_position - target_y;
+  1769  00008A  504B               	movf	compute_frisbee_target_and_route@target_y^0,w,c
+  1770  00008C  5C37               	subwf	compute_frisbee_target_and_route@current_fisbee_y_position^0,w,c
+  1771  00008E  6E53               	movwf	compute_frisbee_target_and_route@y_step_size^0,c
+  1772  000090  504C               	movf	(compute_frisbee_target_and_route@target_y+1)^0,w,c
+  1773  000092  5838               	subwfb	(compute_frisbee_target_and_route@current_fisbee_y_position+1)^0,w,c
+  1774  000094  6E54               	movwf	(compute_frisbee_target_and_route@y_step_size+1)^0,c
+  1775  000096  EF53  F000         	goto	i2l82
+  1776  00009A                     i2l1314:
+  1777                           
+  1778                           ;./the3.h: 144:             y_step_size = target_y - current_fisbee_y_position;
+  1779  00009A  5037               	movf	compute_frisbee_target_and_route@current_fisbee_y_position^0,w,c
+  1780  00009C  5C4B               	subwf	compute_frisbee_target_and_route@target_y^0,w,c
+  1781  00009E  6E53               	movwf	compute_frisbee_target_and_route@y_step_size^0,c
+  1782  0000A0  5038               	movf	(compute_frisbee_target_and_route@current_fisbee_y_position+1)^0,w,c
+  1783  0000A2  584C               	subwfb	(compute_frisbee_target_and_route@target_y+1)^0,w,c
+  1784  0000A4  6E54               	movwf	(compute_frisbee_target_and_route@y_step_size+1)^0,c
+  1785  0000A6                     i2l82:
+  1786                           
+  1787                           ;./the3.h: 147:         if (x_step_size <= 2 && y_step_size <= 2)
+  1788  0000A6  5052               	movf	(compute_frisbee_target_and_route@x_step_size+1)^0,w,c
+  1789  0000A8  E107               	bnz	i2u49_41
+  1790  0000AA  0E03               	movlw	3
+  1791  0000AC  5C51               	subwf	compute_frisbee_target_and_route@x_step_size^0,w,c
+  1792  0000AE  B0D8               	btfsc	status,0,c
+  1793  0000B0  EF5C  F000         	goto	i2u49_41
+  1794  0000B4  EF5E  F000         	goto	i2u49_40
+  1795  0000B8                     i2u49_41:
+  1796  0000B8  EF6B  F000         	goto	i2l1320
+  1797  0000BC                     i2u49_40:
+  1798  0000BC  5054               	movf	(compute_frisbee_target_and_route@y_step_size+1)^0,w,c
+  1799  0000BE  E107               	bnz	i2u50_41
+  1800  0000C0  0E03               	movlw	3
+  1801  0000C2  5C53               	subwf	compute_frisbee_target_and_route@y_step_size^0,w,c
+  1802  0000C4  B0D8               	btfsc	status,0,c
+  1803  0000C6  EF67  F000         	goto	i2u50_41
+  1804  0000CA  EF69  F000         	goto	i2u50_40
+  1805  0000CE                     i2u50_41:
+  1806  0000CE  EF6B  F000         	goto	i2l1320
+  1807  0000D2                     i2u50_40:
+  1808  0000D2  EF09  F000         	goto	i2l78
+  1809  0000D6                     i2l1320:
+  1810                           
+  1811                           ;./the3.h: 151:         if (x_step_size > y_step_size)
+  1812  0000D6  5051               	movf	compute_frisbee_target_and_route@x_step_size^0,w,c
+  1813  0000D8  5C53               	subwf	compute_frisbee_target_and_route@y_step_size^0,w,c
+  1814  0000DA  5052               	movf	(compute_frisbee_target_and_route@x_step_size+1)^0,w,c
+  1815  0000DC  5854               	subwfb	(compute_frisbee_target_and_route@y_step_size+1)^0,w,c
+  1816  0000DE  B0D8               	btfsc	status,0,c
+  1817  0000E0  EF74  F000         	goto	i2u51_41
+  1818  0000E4  EF76  F000         	goto	i2u51_40
+  1819  0000E8                     i2u51_41:
+  1820  0000E8  EF7C  F000         	goto	i2l85
+  1821  0000EC                     i2u51_40:
+  1822  0000EC                     
+  1823                           ;./the3.h: 152:             number_of_steps = x_step_size;
+  1824  0000EC  C051  F047         	movff	compute_frisbee_target_and_route@x_step_size,compute_frisbee_target_and_route@num
+      +                          ber_of_steps
+  1825  0000F0  C052  F048         	movff	compute_frisbee_target_and_route@x_step_size+1,compute_frisbee_target_and_route@n
+      +                          umber_of_steps+1
+  1826  0000F4  EF80  F000         	goto	i2l87
+  1827  0000F8                     i2l85:
+  1828                           
+  1829                           ;./the3.h: 154:             number_of_steps = y_step_size;
+  1830  0000F8  C053  F047         	movff	compute_frisbee_target_and_route@y_step_size,compute_frisbee_target_and_route@num
+      +                          ber_of_steps
+  1831  0000FC  C054  F048         	movff	compute_frisbee_target_and_route@y_step_size+1,compute_frisbee_target_and_route@n
+      +                          umber_of_steps+1
+  1832  000100                     i2l87:
+  1833                           
+  1834                           ;./the3.h: 167:     unsigned short x = current_fisbee_x_position;
+  1835  000100  C035  F04D         	movff	compute_frisbee_target_and_route@current_fisbee_x_position,compute_frisbee_target
+      +                          _and_route@x
+  1836  000104  C036  F04E         	movff	compute_frisbee_target_and_route@current_fisbee_x_position+1,compute_frisbee_targ
+      +                          et_and_route@x+1
+  1837  000108                     
+  1838                           ;./the3.h: 168:     if (target_x < current_fisbee_x_position) {
+  1839  000108  5035               	movf	compute_frisbee_target_and_route@current_fisbee_x_position^0,w,c
+  1840  00010A  5C49               	subwf	compute_frisbee_target_and_route@target_x^0,w,c
+  1841  00010C  5036               	movf	(compute_frisbee_target_and_route@current_fisbee_x_position+1)^0,w,c
+  1842  00010E  584A               	subwfb	(compute_frisbee_target_and_route@target_x+1)^0,w,c
+  1843  000110  B0D8               	btfsc	status,0,c
+  1844  000112  EF8D  F000         	goto	i2u52_41
+  1845  000116  EF8F  F000         	goto	i2u52_40
+  1846  00011A                     i2u52_41:
+  1847  00011A  EFBE  F000         	goto	i2l1336
+  1848  00011E                     i2u52_40:
+  1849  00011E                     
+  1850                           ;./the3.h: 169:         for (unsigned short i = 0; i < x_step_size; i++) {
+  1851  00011E  0E00               	movlw	0
+  1852  000120  6E3C               	movwf	(compute_frisbee_target_and_route@i+1)^0,c
+  1853  000122  0E00               	movlw	0
+  1854  000124  6E3B               	movwf	compute_frisbee_target_and_route@i^0,c
+  1855  000126  EFB1  F000         	goto	i2l1334
+  1856  00012A                     i2l1328:
+  1857                           
+  1858                           ;./the3.h: 170:             x = x - 1;
+  1859  00012A  0EFF               	movlw	255
+  1860  00012C  244D               	addwf	compute_frisbee_target_and_route@x^0,w,c
+  1861  00012E  6E4D               	movwf	compute_frisbee_target_and_route@x^0,c
+  1862  000130  0EFF               	movlw	255
+  1863  000132  204E               	addwfc	(compute_frisbee_target_and_route@x+1)^0,w,c
+  1864  000134  6E4E               	movwf	(compute_frisbee_target_and_route@x+1)^0,c
+  1865  000136                     
+  1866                           ;./the3.h: 171:             frisbee_steps[i][0] = x;
+  1867  000136  0E00               	movlw	low _frisbee_steps
+  1868  000138  6E39               	movwf	??_compute_frisbee_target_and_route^0,c
+  1869  00013A  0E01               	movlw	high _frisbee_steps
+  1870  00013C  6E3A               	movwf	(??_compute_frisbee_target_and_route+1)^0,c
+  1871  00013E  90D8               	bcf	status,0,c
+  1872  000140  343B               	rlcf	compute_frisbee_target_and_route@i^0,w,c
+  1873  000142  6ED9               	movwf	fsr2l,c
+  1874  000144  343C               	rlcf	(compute_frisbee_target_and_route@i+1)^0,w,c
+  1875  000146  6EDA               	movwf	fsr2h,c
+  1876  000148  90D8               	bcf	status,0,c
+  1877  00014A  36D9               	rlcf	fsr2l,f,c
+  1878  00014C  36DA               	rlcf	fsr2h,f,c
+  1879  00014E  5039               	movf	??_compute_frisbee_target_and_route^0,w,c
+  1880  000150  26D9               	addwf	fsr2l,f,c
+  1881  000152  503A               	movf	(??_compute_frisbee_target_and_route+1)^0,w,c
+  1882  000154  22DA               	addwfc	fsr2h,f,c
+  1883  000156  C04D  FFDE         	movff	compute_frisbee_target_and_route@x,postinc2
+  1884  00015A  C04E  FFDD         	movff	compute_frisbee_target_and_route@x+1,postdec2
+  1885  00015E                     
+  1886                           ;./the3.h: 172:         }
+  1887  00015E  4A3B               	infsnz	compute_frisbee_target_and_route@i^0,f,c
+  1888  000160  2A3C               	incf	(compute_frisbee_target_and_route@i+1)^0,f,c
+  1889  000162                     i2l1334:
+  1890  000162  5051               	movf	compute_frisbee_target_and_route@x_step_size^0,w,c
+  1891  000164  5C3B               	subwf	compute_frisbee_target_and_route@i^0,w,c
+  1892  000166  5052               	movf	(compute_frisbee_target_and_route@x_step_size+1)^0,w,c
+  1893  000168  583C               	subwfb	(compute_frisbee_target_and_route@i+1)^0,w,c
+  1894  00016A  A0D8               	btfss	status,0,c
+  1895  00016C  EFBA  F000         	goto	i2u53_41
+  1896  000170  EFBC  F000         	goto	i2u53_40
+  1897  000174                     i2u53_41:
+  1898  000174  EF95  F000         	goto	i2l1328
+  1899  000178                     i2u53_40:
+  1900  000178  EFEB  F000         	goto	i2l92
+  1901  00017C                     i2l1336:
+  1902                           
+  1903                           ;./the3.h: 175:         for (unsigned short i = 0; i < x_step_size; i++) {
+  1904  00017C  0E00               	movlw	0
+  1905  00017E  6E3E               	movwf	(compute_frisbee_target_and_route@i_396+1)^0,c
+  1906  000180  0E00               	movlw	0
+  1907  000182  6E3D               	movwf	compute_frisbee_target_and_route@i_396^0,c
+  1908  000184  EFE0  F000         	goto	i2l1344
+  1909  000188                     i2l1338:
+  1910                           
+  1911                           ;./the3.h: 176:             x = x + 1;
+  1912  000188  0E01               	movlw	1
+  1913  00018A  244D               	addwf	compute_frisbee_target_and_route@x^0,w,c
+  1914  00018C  6E4D               	movwf	compute_frisbee_target_and_route@x^0,c
+  1915  00018E  0E00               	movlw	0
+  1916  000190  204E               	addwfc	(compute_frisbee_target_and_route@x+1)^0,w,c
+  1917  000192  6E4E               	movwf	(compute_frisbee_target_and_route@x+1)^0,c
+  1918  000194                     
+  1919                           ;./the3.h: 177:             frisbee_steps[i][0] = x;
+  1920  000194  0E00               	movlw	low _frisbee_steps
+  1921  000196  6E39               	movwf	??_compute_frisbee_target_and_route^0,c
+  1922  000198  0E01               	movlw	high _frisbee_steps
+  1923  00019A  6E3A               	movwf	(??_compute_frisbee_target_and_route+1)^0,c
+  1924  00019C  90D8               	bcf	status,0,c
+  1925  00019E  343D               	rlcf	compute_frisbee_target_and_route@i_396^0,w,c
+  1926  0001A0  6ED9               	movwf	fsr2l,c
+  1927  0001A2  343E               	rlcf	(compute_frisbee_target_and_route@i_396+1)^0,w,c
+  1928  0001A4  6EDA               	movwf	fsr2h,c
+  1929  0001A6  90D8               	bcf	status,0,c
+  1930  0001A8  36D9               	rlcf	fsr2l,f,c
+  1931  0001AA  36DA               	rlcf	fsr2h,f,c
+  1932  0001AC  5039               	movf	??_compute_frisbee_target_and_route^0,w,c
+  1933  0001AE  26D9               	addwf	fsr2l,f,c
+  1934  0001B0  503A               	movf	(??_compute_frisbee_target_and_route+1)^0,w,c
+  1935  0001B2  22DA               	addwfc	fsr2h,f,c
+  1936  0001B4  C04D  FFDE         	movff	compute_frisbee_target_and_route@x,postinc2
+  1937  0001B8  C04E  FFDD         	movff	compute_frisbee_target_and_route@x+1,postdec2
+  1938  0001BC                     
+  1939                           ;./the3.h: 178:         }
+  1940  0001BC  4A3D               	infsnz	compute_frisbee_target_and_route@i_396^0,f,c
+  1941  0001BE  2A3E               	incf	(compute_frisbee_target_and_route@i_396+1)^0,f,c
+  1942  0001C0                     i2l1344:
+  1943  0001C0  5051               	movf	compute_frisbee_target_and_route@x_step_size^0,w,c
+  1944  0001C2  5C3D               	subwf	compute_frisbee_target_and_route@i_396^0,w,c
+  1945  0001C4  5052               	movf	(compute_frisbee_target_and_route@x_step_size+1)^0,w,c
+  1946  0001C6  583E               	subwfb	(compute_frisbee_target_and_route@i_396+1)^0,w,c
+  1947  0001C8  A0D8               	btfss	status,0,c
+  1948  0001CA  EFE9  F000         	goto	i2u54_41
+  1949  0001CE  EFEB  F000         	goto	i2u54_40
+  1950  0001D2                     i2u54_41:
+  1951  0001D2  EFC4  F000         	goto	i2l1338
+  1952  0001D6                     i2u54_40:
+  1953  0001D6                     i2l92:
+  1954                           
+  1955                           ;./the3.h: 180:     for (unsigned short i = x_step_size; i < number_of_steps; i++)
+  1956  0001D6  C051  F03F         	movff	compute_frisbee_target_and_route@x_step_size,compute_frisbee_target_and_route@i_3
+      +                          97
+  1957  0001DA  C052  F040         	movff	compute_frisbee_target_and_route@x_step_size+1,compute_frisbee_target_and_route@i
+      +                          _397+1
+  1958  0001DE  EF07  F001         	goto	i2l1350
+  1959  0001E2                     i2l1346:
+  1960                           
+  1961                           ;./the3.h: 181:         frisbee_steps[i][0] = x;
+  1962  0001E2  0E00               	movlw	low _frisbee_steps
+  1963  0001E4  6E39               	movwf	??_compute_frisbee_target_and_route^0,c
+  1964  0001E6  0E01               	movlw	high _frisbee_steps
+  1965  0001E8  6E3A               	movwf	(??_compute_frisbee_target_and_route+1)^0,c
+  1966  0001EA  90D8               	bcf	status,0,c
+  1967  0001EC  343F               	rlcf	compute_frisbee_target_and_route@i_397^0,w,c
+  1968  0001EE  6ED9               	movwf	fsr2l,c
+  1969  0001F0  3440               	rlcf	(compute_frisbee_target_and_route@i_397+1)^0,w,c
+  1970  0001F2  6EDA               	movwf	fsr2h,c
+  1971  0001F4  90D8               	bcf	status,0,c
+  1972  0001F6  36D9               	rlcf	fsr2l,f,c
+  1973  0001F8  36DA               	rlcf	fsr2h,f,c
+  1974  0001FA  5039               	movf	??_compute_frisbee_target_and_route^0,w,c
+  1975  0001FC  26D9               	addwf	fsr2l,f,c
+  1976  0001FE  503A               	movf	(??_compute_frisbee_target_and_route+1)^0,w,c
+  1977  000200  22DA               	addwfc	fsr2h,f,c
+  1978  000202  C04D  FFDE         	movff	compute_frisbee_target_and_route@x,postinc2
+  1979  000206  C04E  FFDD         	movff	compute_frisbee_target_and_route@x+1,postdec2
+  1980  00020A  4A3F               	infsnz	compute_frisbee_target_and_route@i_397^0,f,c
+  1981  00020C  2A40               	incf	(compute_frisbee_target_and_route@i_397+1)^0,f,c
+  1982  00020E                     i2l1350:
+  1983  00020E  5047               	movf	compute_frisbee_target_and_route@number_of_steps^0,w,c
+  1984  000210  5C3F               	subwf	compute_frisbee_target_and_route@i_397^0,w,c
+  1985  000212  5048               	movf	(compute_frisbee_target_and_route@number_of_steps+1)^0,w,c
+  1986  000214  5840               	subwfb	(compute_frisbee_target_and_route@i_397+1)^0,w,c
+  1987  000216  A0D8               	btfss	status,0,c
+  1988  000218  EF10  F001         	goto	i2u55_41
+  1989  00021C  EF12  F001         	goto	i2u55_40
+  1990  000220                     i2u55_41:
+  1991  000220  EFF1  F000         	goto	i2l1346
+  1992  000224                     i2u55_40:
+  1993  000224                     
+  1994                           ;./the3.h: 184:     unsigned short y = current_fisbee_y_position;
+  1995  000224  C037  F04F         	movff	compute_frisbee_target_and_route@current_fisbee_y_position,compute_frisbee_target
+      +                          _and_route@y
+  1996  000228  C038  F050         	movff	compute_frisbee_target_and_route@current_fisbee_y_position+1,compute_frisbee_targ
+      +                          et_and_route@y+1
+  1997  00022C                     
+  1998                           ;./the3.h: 185:     if (target_y < current_fisbee_y_position) {
+  1999  00022C  5037               	movf	compute_frisbee_target_and_route@current_fisbee_y_position^0,w,c
+  2000  00022E  5C4B               	subwf	compute_frisbee_target_and_route@target_y^0,w,c
+  2001  000230  5038               	movf	(compute_frisbee_target_and_route@current_fisbee_y_position+1)^0,w,c
+  2002  000232  584C               	subwfb	(compute_frisbee_target_and_route@target_y+1)^0,w,c
+  2003  000234  B0D8               	btfsc	status,0,c
+  2004  000236  EF1F  F001         	goto	i2u56_41
+  2005  00023A  EF21  F001         	goto	i2u56_40
+  2006  00023E                     i2u56_41:
+  2007  00023E  EF54  F001         	goto	i2l1364
+  2008  000242                     i2u56_40:
+  2009  000242                     
+  2010                           ;./the3.h: 186:         for (unsigned short i = 0; i < y_step_size; i++) {
+  2011  000242  0E00               	movlw	0
+  2012  000244  6E42               	movwf	(compute_frisbee_target_and_route@i_399+1)^0,c
+  2013  000246  0E00               	movlw	0
+  2014  000248  6E41               	movwf	compute_frisbee_target_and_route@i_399^0,c
+  2015  00024A  EF47  F001         	goto	i2l1362
+  2016  00024E                     i2l1356:
+  2017                           
+  2018                           ;./the3.h: 187:             y = y - 1;
+  2019  00024E  0EFF               	movlw	255
+  2020  000250  244F               	addwf	compute_frisbee_target_and_route@y^0,w,c
+  2021  000252  6E4F               	movwf	compute_frisbee_target_and_route@y^0,c
+  2022  000254  0EFF               	movlw	255
+  2023  000256  2050               	addwfc	(compute_frisbee_target_and_route@y+1)^0,w,c
+  2024  000258  6E50               	movwf	(compute_frisbee_target_and_route@y+1)^0,c
+  2025  00025A                     
+  2026                           ;./the3.h: 188:             frisbee_steps[i][1] = y;
+  2027  00025A  0E00               	movlw	low _frisbee_steps
+  2028  00025C  6E39               	movwf	??_compute_frisbee_target_and_route^0,c
+  2029  00025E  0E01               	movlw	high _frisbee_steps
+  2030  000260  6E3A               	movwf	(??_compute_frisbee_target_and_route+1)^0,c
+  2031  000262  0E02               	movlw	2
+  2032  000264  2639               	addwf	??_compute_frisbee_target_and_route^0,f,c
+  2033  000266  0E00               	movlw	0
+  2034  000268  223A               	addwfc	(??_compute_frisbee_target_and_route+1)^0,f,c
+  2035  00026A  90D8               	bcf	status,0,c
+  2036  00026C  3441               	rlcf	compute_frisbee_target_and_route@i_399^0,w,c
+  2037  00026E  6ED9               	movwf	fsr2l,c
+  2038  000270  3442               	rlcf	(compute_frisbee_target_and_route@i_399+1)^0,w,c
+  2039  000272  6EDA               	movwf	fsr2h,c
+  2040  000274  90D8               	bcf	status,0,c
+  2041  000276  36D9               	rlcf	fsr2l,f,c
+  2042  000278  36DA               	rlcf	fsr2h,f,c
+  2043  00027A  5039               	movf	??_compute_frisbee_target_and_route^0,w,c
+  2044  00027C  26D9               	addwf	fsr2l,f,c
+  2045  00027E  503A               	movf	(??_compute_frisbee_target_and_route+1)^0,w,c
+  2046  000280  22DA               	addwfc	fsr2h,f,c
+  2047  000282  C04F  FFDE         	movff	compute_frisbee_target_and_route@y,postinc2
+  2048  000286  C050  FFDD         	movff	compute_frisbee_target_and_route@y+1,postdec2
+  2049  00028A                     
+  2050                           ;./the3.h: 189:         }
+  2051  00028A  4A41               	infsnz	compute_frisbee_target_and_route@i_399^0,f,c
+  2052  00028C  2A42               	incf	(compute_frisbee_target_and_route@i_399+1)^0,f,c
+  2053  00028E                     i2l1362:
+  2054  00028E  5053               	movf	compute_frisbee_target_and_route@y_step_size^0,w,c
+  2055  000290  5C41               	subwf	compute_frisbee_target_and_route@i_399^0,w,c
+  2056  000292  5054               	movf	(compute_frisbee_target_and_route@y_step_size+1)^0,w,c
+  2057  000294  5842               	subwfb	(compute_frisbee_target_and_route@i_399+1)^0,w,c
+  2058  000296  A0D8               	btfss	status,0,c
+  2059  000298  EF50  F001         	goto	i2u57_41
+  2060  00029C  EF52  F001         	goto	i2u57_40
+  2061  0002A0                     i2u57_41:
+  2062  0002A0  EF27  F001         	goto	i2l1356
+  2063  0002A4                     i2u57_40:
+  2064  0002A4  EF85  F001         	goto	i2l103
+  2065  0002A8                     i2l1364:
+  2066                           
+  2067                           ;./the3.h: 192:         for (unsigned short i = 0; i < y_step_size; i++) {
+  2068  0002A8  0E00               	movlw	0
+  2069  0002AA  6E44               	movwf	(compute_frisbee_target_and_route@i_400+1)^0,c
+  2070  0002AC  0E00               	movlw	0
+  2071  0002AE  6E43               	movwf	compute_frisbee_target_and_route@i_400^0,c
+  2072  0002B0  EF7A  F001         	goto	i2l1372
+  2073  0002B4                     i2l1366:
+  2074                           
+  2075                           ;./the3.h: 193:             y = y + 1;
+  2076  0002B4  0E01               	movlw	1
+  2077  0002B6  244F               	addwf	compute_frisbee_target_and_route@y^0,w,c
+  2078  0002B8  6E4F               	movwf	compute_frisbee_target_and_route@y^0,c
+  2079  0002BA  0E00               	movlw	0
+  2080  0002BC  2050               	addwfc	(compute_frisbee_target_and_route@y+1)^0,w,c
+  2081  0002BE  6E50               	movwf	(compute_frisbee_target_and_route@y+1)^0,c
+  2082  0002C0                     
+  2083                           ;./the3.h: 194:             frisbee_steps[i][1] = y;
+  2084  0002C0  0E00               	movlw	low _frisbee_steps
+  2085  0002C2  6E39               	movwf	??_compute_frisbee_target_and_route^0,c
+  2086  0002C4  0E01               	movlw	high _frisbee_steps
+  2087  0002C6  6E3A               	movwf	(??_compute_frisbee_target_and_route+1)^0,c
+  2088  0002C8  0E02               	movlw	2
+  2089  0002CA  2639               	addwf	??_compute_frisbee_target_and_route^0,f,c
+  2090  0002CC  0E00               	movlw	0
+  2091  0002CE  223A               	addwfc	(??_compute_frisbee_target_and_route+1)^0,f,c
+  2092  0002D0  90D8               	bcf	status,0,c
+  2093  0002D2  3443               	rlcf	compute_frisbee_target_and_route@i_400^0,w,c
+  2094  0002D4  6ED9               	movwf	fsr2l,c
+  2095  0002D6  3444               	rlcf	(compute_frisbee_target_and_route@i_400+1)^0,w,c
+  2096  0002D8  6EDA               	movwf	fsr2h,c
+  2097  0002DA  90D8               	bcf	status,0,c
+  2098  0002DC  36D9               	rlcf	fsr2l,f,c
+  2099  0002DE  36DA               	rlcf	fsr2h,f,c
+  2100  0002E0  5039               	movf	??_compute_frisbee_target_and_route^0,w,c
+  2101  0002E2  26D9               	addwf	fsr2l,f,c
+  2102  0002E4  503A               	movf	(??_compute_frisbee_target_and_route+1)^0,w,c
+  2103  0002E6  22DA               	addwfc	fsr2h,f,c
+  2104  0002E8  C04F  FFDE         	movff	compute_frisbee_target_and_route@y,postinc2
+  2105  0002EC  C050  FFDD         	movff	compute_frisbee_target_and_route@y+1,postdec2
+  2106  0002F0                     
+  2107                           ;./the3.h: 195:         }
+  2108  0002F0  4A43               	infsnz	compute_frisbee_target_and_route@i_400^0,f,c
+  2109  0002F2  2A44               	incf	(compute_frisbee_target_and_route@i_400+1)^0,f,c
+  2110  0002F4                     i2l1372:
+  2111  0002F4  5053               	movf	compute_frisbee_target_and_route@y_step_size^0,w,c
+  2112  0002F6  5C43               	subwf	compute_frisbee_target_and_route@i_400^0,w,c
+  2113  0002F8  5054               	movf	(compute_frisbee_target_and_route@y_step_size+1)^0,w,c
+  2114  0002FA  5844               	subwfb	(compute_frisbee_target_and_route@i_400+1)^0,w,c
+  2115  0002FC  A0D8               	btfss	status,0,c
+  2116  0002FE  EF83  F001         	goto	i2u58_41
+  2117  000302  EF85  F001         	goto	i2u58_40
+  2118  000306                     i2u58_41:
+  2119  000306  EF5A  F001         	goto	i2l1366
+  2120  00030A                     i2u58_40:
+  2121  00030A                     i2l103:
+  2122                           
+  2123                           ;./the3.h: 197:     for (unsigned short i = y_step_size; i < number_of_steps; i++)
+  2124  00030A  C053  F045         	movff	compute_frisbee_target_and_route@y_step_size,compute_frisbee_target_and_route@i_4
+      +                          01
+  2125  00030E  C054  F046         	movff	compute_frisbee_target_and_route@y_step_size+1,compute_frisbee_target_and_route@i
+      +                          _401+1
+  2126  000312  EFA5  F001         	goto	i2l1378
+  2127  000316                     i2l1374:
+  2128                           
+  2129                           ;./the3.h: 198:         frisbee_steps[i][1] = y;
+  2130  000316  0E00               	movlw	low _frisbee_steps
+  2131  000318  6E39               	movwf	??_compute_frisbee_target_and_route^0,c
+  2132  00031A  0E01               	movlw	high _frisbee_steps
+  2133  00031C  6E3A               	movwf	(??_compute_frisbee_target_and_route+1)^0,c
+  2134  00031E  0E02               	movlw	2
+  2135  000320  2639               	addwf	??_compute_frisbee_target_and_route^0,f,c
+  2136  000322  0E00               	movlw	0
+  2137  000324  223A               	addwfc	(??_compute_frisbee_target_and_route+1)^0,f,c
+  2138  000326  90D8               	bcf	status,0,c
+  2139  000328  3445               	rlcf	compute_frisbee_target_and_route@i_401^0,w,c
+  2140  00032A  6ED9               	movwf	fsr2l,c
+  2141  00032C  3446               	rlcf	(compute_frisbee_target_and_route@i_401+1)^0,w,c
+  2142  00032E  6EDA               	movwf	fsr2h,c
+  2143  000330  90D8               	bcf	status,0,c
+  2144  000332  36D9               	rlcf	fsr2l,f,c
+  2145  000334  36DA               	rlcf	fsr2h,f,c
+  2146  000336  5039               	movf	??_compute_frisbee_target_and_route^0,w,c
+  2147  000338  26D9               	addwf	fsr2l,f,c
+  2148  00033A  503A               	movf	(??_compute_frisbee_target_and_route+1)^0,w,c
+  2149  00033C  22DA               	addwfc	fsr2h,f,c
+  2150  00033E  C04F  FFDE         	movff	compute_frisbee_target_and_route@y,postinc2
+  2151  000342  C050  FFDD         	movff	compute_frisbee_target_and_route@y+1,postdec2
+  2152  000346  4A45               	infsnz	compute_frisbee_target_and_route@i_401^0,f,c
+  2153  000348  2A46               	incf	(compute_frisbee_target_and_route@i_401+1)^0,f,c
+  2154  00034A                     i2l1378:
+  2155  00034A  5047               	movf	compute_frisbee_target_and_route@number_of_steps^0,w,c
+  2156  00034C  5C45               	subwf	compute_frisbee_target_and_route@i_401^0,w,c
+  2157  00034E  5048               	movf	(compute_frisbee_target_and_route@number_of_steps+1)^0,w,c
+  2158  000350  5846               	subwfb	(compute_frisbee_target_and_route@i_401+1)^0,w,c
+  2159  000352  A0D8               	btfss	status,0,c
+  2160  000354  EFAE  F001         	goto	i2u59_41
+  2161  000358  EFB0  F001         	goto	i2u59_40
+  2162  00035C                     i2u59_41:
+  2163  00035C  EF8B  F001         	goto	i2l1374
+  2164  000360                     i2u59_40:
+  2165  000360                     
+  2166                           ;./the3.h: 200:     return number_of_steps;
+  2167  000360  C047  F035         	movff	compute_frisbee_target_and_route@number_of_steps,?_compute_frisbee_target_and_rou
+      +                          te
+  2168  000364  C048  F036         	movff	compute_frisbee_target_and_route@number_of_steps+1,?_compute_frisbee_target_and_r
+      +                          oute+1
+  2169  000368  0012               	return		;funcret
+  2170  00036A                     __end_of_compute_frisbee_target_and_route:
+  2171                           	callstack 0
+  2172                           
+  2173 ;; *************** function _random_generator *****************
+  2174 ;; Defined at:
+  2175 ;;		line 203 in file "./the3.h"
+  2176 ;; Parameters:    Size  Location     Type
+  2177 ;;  modulo          2    0[COMRAM] unsigned short 
+  2178 ;; Auto vars:     Size  Location     Type
+  2179 ;;		None
+  2180 ;; Return value:  Size  Location     Type
+  2181 ;;                  2    0[COMRAM] unsigned short 
+  2182 ;; Registers used:
+  2183 ;;		None
+  2184 ;; Tracked objects:
+  2185 ;;		On entry : 0/0
+  2186 ;;		On exit  : 0/0
+  2187 ;;		Unchanged: 0/0
+  2188 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2189 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2190 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2191 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2192 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2193 ;;Total ram usage:        2 bytes
+  2194 ;; Hardware stack levels used:    1
+  2195 ;; This function calls:
+  2196 ;;		Nothing
+  2197 ;; This function is called by:
+  2198 ;;		_compute_frisbee_target_and_route
+  2199 ;; This function uses a non-reentrant model
+  2200 ;;
+  2201                           
+  2202                           	psect	text10
+  2203  0008FC                     __ptext10:
+  2204                           	callstack 0
+  2205  0008FC                     _random_generator:
+  2206                           	callstack 25
+  2207  0008FC  0012               	return		;funcret
+  2208  0008FE                     __end_of_random_generator:
+  2209                           	callstack 0
+  2210                           
+  2211 ;; *************** function ___wmul *****************
+  2212 ;; Defined at:
+  2213 ;;		line 15 in file "/Applications/microchip/xc8/v2.30/pic/sources/c99/common/Umul16.c"
+  2214 ;; Parameters:    Size  Location     Type
+  2215 ;;  multiplier      2    0[COMRAM] unsigned int 
+  2216 ;;  multiplicand    2    2[COMRAM] unsigned int 
+  2217 ;; Auto vars:     Size  Location     Type
+  2218 ;;  product         2    4[COMRAM] unsigned int 
+  2219 ;; Return value:  Size  Location     Type
+  2220 ;;                  2    0[COMRAM] unsigned int 
+  2221 ;; Registers used:
+  2222 ;;		wreg, status,2, status,0, prodl, prodh
+  2223 ;; Tracked objects:
+  2224 ;;		On entry : 0/0
+  2225 ;;		On exit  : 0/0
+  2226 ;;		Unchanged: 0/0
+  2227 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2228 ;;      Params:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2229 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2230 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2231 ;;      Totals:         6       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2232 ;;Total ram usage:        6 bytes
+  2233 ;; Hardware stack levels used:    1
+  2234 ;; This function calls:
+  2235 ;;		Nothing
+  2236 ;; This function is called by:
+  2237 ;;		_FNC
+  2238 ;; This function uses a non-reentrant model
+  2239 ;;
+  2240                           
+  2241                           	psect	text11
+  2242  0008C2                     __ptext11:
+  2243                           	callstack 0
+  2244  0008C2                     ___wmul:
+  2245                           	callstack 26
+  2246  0008C2  5033               	movf	___wmul@multiplier^0,w,c
+  2247  0008C4  0235               	mulwf	___wmul@multiplicand^0,c
+  2248  0008C6  CFF3 F037          	movff	prodl,___wmul@product
+  2249  0008CA  CFF4 F038          	movff	prodh,___wmul@product+1
+  2250  0008CE  5033               	movf	___wmul@multiplier^0,w,c
+  2251  0008D0  0236               	mulwf	(___wmul@multiplicand+1)^0,c
+  2252  0008D2  50F3               	movf	243,w,c
+  2253  0008D4  2638               	addwf	(___wmul@product+1)^0,f,c
+  2254  0008D6  5034               	movf	(___wmul@multiplier+1)^0,w,c
+  2255  0008D8  0235               	mulwf	___wmul@multiplicand^0,c
+  2256  0008DA  50F3               	movf	243,w,c
+  2257  0008DC  2638               	addwf	(___wmul@product+1)^0,f,c
+  2258  0008DE  C037  F033         	movff	___wmul@product,?___wmul
+  2259  0008E2  C038  F034         	movff	___wmul@product+1,?___wmul+1
+  2260  0008E6  0012               	return		;funcret
+  2261  0008E8                     __end_of___wmul:
+  2262                           	callstack 0
+  2263  0000                     
+  2264                           	psect	rparam
+  2265  0000                     
+  2266                           	psect	temp
+  2267  000066                     btemp:
+  2268                           	callstack 0
+  2269  000066                     	ds	1
+  2270  0000                     int$flags	set	btemp
+  2271  0000                     wtemp8	set	btemp+1
+  2272  0000                     ttemp5	set	btemp+1
+  2273  0000                     ttemp6	set	btemp+4
+  2274  0000                     ttemp7	set	btemp+8
+  2275                           
+  2276                           	psect	idloc
+  2277                           
+  2278                           ;Config register IDLOC0 @ 0x200000
+  2279                           ;	unspecified, using default values
+  2280  200000                     	org	2097152
+  2281  200000  FF                 	db	255
+  2282                           
+  2283                           ;Config register IDLOC1 @ 0x200001
+  2284                           ;	unspecified, using default values
+  2285  200001                     	org	2097153
+  2286  200001  FF                 	db	255
+  2287                           
+  2288                           ;Config register IDLOC2 @ 0x200002
+  2289                           ;	unspecified, using default values
+  2290  200002                     	org	2097154
+  2291  200002  FF                 	db	255
+  2292                           
+  2293                           ;Config register IDLOC3 @ 0x200003
+  2294                           ;	unspecified, using default values
+  2295  200003                     	org	2097155
+  2296  200003  FF                 	db	255
+  2297                           
+  2298                           ;Config register IDLOC4 @ 0x200004
+  2299                           ;	unspecified, using default values
+  2300  200004                     	org	2097156
+  2301  200004  FF                 	db	255
+  2302                           
+  2303                           ;Config register IDLOC5 @ 0x200005
+  2304                           ;	unspecified, using default values
+  2305  200005                     	org	2097157
+  2306  200005  FF                 	db	255
+  2307                           
+  2308                           ;Config register IDLOC6 @ 0x200006
+  2309                           ;	unspecified, using default values
+  2310  200006                     	org	2097158
+  2311  200006  FF                 	db	255
+  2312                           
+  2313                           ;Config register IDLOC7 @ 0x200007
+  2314                           ;	unspecified, using default values
+  2315  200007                     	org	2097159
+  2316  200007  FF                 	db	255
+  2317                           
+  2318                           	psect	config
+  2319                           
+  2320                           ; Padding undefined space
+  2321  300000                     	org	3145728
+  2322  300000  FF                 	db	255
+  2323                           
+  2324                           ;Config register CONFIG1H @ 0x300001
+  2325                           ;	Oscillator Selection bits
+  2326                           ;	OSC = INTIO67, Internal oscillator block, port function on RA6 and RA7
+  2327                           ;	Fail-Safe Clock Monitor Enable bit
+  2328                           ;	FCMEN = OFF, Fail-Safe Clock Monitor disabled
+  2329                           ;	Internal/External Oscillator Switchover bit
+  2330                           ;	IESO = OFF, Oscillator Switchover mode disabled
+  2331  300001                     	org	3145729
+  2332  300001  08                 	db	8
+  2333                           
+  2334                           ;Config register CONFIG2L @ 0x300002
+  2335                           ;	Power-up Timer Enable bit
+  2336                           ;	PWRT = OFF, PWRT disabled
+  2337                           ;	Brown-out Reset Enable bits
+  2338                           ;	BOREN = SBORDIS, Brown-out Reset enabled in hardware only (SBOREN is disabled)
+  2339                           ;	Brown Out Reset Voltage bits
+  2340                           ;	BORV = 3, Minimum setting
+  2341  300002                     	org	3145730
+  2342  300002  1F                 	db	31
+  2343                           
+  2344                           ;Config register CONFIG2H @ 0x300003
+  2345                           ;	Watchdog Timer Enable bit
+  2346                           ;	WDT = OFF, WDT disabled (control is placed on the SWDTEN bit)
+  2347                           ;	Watchdog Timer Postscale Select bits
+  2348                           ;	WDTPS = 32768, 1:32768
+  2349  300003                     	org	3145731
+  2350  300003  1E                 	db	30
+  2351                           
+  2352                           ; Padding undefined space
+  2353  300004                     	org	3145732
+  2354  300004  FF                 	db	255
+  2355                           
+  2356                           ;Config register CONFIG3H @ 0x300005
+  2357                           ;	CCP2 MUX bit
+  2358                           ;	CCP2MX = PORTC, CCP2 input/output is multiplexed with RC1
+  2359                           ;	PORTB A/D Enable bit
+  2360                           ;	PBADEN = ON, PORTB<4:0> pins are configured as analog input channels on Reset
+  2361                           ;	Low-Power Timer1 Oscillator Enable bit
+  2362                           ;	LPT1OSC = OFF, Timer1 configured for higher power operation
+  2363                           ;	MCLR Pin Enable bit
+  2364                           ;	MCLRE = ON, MCLR pin enabled; RE3 input pin disabled
+  2365  300005                     	org	3145733
+  2366  300005  83                 	db	131
+  2367                           
+  2368                           ;Config register CONFIG4L @ 0x300006
+  2369                           ;	Stack Full/Underflow Reset Enable bit
+  2370                           ;	STVREN = ON, Stack full/underflow will cause Reset
+  2371                           ;	Single-Supply ICSP Enable bit
+  2372                           ;	LVP = OFF, Single-Supply ICSP disabled
+  2373                           ;	Extended Instruction Set Enable bit
+  2374                           ;	XINST = OFF, Instruction set extension and Indexed Addressing mode disabled (Legacy mo
+      +                          de)
+  2375                           ;	Background Debugger Enable bit
+  2376                           ;	DEBUG = 0x1, unprogrammed default
+  2377  300006                     	org	3145734
+  2378  300006  81                 	db	129
+  2379                           
+  2380                           ; Padding undefined space
+  2381  300007                     	org	3145735
+  2382  300007  FF                 	db	255
+  2383                           
+  2384                           ;Config register CONFIG5L @ 0x300008
+  2385                           ;	Code Protection bit
+  2386                           ;	CP0 = OFF, Block 0 (000800-003FFFh) not code-protected
+  2387                           ;	Code Protection bit
+  2388                           ;	CP1 = OFF, Block 1 (004000-007FFFh) not code-protected
+  2389                           ;	Code Protection bit
+  2390                           ;	CP2 = OFF, Block 2 (008000-00BFFFh) not code-protected
+  2391                           ;	Code Protection bit
+  2392                           ;	CP3 = OFF, Block 3 (00C000-00FFFFh) not code-protected
+  2393  300008                     	org	3145736
+  2394  300008  0F                 	db	15
+  2395                           
+  2396                           ;Config register CONFIG5H @ 0x300009
+  2397                           ;	Boot Block Code Protection bit
+  2398                           ;	CPB = OFF, Boot block (000000-0007FFh) not code-protected
+  2399                           ;	Data EEPROM Code Protection bit
+  2400                           ;	CPD = OFF, Data EEPROM not code-protected
+  2401  300009                     	org	3145737
+  2402  300009  C0                 	db	192
+  2403                           
+  2404                           ;Config register CONFIG6L @ 0x30000A
+  2405                           ;	Write Protection bit
+  2406                           ;	WRT0 = OFF, Block 0 (000800-003FFFh) not write-protected
+  2407                           ;	Write Protection bit
+  2408                           ;	WRT1 = OFF, Block 1 (004000-007FFFh) not write-protected
+  2409                           ;	Write Protection bit
+  2410                           ;	WRT2 = OFF, Block 2 (008000-00BFFFh) not write-protected
+  2411                           ;	Write Protection bit
+  2412                           ;	WRT3 = OFF, Block 3 (00C000-00FFFFh) not write-protected
+  2413  30000A                     	org	3145738
+  2414  30000A  0F                 	db	15
+  2415                           
+  2416                           ;Config register CONFIG6H @ 0x30000B
+  2417                           ;	Configuration Register Write Protection bit
+  2418                           ;	WRTC = OFF, Configuration registers (300000-3000FFh) not write-protected
+  2419                           ;	Boot Block Write Protection bit
+  2420                           ;	WRTB = OFF, Boot Block (000000-0007FFh) not write-protected
+  2421                           ;	Data EEPROM Write Protection bit
+  2422                           ;	WRTD = OFF, Data EEPROM not write-protected
+  2423  30000B                     	org	3145739
+  2424  30000B  E0                 	db	224
+  2425                           
+  2426                           ;Config register CONFIG7L @ 0x30000C
+  2427                           ;	Table Read Protection bit
+  2428                           ;	EBTR0 = OFF, Block 0 (000800-003FFFh) not protected from table reads executed in other
+      +                           blocks
+  2429                           ;	Table Read Protection bit
+  2430                           ;	EBTR1 = OFF, Block 1 (004000-007FFFh) not protected from table reads executed in other
+      +                           blocks
+  2431                           ;	Table Read Protection bit
+  2432                           ;	EBTR2 = OFF, Block 2 (008000-00BFFFh) not protected from table reads executed in other
+      +                           blocks
+  2433                           ;	Table Read Protection bit
+  2434                           ;	EBTR3 = OFF, Block 3 (00C000-00FFFFh) not protected from table reads executed in other
+      +                           blocks
+  2435  30000C                     	org	3145740
+  2436  30000C  0F                 	db	15
+  2437                           
+  2438                           ;Config register CONFIG7H @ 0x30000D
+  2439                           ;	Boot Block Table Read Protection bit
+  2440                           ;	EBTRB = OFF, Boot Block (000000-0007FFh) not protected from table reads executed in ot
+      +                          her blocks
+  2441  30000D                     	org	3145741
+  2442  30000D  40                 	db	64
+  2443                           tosu	equ	0xFFF
+  2444                           tosh	equ	0xFFE
+  2445                           tosl	equ	0xFFD
+  2446                           stkptr	equ	0xFFC
+  2447                           pclatu	equ	0xFFB
+  2448                           pclath	equ	0xFFA
+  2449                           pcl	equ	0xFF9
+  2450                           tblptru	equ	0xFF8
+  2451                           tblptrh	equ	0xFF7
+  2452                           tblptrl	equ	0xFF6
+  2453                           tablat	equ	0xFF5
+  2454                           prodh	equ	0xFF4
+  2455                           prodl	equ	0xFF3
+  2456                           indf0	equ	0xFEF
+  2457                           postinc0	equ	0xFEE
+  2458                           postdec0	equ	0xFED
+  2459                           preinc0	equ	0xFEC
+  2460                           plusw0	equ	0xFEB
+  2461                           fsr0h	equ	0xFEA
+  2462                           fsr0l	equ	0xFE9
+  2463                           wreg	equ	0xFE8
+  2464                           indf1	equ	0xFE7
+  2465                           postinc1	equ	0xFE6
+  2466                           postdec1	equ	0xFE5
+  2467                           preinc1	equ	0xFE4
+  2468                           plusw1	equ	0xFE3
+  2469                           fsr1h	equ	0xFE2
+  2470                           fsr1l	equ	0xFE1
+  2471                           bsr	equ	0xFE0
+  2472                           indf2	equ	0xFDF
+  2473                           postinc2	equ	0xFDE
+  2474                           postdec2	equ	0xFDD
+  2475                           preinc2	equ	0xFDC
+  2476                           plusw2	equ	0xFDB
+  2477                           fsr2h	equ	0xFDA
+  2478                           fsr2l	equ	0xFD9
+  2479                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        113
+    BSS         110
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM          126     44     101
+    BANK0           128     22     128
+    BANK1           256      0      60
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15          128      0       0
+
+Pointer List with Targets:
+
+    LCDAddSpecialCharacter@data	PTR unsigned char  size(2) Largest target is 8
+		 -> frisbee_target(BANK0[8]), frisbee(BANK0[8]), selected_teamB_player_with_frisbee(BANK0[8]), selected_teamB_player(BANK0[8]), 
+		 -> teamB_player(BANK0[8]), selected_teamA_player_with_frisbee(BANK0[8]), selected_teamA_player(BANK0[8]), teamA_player(BANK0[8]), 
+
+
+Critical Paths under _main in COMRAM
+
+    None.
+
+Critical Paths under _FNC in COMRAM
+
+    _FNC->_compute_frisbee_target_and_route
+    _compute_frisbee_target_and_route->_random_generator
+
+Critical Paths under _main in BANK0
+
+    _setLCD->_LCDAddSpecialCharacter
+    _LCDAddSpecialCharacter->_LCDCmd
+    _LCDAddSpecialCharacter->_LCDDat
+    _InitLCD->_LCDCmd
+    _LCDGoto->_LCDCmd
+
+Critical Paths under _FNC in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _FNC in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _FNC in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _FNC in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _FNC in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _FNC in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _FNC in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _FNC in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _FNC in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _FNC in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _FNC in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _FNC in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _FNC in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _FNC in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _FNC in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Critical Paths under _FNC in BANK15
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                16    16      0    1971
+                                              6 BANK0     16    16      0
+                             _LCDDat
+                            _LCDGoto
+                        _set7Segment
+                             _setLCD
+ ---------------------------------------------------------------------------------
+ (1) _setLCD                                               0     0      0     974
+                            _InitLCD
+             _LCDAddSpecialCharacter
+ ---------------------------------------------------------------------------------
+ (2) _LCDAddSpecialCharacter                               4     2      2     943
+                                              2 BANK0      4     2      2
+                             _LCDCmd
+                             _LCDDat
+ ---------------------------------------------------------------------------------
+ (3) _LCDDat                                               2     2      0      31
+                                              0 BANK0      2     2      0
+ ---------------------------------------------------------------------------------
+ (2) _InitLCD                                              0     0      0      31
+                             _LCDCmd
+ ---------------------------------------------------------------------------------
+ (1) _set7Segment                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _LCDGoto                                              2     1      1     670
+                                              2 BANK0      2     1      1
+                             _LCDCmd
+ ---------------------------------------------------------------------------------
+ (3) _LCDCmd                                               2     2      0      31
+                                              0 BANK0      2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (4) _FNC                                                 10    10      0    2094
+                                             34 COMRAM    10    10      0
+                             ___wmul
+   _compute_frisbee_target_and_route
+ ---------------------------------------------------------------------------------
+ (5) _compute_frisbee_target_and_route                    32    28      4    1540
+                                              2 COMRAM    32    28      4
+                   _random_generator
+ ---------------------------------------------------------------------------------
+ (6) _random_generator                                     2     0      2     152
+                                              0 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (5) ___wmul                                               6     2      4     463
+                                              0 COMRAM     6     2      4
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 6
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _LCDDat
+   _LCDGoto
+     _LCDCmd
+   _set7Segment
+   _setLCD
+     _InitLCD
+       _LCDCmd
+     _LCDAddSpecialCharacter
+       _LCDCmd
+       _LCDDat
+
+ _FNC (ROOT)
+   ___wmul
+   _compute_frisbee_target_and_route
+     _random_generator
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             F7F      0       0      37        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK14          100      0       0      32        0.0%
+BANK14             100      0       0      33        0.0%
+BITBANK13          100      0       0      30        0.0%
+BANK13             100      0       0      31        0.0%
+BITBANK12          100      0       0      28        0.0%
+BANK12             100      0       0      29        0.0%
+BITBANK11          100      0       0      26        0.0%
+BANK11             100      0       0      27        0.0%
+BITBANK10          100      0       0      24        0.0%
+BANK10             100      0       0      25        0.0%
+BITBANK9           100      0       0      22        0.0%
+BANK9              100      0       0      23        0.0%
+BITBANK8           100      0       0      20        0.0%
+BANK8              100      0       0      21        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0      3C       7       23.4%
+BITBANK15           80      0       0      35        0.0%
+BANK15              80      0       0      36        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80     16      80       5      100.0%
+BITCOMRAM           7E      0       0       0        0.0%
+COMRAM              7E     2C      65       1       80.2%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0     121      34        0.0%
+DATA                 0      0     121       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.30 build 20200825195618 
+Symbol Table                                                                                   Wed May 24 23:30:45 2023
+
+                                                       l32 085C  
+                                                       l41 071C  
+                                                       l52 088E  
+                                                       l29 08C0  
+                                                       l57 0828  
+                               LCDAddSpecialCharacter@data 00EC  
+                                      ___wmul@multiplicand 0035  
+                    LCDAddSpecialCharacter@character_index 00EE  
+                                                      l161 08F2  
+                                                      l158 06A4  
+                                                      _FNC 0008  
+                                                      u920 039E  
+                                                      u921 039A  
+                                                      u850 0828  
+                                                      u930 03BE  
+                                                      u851 0824  
+                                                      u931 03BA  
+                                                      u860 06BC  
+                                                      u940 0400  
+                                                      u861 06B8  
+                                                      u941 03FC  
+                                                      u870 06DC  
+                                                      u950 0420  
+                                                      u871 06D8  
+                                                      u951 041C  
+                                                      u880 06FC  
+                                                      u960 0462  
+                                                      u881 06F8  
+                                                      u961 045E  
+                                                      u970 0482  
+                                                      u971 047E  
+                                                      u980 04C4  
+                                                      u981 04C0  
+                                                      u990 04E4  
+                                                      u991 04E0  
+                                                      wreg 000FE8  
+                                                     FNC@i 005D  
+                                          __end_of_LCDGoto 071E  
+                                                     ?_FNC 0033  
+                                                     l1600 0862  
+                                                     l1610 0876  
+                                                     l1602 0866  
+                                                     l1612 087C  
+                                                     l1604 0868  
+                                                     l1620 07FC  
+                                                     l1700 036A  
+                                                     l1614 0882  
+                                                     l1606 086A  
+                                                     l1630 0818  
+                                                     l1710 0378  
+                                                     l1702 036E  
+                                                     l1640 06EA  
+                                                     l1632 06AA  
+                                                     l1616 0888  
+                                                     l1608 0870  
+                                                     l1720 0382  
+                                                     l1712 037A  
+                                                     l1704 0372  
+                                                     l1642 06FC  
+                                                     l1634 06BC  
+                                                     l1626 0802  
+                                                     l1618 07EE  
+                                                     l1650 0620  
+                                                     l1730 03CC  
+                                                     l1722 038C  
+                                                     l1714 037C  
+                                                     l1706 0374  
+                                                     l1580 08AE  
+                                                     l1572 0894  
+                                                     l1644 070A  
+                                                     l1636 06CA  
+                                                     l1628 0814  
+                                                     l1660 0664  
+                                                     l1652 0624  
+                                                     l1740 040E  
+                                                     l1732 03D6  
+                                                     l1724 039E  
+                                                     l1716 037E  
+                                                     l1708 0376  
+                                                     l1582 08B0  
+                                                     l1574 0898  
+                                                     l1638 06DC  
+                                                     l1646 0714  
+                                                     l1670 08E8  
+                                                     l1590 0838  
+                                                     l1662 0674  
+                                                     l1654 0634  
+                                                     l1750 0446  
+                                                     l1742 0420  
+                                                     l1734 03DE  
+                                                     l1726 03AC  
+                                                     l1718 0380  
+                                                     l1576 089C  
+                                                     l1648 0718  
+                                                     l1672 08EC  
+                                                     l1592 0848  
+                                                     l1584 082E  
+                                                     l1664 0684  
+                                                     l1656 0644  
+                                                     l1760 049A  
+                                                     l1752 0462  
+                                                     l1744 042E  
+                                                     l1736 03E4  
+                                                     l1728 03BE  
+                                                     l1578 089E  
+                                                     l1674 08EE  
+                                                     l1594 084A  
+                                                     l1586 0832  
+                                                     l1666 0694  
+                                                     l1658 0654  
+                                                     l1770 04E4  
+                                                     l1762 04A2  
+                                                     l1754 0470  
+                                                     l1746 0438  
+                                                     l1738 0400  
+                                                     l1676 08F0  
+                                                     l1596 085A  
+                                                     l1588 0836  
+                                                     l1772 04F2  
+                                                     l1764 04A8  
+                                                     l1756 0482  
+                                                     l1748 0440  
+                                                     l1598 085E  
+                                                     l1774 04FC  
+                                                     l1766 04C4  
+                                                     l1758 0490  
+                                                     l1776 0504  
+                                                     l1768 04D2  
+                                                     u1007 0840  
+                                                     u1017 0852  
+                                                     u1027 08A6  
+                                                     u1037 08B8  
+                                                     _LATA 000F89  
+                                                     i2l80 0074  
+                                                     i2l82 00A6  
+                                                     i2l92 01D6  
+                                                     i2l85 00F8  
+                                                     i2l78 0012  
+                                                     i2l87 0100  
+                                                     i2l98 0224  
+                                                     _main 036A  
+                                                     _mode 0063  
+                                                     fsr2h 000FDA  
+                                                     indf2 000FDF  
+                                                     fsr1l 000FE1  
+                                                     fsr2l 000FD9  
+                                                     btemp 0066  
+                                                     prodh 000FF4  
+                                                     prodl 000FF3  
+                                                     start 000E  
+                                             ___param_bank 000000  
+                                          __end_of_InitLCD 0890  
+                                                    ??_FNC 0055  
+                                                    ?_main 0033  
+                                             ?_set7Segment 0033  
+                                                    i2l110 0368  
+                                                    i2l103 030A  
+                                                    i2l113 08FC  
+                                                    i2l109 0360  
+                                                    i2l141 060A  
+                                                    i2l142 060C  
+                                                    i2l134 05FC  
+                                                    i2l207 08E6  
+                                                    i2l135 05F6  
+                                                    _PORTD 000F83  
+                                                    _TRISD 000F95  
+                                                    _lcd_x 0065  
+                                                    _lcd_y 0064  
+                                                    tablat 000FF5  
+                                                    ttemp5 0067  
+                                                    ttemp6 006A  
+                                                    ttemp7 006E  
+                                                    status 000FD8  
+                                                    wtemp8 0067  
+                                 __end_of_random_generator 08FE  
+                                          __initialization 0788  
+                                             __end_of_main 0512  
+                                                   ??_main 00F0  
+                                            __activetblptr 000000  
+                                                ??_LCDGoto 00ED  
+                                                   _LCDDat 082A  
+                                                   _LCDCmd 0890  
+                                                   i2l1310 0068  
+                                                   i2l1320 00D6  
+                                                   i2l1312 008A  
+                                                   i2l1304 0012  
+                                                   i2l1410 08C2  
+                                                   i2l1330 0136  
+                                                   i2l1322 00EC  
+                                                   i2l1314 009A  
+                                                   i2l1306 0042  
+                                                   i2l1412 08DE  
+                                                   i2l1340 0194  
+                                                   i2l1332 015E  
+                                                   i2l1324 0108  
+                                                   i2l1316 00BC  
+                                                   i2l1308 0058  
+                                                   i2l1350 020E  
+                                                   i2l1342 01BC  
+                                                   i2l1334 0162  
+                                                   i2l1326 011E  
+                                                   i2l1360 028A  
+                                                   i2l1352 022C  
+                                                   i2l1344 01C0  
+                                                   i2l1328 012A  
+                                                   i2l1336 017C  
+                                                   i2l1440 0542  
+                                                   i2l1370 02F0  
+                                                   i2l1362 028E  
+                                                   i2l1354 0242  
+                                                   i2l1346 01E2  
+                                                   i2l1338 0188  
+                                                   i2l1450 05BA  
+                                                   i2l1372 02F4  
+                                                   i2l1356 024E  
+                                                   i2l1364 02A8  
+                                                   i2l1348 020A  
+                                                   i2l1452 05BE  
+                                                   i2l1436 0524  
+                                                   i2l1374 0316  
+                                                   i2l1366 02B4  
+                                                   i2l1358 025A  
+                                                   i2l1454 05D6  
+                                                   i2l1446 054A  
+                                                   i2l1438 0532  
+                                                   i2l1376 0346  
+                                                   i2l1368 02C0  
+                                                   i2l1456 05DA  
+                                                   i2l1448 0582  
+                                                   i2l1378 034A  
+                                                ??_InitLCD 00EC  
+                                       _frisbee_target_pos 0025  
+                                                   ___wmul 08C2  
+                                                   _digits 00A4  
+                                                   _setLCD 0620  
+                                                   clear_0 07CE  
+                                                   clear_1 07DA  
+compute_frisbee_target_and_route@current_fisbee_x_position 0035  
+compute_frisbee_target_and_route@current_fisbee_y_position 0037  
+                                             __pdataCOMRAM 005F  
+                                            _frisbee_steps 0100  
+                                                   tblptrh 000FF7  
+                                                   tblptrl 000FF6  
+                                                   tblptru 000FF8  
+                                                LCDDat@dat 00EB  
+                                                LCDCmd@cmd 00EB  
+                                               __accesstop 0080  
+                                  __end_of__initialization 07E0  
+                                            ___rparam_used 000001  
+                                           __pcstackCOMRAM 0033  
+                                             __pidataBANK0 071E  
+                                 ??_LCDAddSpecialCharacter 00EE  
+                                     __size_of_set7Segment 000C  
+                                                  ?_LCDDat 0033  
+                                                  ?_LCDCmd 0033  
+                                               __pbssBANK1 0100  
+              compute_frisbee_target_and_route@x_step_size 0051  
+                                                  ?___wmul 0033  
+                                                  ?_setLCD 0033  
+              compute_frisbee_target_and_route@y_step_size 0053  
+                                                  _LCDGoto 06A6  
+                                                  i2u50_40 00D2  
+                                                  i2u50_41 00CE  
+                                                  i2u51_40 00EC  
+                                                  i2u51_41 00E8  
+                                                  i2u52_40 011E  
+                                                  i2u52_41 011A  
+                                                  i2u53_40 0178  
+                                                  i2u53_41 0174  
+                                                  i2u54_40 01D6  
+                                                  i2u54_41 01D2  
+                                                  i2u55_40 0224  
+                                                  i2u47_40 0058  
+                                                  i2u63_40 0532  
+                                                  i2u55_41 0220  
+                                                  i2u47_41 0054  
+                                                  i2u63_41 052E  
+                                                  i2u56_40 0242  
+                                                  i2u48_40 008A  
+                                                  i2u64_40 0542  
+                                                  i2u56_41 023E  
+                                                  i2u48_41 0086  
+                                                  i2u64_41 053E  
+                                                  i2u57_40 02A4  
+                                                  i2u49_40 00BC  
+                                                  i2u65_40 0582  
+                                                  i2u57_41 02A0  
+                                                  i2u49_41 00B8  
+                                                  i2u65_41 057E  
+                                                  i2u58_40 030A  
+                                                  i2u66_40 05BA  
+                                                  i2u58_41 0306  
+                                                  i2u66_41 05B6  
+                                                  i2u59_40 0360  
+                                                  i2u67_40 05F6  
+                                                  i2u59_41 035C  
+                                                  i2u67_41 05F2  
+                                                  i2u68_40 060A  
+                                                  i2u68_41 0606  
+                                          __size_of_LCDDat 0034  
+                                          __size_of_LCDCmd 0032  
+                                                  _InitLCD 085E  
+                                                  __Hparam 0000  
+                                                  __Lparam 0000  
+                                        ?_random_generator 0033  
+                                       ??_random_generator 0035  
+                                          __size_of___wmul 0026  
+                          __size_of_LCDAddSpecialCharacter 0040  
+                                                  __pcinit 0788  
+                                          __size_of_setLCD 0086  
+                                                  __ramtop 1000  
+                                                  __ptext0 036A  
+                                                  __ptext1 0620  
+                                                  __ptext2 07EA  
+                                                  __ptext3 082A  
+                                                  __ptext4 085E  
+                                                  __ptext5 08E8  
+                                                  __ptext6 06A6  
+                                                  __ptext7 0890  
+                                                  __ptext9 0012  
+                                             __size_of_FNC 0618  
+                                                  _frisbee 00B2  
+                                                  _players 0001  
+                                           __pintcode_body 0512  
+                                     end_of_initialization 07E0  
+                                           _frisbee_target 00AA  
+                                                  int_func 0512  
+                                                  postdec1 000FE5  
+                                                  postdec2 000FDD  
+                                                  postinc0 000FEE  
+                                                  postinc2 000FDE  
+                                                _PORTEbits 000F84  
+                    compute_frisbee_target_and_route@i_400 0043  
+                    compute_frisbee_target_and_route@i_401 0045  
+                    compute_frisbee_target_and_route@i_396 003D  
+                    compute_frisbee_target_and_route@i_397 003F  
+                    compute_frisbee_target_and_route@i_399 0041  
+                                                _TRISAbits 000F92  
+                                                _TRISBbits 000F93  
+                                                _TRISEbits 000F96  
+                                   _LCDAddSpecialCharacter 07EA  
+                                           __end_of_LCDDat 085E  
+                                           __end_of_LCDCmd 08C2  
+                                               LCDGoto@p_1 00EC  
+                                               LCDGoto@p_2 00ED  
+          compute_frisbee_target_and_route@number_of_steps 0047  
+                                          _selected_player 002D  
+                 compute_frisbee_target_and_route@target_x 0049  
+                 compute_frisbee_target_and_route@target_y 004B  
+                       _selected_teamA_player_with_frisbee 00C2  
+                                           __end_of___wmul 08E8  
+                                            __pidataCOMRAM 08F4  
+                 __end_of_compute_frisbee_target_and_route 036A  
+                __size_of_compute_frisbee_target_and_route 0358  
+                       ??_compute_frisbee_target_and_route 0039  
+                        ?_compute_frisbee_target_and_route 0035  
+                         _compute_frisbee_target_and_route 0012  
+                                           __end_of_setLCD 06A6  
+                                      start_initialization 0788  
+                                              __end_of_FNC 0620  
+                                                 ??_LCDDat 00EA  
+                                                 ??_LCDCmd 00EA  
+                                            initGame@F2530 009B  
+                                            initGame@F2532 0092  
+                                            initGame@F2534 0089  
+                                            initGame@F2536 0080  
+                                            initGame@F2538 005F  
+                                  LCDAddSpecialCharacter@i 00EF  
+                                                 ??___wmul 0037  
+                                              __pdataBANK0 0080  
+                                                 ??_setLCD 00F0  
+                                            ??_set7Segment 00EA  
+                                                 ?_LCDGoto 00EC  
+                                              __pbssCOMRAM 0001  
+                                            __pcstackBANK0 00EA  
+                                                 ?_InitLCD 0033  
+                                                __pintcode 0008  
+                                __size_of_random_generator 0002  
+                                      __end_of_set7Segment 08F4  
+                                             _teamA_player 00E2  
+                                             _teamB_player 00DA  
+                                           ___wmul@product 0037  
+                                    _selected_teamA_player 00D2  
+                                    _selected_teamB_player 00CA  
+                                        ___wmul@multiplier 0033  
+                                         __size_of_LCDGoto 0078  
+                                  ?_LCDAddSpecialCharacter 00EC  
+                                              _INTCON3bits 000FF0  
+                                                copy_data0 079C  
+                                                copy_data1 07BC  
+                                   random_generator@modulo 0033  
+                                         __size_of_InitLCD 0032  
+                                                 __Hrparam 0000  
+                                                 __Lrparam 0000  
+                                              _frisbee_pos 0029  
+                                              _set7Segment 08E8  
+                           __end_of_LCDAddSpecialCharacter 082A  
+                                                 _main$560 00F8  
+                                                 _main$561 00FA  
+                                                 _main$562 00FC  
+                                                 _main$563 00FE  
+                                                 _main$556 00F0  
+                                                 _main$557 00F2  
+                                                 _main$558 00F4  
+                                                 _main$559 00F6  
+                                                 __ptext10 08FC  
+                                                 __ptext11 08C2  
+                                              _teamA_score 0031  
+                                            __size_of_main 01A8  
+                                              _teamB_score 002F  
+                       _selected_teamB_player_with_frisbee 00BA  
+                                                 int$flags 0066  
+                                               _INTCONbits 000FF2  
+                                         _random_generator 08FC  
+                                                 intlevel2 0000  
+                        compute_frisbee_target_and_route@i 003B  
+                        compute_frisbee_target_and_route@x 004D  
+                        compute_frisbee_target_and_route@y 004F  

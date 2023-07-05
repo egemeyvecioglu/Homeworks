@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.hs": "haskell",
+        "*.txt": "plaintext",
+        "list": "cpp",
+        "random": "cpp"
+    }
+}

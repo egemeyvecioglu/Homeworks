@@ -1,0 +1,482 @@
+\documentclass[10pt,a4paper, margin=1in]{article}
+\usepackage{fullpage}
+\usepackage{amsfonts, amsmath, pifont}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=10mm,
+ right=10mm,
+ top=10mm,
+ bottom=10mm,
+ }
+ % Write both of your names here. Fill exxxxxxx with your ceng mail address.
+ \author{
+  Meyvecioğlu, Hasan Ege\\
+  \texttt{e2449783@ceng.metu.edu.tr}
+  \and
+  Şanlı, Enes\\
+  \texttt{e2375749@ceng.metu.edu.tr}
+}
+
+\title{CENG 384 - Signals and Systems for Computer Engineers \\
+Spring 2023 \\
+Homework 4}
+\begin{document}
+\maketitle
+
+
+
+\noindent\rule{19cm}{1.2pt}
+
+\begin{enumerate}
+
+\item %write the solution of q1
+	\begin{enumerate}   
+    % Write your solutions in the following items.
+    \item %write the solution of q1a
+   \begin{equation}
+        H(jw) = \frac{Y(jw)}{X(jw)}
+   \end{equation}
+   \begin{equation}
+       (jw+1)Y(jw) = (jw-1)X(jw)
+   \end{equation}
+   \begin{equation}
+       y'(n) + y(n) = x'(n) - x(n)
+   \end{equation}
+    \item %write the solution of q1b
+    \begin{equation}
+        H(jw) = \frac{jw - 1}{jw +1}        
+    \end{equation}
+    \begin{equation}
+        H(jw) = 1 -\frac{2}{jw + 1}
+    \end{equation}
+    \begin{equation}
+        h(t) = F^{-1}\{H(jw)\} = F^{-1}\{ 1 -\frac{2}{jw + 1}\} 
+    \end{equation}
+    \begin{equation}
+        = \delta(t) - 2e^{-t}u(t)
+    \end{equation}
+	\item %write the solution of q1c
+    \begin{equation}
+        x(t)*h(t) = y(t)
+    \end{equation}
+    so
+    \begin{equation}
+        X(jw)H(jw) = Y(jw)
+    \end{equation}
+    \begin{equation}
+        \frac{1}{jw+2}\frac{jw - 1}{ jw +1} = Y(jw)
+    \end{equation}
+    \begin{equation}
+        \frac{jw -1}{(jw+2)(jw+1)} = \frac{A}{jw+1} + \frac{B}{jw+2}
+    \end{equation}
+    \begin{equation}
+        2A+B=-1, A+B = 1
+    \end{equation}
+    \begin{equation}
+        A = -2, B=3 
+    \end{equation}
+    \begin{equation}
+        Y(jw) = \frac{-2}{jw+1} + \frac{3}{jw+2}
+    \end{equation}
+    \begin{equation}
+        y(t) = -2e^{-t}u(t) + 3e^{-2t}u(t)
+    \end{equation}
+
+    \includegraphics[]{1c.pdf}
+    \item %write the solution of q1d
+
+\begin{equation}
+    \frac{dy}{dt} + y =  \frac{dx}{dt} - x
+\end{equation}
+
+\begin{equation}
+    x + y =  \frac{dx}{dt} -  \frac{dy}{dt}
+\end{equation}
+\begin{equation}
+   \int (x + y)  dt = \int (\frac{dx}{dt} -  \frac{dy}{dt}) dt
+\end{equation}
+\begin{equation}
+   \int x dt  + \int y dt = x -  y
+\end{equation}
+\begin{equation}
+    y = x -  \int x dt  - \int y dt
+\end{equation}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da7726647444431063] 
+\draw    (73,102) -- (343,102) ;
+\draw [shift={(346,102)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da1155812830674563] 
+\draw    (164,102) -- (163.39,179.86) ;
+%Straight Lines [id:da1536587320856233] 
+\draw    (163.39,179.75) -- (247.85,179) ;
+%Shape: Ellipse [id:dp24004365179803977] 
+\draw   (247.85,179) .. controls (247.85,162.92) and (259.53,149.89) .. (273.93,149.89) .. controls (288.33,149.89) and (300,162.92) .. (300,179) .. controls (300,195.08) and (288.33,208.11) .. (273.93,208.11) .. controls (259.53,208.11) and (247.85,195.08) .. (247.85,179) -- cycle ;
+%Shape: Ellipse [id:dp905012926935391] 
+\draw   (346,102) .. controls (346,85.92) and (362.79,72.89) .. (383.5,72.89) .. controls (404.21,72.89) and (421,85.92) .. (421,102) .. controls (421,118.08) and (404.21,131.11) .. (383.5,131.11) .. controls (362.79,131.11) and (346,118.08) .. (346,102) -- cycle ;
+%Straight Lines [id:da28303836446124286] 
+\draw    (300,179) -- (375,180) ;
+%Straight Lines [id:da3761212524701436] 
+\draw    (375,180) -- (374.52,133.11) ;
+\draw [shift={(374.5,131.11)}, rotate = 89.41] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da07565415017997634] 
+\draw    (421,102) -- (589,102.99) ;
+\draw [shift={(591,103)}, rotate = 180.34] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da6555384616591895] 
+\draw    (506,102.5) -- (508,177) ;
+%Shape: Ellipse [id:dp960544376811661] 
+\draw   (431.85,177.94) .. controls (431.85,160.24) and (443.53,145.89) .. (457.93,145.89) .. controls (472.33,145.89) and (484,160.24) .. (484,177.94) .. controls (484,195.65) and (472.33,210) .. (457.93,210) .. controls (443.53,210) and (431.85,195.65) .. (431.85,177.94) -- cycle ;
+%Straight Lines [id:da08859920180216796] 
+\draw    (384,179) -- (383.52,133.11) ;
+\draw [shift={(383.5,131.11)}, rotate = 89.4] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da2699624755617147] 
+\draw    (384,179) -- (431.85,177.94) ;
+%Straight Lines [id:da8849118252100503] 
+\draw    (484,177.94) -- (508,177) ;
+
+% Text Node
+\draw (264,162.4) node [anchor=north west][inner sep=0.75pt]  [font=\LARGE]  {$\int $};
+% Text Node
+\draw (374,87.4) node [anchor=north west][inner sep=0.75pt]  [font=\Large]  {$+$};
+% Text Node
+\draw (447,160.4) node [anchor=north west][inner sep=0.75pt]  [font=\LARGE]  {$\int $};
+% Text Node
+\draw (39,93.4) node [anchor=north west][inner sep=0.75pt]    {$x( t)$};
+% Text Node
+\draw (600,94.4) node [anchor=north west][inner sep=0.75pt]    {$y( t)$};
+% Text Node
+\draw (358,139.4) node [anchor=north west][inner sep=0.75pt]    {$-$};
+% Text Node
+\draw (391,139.4) node [anchor=north west][inner sep=0.75pt]    {$-$};
+
+
+\end{tikzpicture}
+    \end{enumerate}
+\item %write the solution of q2  
+	\begin{enumerate}
+    % Write your solutions in the following items.
+    \item %write the solution of q2a
+    \begin{equation}
+        H(e^{jw}) = \frac{Y(e^{jw})}{X(e^{jw})}
+    \end{equation}
+    \begin{equation}
+        e^{jw}Y(e^{jw}) -\frac{1}{2}Y(e^{jw}) = e^{jw}X(e^{jw})
+    \end{equation}
+    \begin{equation}
+        H(e^{jw}) = \frac{Y(e^{jw})}{X(e^{jw})} = \frac{e^{jw}}{e^{jw}-\frac{1}{2}} = \frac{1}{1-\frac{1}{2}e^{-jw}}
+    \end{equation}
+    \item %write the solution of q2b
+    \begin{equation}
+        h[n] = F^{-1}\{H(e^{jw})\} = F^{-1}\{\frac{1}{1-\frac{1}{2}e^{-jw}}\}  = (\frac{1}{2})^nu[n]
+    \end{equation}
+	\item %write the solution of q2c
+    \begin{equation}
+        F^{-1}\{X(e^{jw})\} = \frac{1}{1 - \frac{3}{4}e^{-jw}}
+    \end{equation}
+    \begin{equation}
+        y[n] = x[n] * h[n]
+    \end{equation}
+    \begin{equation}
+        Y(e^{jw}) = X(e^{jw})H(e^{jw})
+    \end{equation}
+    \begin{equation}
+        Y(e^{jw}) = \frac{1}{1 - \frac{3}{4}e^{-jw}}\frac{1}{1 - \frac{1}{2}e^{-jw}} = \frac{A}{1 - \frac{3}{4}e^{-jw}} + \frac{B}{1 - \frac{1}{2}e^{-jw}}
+    \end{equation}
+    \begin{equation}
+        A + B = 1, \frac{1}{2}A + \frac{3}{4}B = 0
+    \end{equation}
+    \begin{equation}
+        A = 3, B = -2
+    \end{equation}
+    \begin{equation}
+        Y(e^{jw}) = \frac{3}{1 - \frac{3}{4}e^{-jw}} - \frac{2}{1 - \frac{1}{2}e^{-jw}}
+    \end{equation}
+    \begin{equation}
+        y[n] = 3(\frac{3}{4})^nu[n] - 2(\frac{1}{2})^nu[n]
+    \end{equation}
+    
+    \end{enumerate}
+
+\item %write the solution of q3
+	\begin{enumerate}
+    % Write your solutions in the following items.
+    \item %write the solution of q3a
+    \begin{equation}
+        H_3(jw) = H_2(jw)H_1(jw) = \frac{1}{jw^2 + 3jw + 2}
+    \end{equation}
+    \begin{equation}
+        H_3(jw) = \frac{Y(jw)}{X(jw)} = \frac{1}{jw^2 + 3jw + 2}
+    \end{equation}
+    \begin{equation}
+        jw^2Y(jw) + 3jwY(jw) + 2Y(jw) = X(jw)
+    \end{equation}
+    \begin{equation}
+        y''(t) + 3y'(t) + 2y(t) = x(t)
+    \end{equation}
+    
+    \item %write the solution of q3b
+    
+    \begin{equation}
+        H_3(jw) = H_2(jw)H_1(jw) = \frac{1}{(jw+1)(jw+2)} = \frac{A}{jw+1} + \frac{B}{jw+2}
+    \end{equation}
+    \begin{equation}
+        A = 1, B= -1
+    \end{equation}
+    \begin{equation}
+        h(t) = F^{-1}\{H(jw)\} = e^{-t}u(t) - e^{-2t}u(t)
+    \end{equation}
+    
+	\item %write the solution of q3c
+    \begin{equation}
+        y(t) = x(t)*h(t) 
+    \end{equation}
+    \begin{equation}
+        Y(jw) = X(jw)H_3(jw)
+    \end{equation}
+    \begin{equation}
+        Y(jw) = \frac{jw}{(jw+1)(jw+2)} = \frac{A}{jw+1} + \frac{B}{jw+2}
+    \end{equation}
+    \begin{equation}
+        2A+B=0, A+B=1
+    \end{equation}
+    \begin{equation}
+        A=-1, B=2
+    \end{equation}
+    \begin{equation}
+        Y(jw) = \frac{-1}{jw+1} + \frac{2}{jw+2}
+    \end{equation}
+    \begin{equation}
+        y(t) = -e^{-t}u(t) + 2e^{-2t}u(t)
+    \end{equation}
+    \end{enumerate}
+
+\item %write the solution of q4
+    \begin{enumerate}   
+    % Write your solutions in the following items.
+    \item %write the solution of q4a
+    \begin{equation}
+        y[n] = x[n]*h_1[n] + x[n]*h_2[n]
+    \end{equation}
+    \begin{equation}
+        y[n] = x[n]*(h_1[n]+h_2[n])
+    \end{equation}
+    \begin{equation}
+        Y(e^{jw}) = X(e^{jw})(H_1(e^{jw})+H_2(e^{jw}))
+    \end{equation}
+    \begin{equation}
+        Y(e^{jw}) = X(e^{jw})H(e^{jw})        
+    \end{equation}
+    \begin{equation}
+        H(e^{jw}) = H_1(e^{jw})+H_2(e^{jw})
+    \end{equation}
+    \begin{equation}
+        H(e^{jw}) = \frac{ 5e^{-jw} + 12}{e^{-2jw} + 5e^{-jw} + 6}
+    \end{equation}
+    \begin{equation}
+        H(e^{jw}) = \frac{Y(e^{jw})}{X(e^{jw})}
+    \end{equation}
+    \begin{equation}
+        Y(e^{jw})(e^{-2jw} + 5e^{-jw} + 6) = (5e^{-jw} + 12)X(e^{jw})
+    \end{equation}
+    \begin{equation}
+        y[n-2] + 5y[n-1] + 6y[n] = 5x[n-1] + 12x[n]
+    \end{equation}
+    \item %write the solution of q4b
+    \begin{equation}
+        H(e^{jw}) = H_1(e^{jw})+H_2(e^{jw})
+    \end{equation}
+    \begin{equation}
+        H(e^{jw}) = \frac{ 5e^{-jw} + 12}{e^{-2jw} + 5e^{-jw} + 6}
+    \end{equation}
+	\item %write the solution of q4c
+    \begin{equation}
+        h[n] = F^{-1}\{H(e^{jw})\} = F^{-1}\{\frac{3}{3+e^{-jw}} + \frac{2}{2+e^{-jw}}\} =  F^{-1}\{\frac{1}{1+\frac{1}{3}e^{-jw}} + \frac{1}{1+\frac{1}{2}e^{-jw}}\}
+    \end{equation}
+    \begin{equation}
+        h[n] = (-\frac{1}{3})^nu[n] + (-\frac{1}{2})^nu[n]
+    \end{equation}
+    \end{enumerate}
+
+\item %write the solution of q5
+The code including the implementation of FFT and IFFT algorithms and are below:
+
+\begin{lstlisting}[language=Python, caption=Message decoder that uses FFT\&IFFT implementaton ]
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.io.wavfile as wavfile
+
+def fft(x):
+    N = int(len(x))
+
+    if N <= 1:
+        return x
+    
+    even = fft(x[::2])
+    odd = fft(x[1::2])
+
+
+    X = np.zeros(N, dtype=np.complex128)
+    for k in range(int(N/2)):
+        factor = np.exp(-2j * np.pi * (k-1) / N)
+        X[k] = odd[k] + factor * even[k]
+        if k == 0:
+            X[k + int (N/2)] = odd[k] + np.exp(-2j * np.pi * (int (N/2) -1) / N) * even [k]
+        else:    
+            X[k + int (N/2)] = odd[k] - factor * even [k]
+
+    return X
+
+
+def ifft(x):
+    inverse = fft(np.conj(x))/len(x)
+    return np.real(np.conj(inverse))
+    
+
+if __name__ == '__main__':
+
+    # read encoded.wav
+    sample_rate, data = wavfile.read('encoded.wav')
+
+    print('sample rate: ', sample_rate)
+
+    duration = len(data) / sample_rate
+    time = np.linspace(0, duration, len(data))
+
+    # plot the encoded signal in time domain
+    fig1 = plt.figure()
+    plt.plot(time,data)
+    plt.title('Encoded Signal in Time Domain')
+    plt.xlabel('Time(s)')
+    plt.ylabel('Amplitude')
+    plt.show()
+    fig1.savefig('encoded_time.pdf')
+
+
+
+    frequency_domain = fft(data)
+    frequencies = np.linspace(-len(data)//2, len(data)//2, len(data))
+
+    # plot the magnitude of the frequency domain
+    fig2 = plt.figure()
+    plt.plot(frequencies,np.abs(frequency_domain))
+    plt.title('Encoded Signal in Frequency Domain')
+    plt.xlabel('Frequency(Hz)')
+    plt.ylabel('Amplitude')
+    plt.show()
+    #save as pdf
+    fig2.savefig('encoded_freq.pdf')
+
+    modified_freq = np.concatenate((np.flip(frequency_domain[:len(frequency_domain)//2]), np.flip(frequency_domain[len(frequency_domain)//2:]))) #solves the secret
+
+    # plot the magnitude of the modified frequency domain
+    fig3 = plt.figure()
+    plt.plot(frequencies,np.abs(modified_freq))
+    plt.title('Decoded Signal in Frequency Domain')
+    plt.xlabel('Frequency()')
+    plt.ylabel('Amplitude')
+    plt.show()
+    fig3.savefig('decoded_freq.pdf')
+
+    modified_time = ifft(modified_freq)
+
+    # plot the decoded signal in time domain
+    fig4 = plt.figure()
+    plt.plot(time, modified_time)
+    plt.title('Decoded Signal in Time Domain')
+    plt.xlabel('Time(s)')
+    plt.ylabel('Amplitude')
+    plt.show()
+    fig4.savefig('decoded_time.pdf')
+
+    # write the modified time domain to a wav file
+    wavfile.write('decoded.wav', sample_rate, modified_time.real.astype(data.dtype))
+
+
+
+
+
+
+\end{lstlisting}
+
+\textbf{Plots:}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics{encoded_time.pdf}
+    \caption{Encoded Signal in Time Domain}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics{encoded_freq.pdf}
+    \caption{Encoded Signal in Frequency Domain}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics{decoded_freq.pdf}
+    \caption{Decoded Signal in Frequency Domain}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics{decoded_time.pdf}
+    \caption{Decoded Signal in Time Domain}
+    \label{fig:enter-label}
+\end{figure}
+\newpage
+The secret message is:
+\begin{center}
+\Huge
+\textbf{\textit{"I have a dream."}}
+\end{center}
+
+\end{enumerate}
+
+
+\end{document}
+
