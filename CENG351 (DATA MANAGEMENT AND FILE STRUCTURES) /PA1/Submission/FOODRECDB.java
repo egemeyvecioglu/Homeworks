@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public class FOODRECDB implements  IFOODRECDB{
 
     private static String user = "e2449783";
-    private static String password = "MFOJ1TqMV7YXbeHY";
-    private static String host = "momcorp.ceng.metu.edu.tr";
-    private static String database = "db2449783";
+    private static String password = "";
+    private static String host = "";
+    private static String database = "";
     private static int port = 8080;
 
     private static Connection connection;
